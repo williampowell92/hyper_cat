@@ -62,4 +62,10 @@ describe('Keyboarder', () => {
       expect(keyboarder.keyState.ArrowUp).toEqual(false);
     });
   });
+
+  describe('isDown', () => {
+    it('returns false before a key is pressed', () => {
+      expect(keyboarder.isDown(keyboarder.KEYS.LEFT)).toEqual(false);
+    });
+  });
 });

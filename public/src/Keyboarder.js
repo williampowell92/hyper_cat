@@ -12,3 +12,7 @@ function Keyboarder() {
     self.keyState[e.key] = false;
   };
 }
+
+Keyboarder.prototype.isDown = function isDown(key) {
+  return false;
+};
