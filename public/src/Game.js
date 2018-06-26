@@ -1,6 +1,5 @@
 const Game = function Game (gameSize) {
   this.bodies = [];
-  this.gravity = 1.5;
 };
 
 Game.prototype = {
@@ -11,10 +10,10 @@ Game.prototype = {
     });
   },
 
-  draw(ctx, gameSize) {
-    ctx.clearRect(0, 0, gameSize.x, gameSize.y);
+  draw(context, gameSize) {
+    context.clearRect(0, 0, gameSize.x, gameSize.y);
     this.bodies.forEach((body) => {
-      body.draw(ctx);
+      body.draw(context);
     });
   },
 };
