@@ -14,5 +14,5 @@ function Keyboarder() {
 }
 
 Keyboarder.prototype.isDown = function isDown(key) {
-  return false;
+  return this.keyState[key] === true;
 };

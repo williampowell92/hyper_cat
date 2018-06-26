@@ -67,5 +67,10 @@ describe('Keyboarder', () => {
     it('returns false before a key is pressed', () => {
       expect(keyboarder.isDown(keyboarder.KEYS.LEFT)).toEqual(false);
     });
+
+    it('returns true after a key is pressed', () => {
+      pressKey(keyboarder.KEYS.LEFT);
+      expect(keyboarder.isDown(keyboarder.KEYS.LEFT)).toEqual(true);
+    });
   });
 });
