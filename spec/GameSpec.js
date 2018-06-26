@@ -7,11 +7,7 @@ describe("Game", () => {
     canvas = document.querySelector('canvas');
     ctx = canvas.getContext('2d');
     gameSize = { x: canvas.width, y: canvas.height };
-    player = {
-      draw: function() {
-
-      }
-    }
+    player = { draw: function() {}, update: function() {} }
   });
 
   describe("initialize", () => {
@@ -42,4 +38,17 @@ describe("Game", () => {
         expect(player.draw).toHaveBeenCalled();
       })
     });
+
+    describe('Update', () => {
+
+      beforeEach(() => {
+        spyOn(player, 'update');
+      })
+
+      it('update the screen with bodies', () => {
+        game.bodies = [player];
+        game.update(gameSize);
+        expect(player.update).toHaveBeenCalled();
+      })
+    })
 });
