@@ -5,6 +5,6 @@ function Keyboarder() {
   const self = this;
 
   window.onkeydown = function onKeyDown(e) {
-    self.keyState.ArrowLeft = true;
+    self.keyState[e.key] = true;
   };
 }

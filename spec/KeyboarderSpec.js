@@ -32,5 +32,16 @@ describe('Keyboarder', () => {
       keyPress('ArrowLeft');
       expect(keyboarder.keyState.ArrowLeft).toEqual(true);
     });
+
+    it('sets the keyState of right key to true', () => {
+      keyPress('ArrowRight');
+      expect(keyboarder.keyState.ArrowRight).toEqual(true);
+    });
+
+    it('sets the keyState of up key to true', () => {
+      keyPress('ArrowUp');
+      expect(keyboarder.keyState.ArrowUp).toEqual(true);
+    });
   });
+
 });
