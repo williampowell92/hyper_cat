@@ -7,5 +7,8 @@ const Game = function () {
 Game.prototype = {
   draw(ctx, gameSize) {
     ctx.clearRect(0, 0, gameSize.x, gameSize.y);
+    this.bodies.forEach((body) => {
+      body.draw(ctx);
+    })
   }
 };
