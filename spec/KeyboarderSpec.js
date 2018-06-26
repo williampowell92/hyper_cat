@@ -1,6 +1,5 @@
 describe('Keyboarder', () => {
   let keyboarder;
-  let keyPressed = null;
 
   beforeEach(() => {
     keyboarder = new Keyboarder();
@@ -16,15 +15,15 @@ describe('Keyboarder', () => {
 
   describe('KEYS', () => {
     it('should have the correct keycode for left', () => {
-      expect(keyboarder.KEYS.LEFT).toEqual(37);
+      expect(keyboarder.KEYS.LEFT).toEqual('ArrowLeft');
     });
 
     it('should have the correct keycode for right', () => {
-      expect(keyboarder.KEYS.RIGHT).toEqual(39);
+      expect(keyboarder.KEYS.RIGHT).toEqual('ArrowRight');
     });
 
     it('should have the correct keycode for up', () => {
-      expect(keyboarder.KEYS.UP).toEqual(38);
+      expect(keyboarder.KEYS.UP).toEqual('ArrowUp');
     });
   });
 

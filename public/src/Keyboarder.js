@@ -1,5 +1,5 @@
 function Keyboarder() {
-  this.KEYS = { LEFT: 37, RIGHT: 39, UP: 38 };
+  this.KEYS = { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', UP: 'ArrowUp' };
   this.keyState = {};
 
   const self = this;
