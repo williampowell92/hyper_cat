@@ -4,5 +4,8 @@ module.exports = {
     "env": {
       "jasmine": true,
       "browser": true
+    },
+    "rules": {
+      "comma-dangle": 0
     }
 };
