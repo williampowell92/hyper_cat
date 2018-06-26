@@ -1,4 +1,4 @@
-describe("Game", () => {
+describe('Game', () => {
 
   let game, canvas, ctx, gameSize, player;
 
@@ -7,48 +7,43 @@ describe("Game", () => {
     canvas = document.querySelector('canvas');
     ctx = canvas.getContext('2d');
     gameSize = { x: canvas.width, y: canvas.height };
-    player = { draw: function() {}, update: function() {} }
+    player = { draw() {}, update() {} };
   });
 
-  describe("initialize", () => {
-      it("has a bodies array", () => {
-        expect(game.bodies).toEqual([])
-      });
+  describe('initialize', () => {
+    it('has a bodies array', () => {
+      expect(game.bodies).toEqual([]);
+    });
 
-      it("sets a gravity", () => {
-        expect(game.gravity).toEqual(1.5)
-      })
+    it('sets a gravity', () => {
+      expect(game.gravity).toEqual(1.5);
+    });
   });
 
   describe('Draw', () => {
-
     beforeEach(() => {
       spyOn(ctx, 'clearRect');
       spyOn(player, 'draw');
     });
 
-      it('clears the canvas', () => {
-        game.draw(ctx, gameSize);
-        expect(ctx.clearRect).toHaveBeenCalledWith(0, 0, gameSize.x, gameSize.y);
-      });
-
-      it('draws all the bodies from array', () => {
-        game.bodies = [player]
-        game.draw(ctx, gameSize);
-        expect(player.draw).toHaveBeenCalled();
-      })
+    it('clears the canvas', () => {
+      game.draw(ctx, gameSize);
+      expect(ctx.clearRect).toHaveBeenCalledWith(0, 0, gameSize.x, gameSize.y);
     });
 
-    describe('Update', () => {
+    it('draws all the bodies from array', () => {
+      game.bodies = [player];
+      game.draw(ctx, gameSize);
+      expect(player.draw).toHaveBeenCalled();
+    });
+  });
 
-      beforeEach(() => {
-        spyOn(player, 'update');
-      })
-
-      it('update the screen with bodies', () => {
-        game.bodies = [player];
-        game.update(gameSize);
-        expect(player.update).toHaveBeenCalled();
-      })
-    })
+  describe('Update', () => {
+    it('update the screen with bodies', () => {
+      spyOn(player, 'update');
+      game.bodies = [player];
+      game.update(gameSize);
+      expect(player.update).toHaveBeenCalled();
+    });
+  });
 });

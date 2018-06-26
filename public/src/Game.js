@@ -1,12 +1,6 @@
-const Game = function () {
-  let canvas = document.querySelector('canvas');
-  let ctx = canvas.getContext('2d');
-  let gameSize = { x: canvas.width, y: canvas.height };
-
+const Game = function Game (gameSize) {
   this.bodies = [];
   this.gravity = 1.5;
-
-  let self = this;
 };
 
 Game.prototype = {
@@ -21,6 +15,6 @@ Game.prototype = {
     ctx.clearRect(0, 0, gameSize.x, gameSize.y);
     this.bodies.forEach((body) => {
       body.draw(ctx);
-    })
-  }
+    });
+  },
 };
