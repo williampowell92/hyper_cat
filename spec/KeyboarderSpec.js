@@ -72,5 +72,16 @@ describe('Keyboarder', () => {
       pressKey(keyboarder.KEYS.LEFT);
       expect(keyboarder.isDown(keyboarder.KEYS.LEFT)).toEqual(true);
     });
+
+    it('returns false after a key is released', () => {
+      pressKey(keyboarder.KEYS.LEFT);
+      releaseKey(keyboarder.KEYS.LEFT);
+      expect(keyboarder.isDown(keyboarder.KEYS.LEFT)).toEqual(false);
+    });
+
+    it('returns false if a key is release but never pressed', () => {
+      releaseKey(keyboarder.KEYS.LEFT);
+      expect(keyboarder.isDown(keyboarder.KEYS.LEFT)).toEqual(false);
+    });
   });
 });
