@@ -1,10 +1,10 @@
 describe("Game", () => {
 
-  var canvas, ctx, gameSize;
+  let game, canvas, ctx, gameSize;
 
   beforeEach(() => {
     game = new Game();
-    canvas = document.getElementById(canvas);
+    canvas = document.querySelector('canvas');
     ctx = canvas.getContext('2d');
     gameSize = { x: canvas.width, y: canvas.height };
   });
@@ -21,9 +21,9 @@ describe("Game", () => {
 
   describe('Draw', () => {
       it('draws canvas to screen', () => {
-        var spyCtx = spyOn(ctx, 'clearRect');
-        game.draw(spyCtx, gameSize);
-        expect(spyCtx.clearRect).toHaveBeenCalledWith(0, 0, gameSize.x, gameSize.y);
+        spyOn(ctx, 'clearRect')
+        game.draw(ctx, gameSize);
+        expect(ctx.clearRect).toHaveBeenCalledWith(0, 0, gameSize.x, gameSize.y);
       })
     })
 });
