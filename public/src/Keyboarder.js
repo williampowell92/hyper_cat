@@ -7,4 +7,8 @@ function Keyboarder() {
   window.onkeydown = function onKeyDown(e) {
     self.keyState[e.key] = true;
   };
+
+  window.onkeyup = function onKeyUp(e) {
+    self.keyState[e.key] = false;
+  };
 }

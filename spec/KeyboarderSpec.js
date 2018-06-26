@@ -5,11 +5,13 @@ describe('Keyboarder', () => {
     keyboarder = new Keyboarder();
   });
 
-  function keyPress(key) {
-    const event = new KeyboardEvent('keydown', {
-      view: window,
-      key
-    });
+  function pressKey(key) {
+    const event = new KeyboardEvent('keydown', { key });
+    window.dispatchEvent(event);
+  }
+
+  function releaseKey(key) {
+    const event = new KeyboardEvent('keyup', { key });
     window.dispatchEvent(event);
   }
 
@@ -29,19 +31,35 @@ describe('Keyboarder', () => {
 
   describe('onkeydown', () => {
     it('sets the keyState of left key to true', () => {
-      keyPress('ArrowLeft');
+      pressKey('ArrowLeft');
       expect(keyboarder.keyState.ArrowLeft).toEqual(true);
     });
 
     it('sets the keyState of right key to true', () => {
-      keyPress('ArrowRight');
+      pressKey('ArrowRight');
       expect(keyboarder.keyState.ArrowRight).toEqual(true);
     });
 
     it('sets the keyState of up key to true', () => {
-      keyPress('ArrowUp');
+      pressKey('ArrowUp');
       expect(keyboarder.keyState.ArrowUp).toEqual(true);
     });
   });
 
+  describe('onkeyup', () => {
+    it('sets the keyState of left key to false', () => {
+      releaseKey('ArrowLeft');
+      expect(keyboarder.keyState.ArrowLeft).toEqual(false);
+    });
+
+    it('sets the keyState of right key to false', () => {
+      releaseKey('ArrowRight');
+      expect(keyboarder.keyState.ArrowRight).toEqual(false);
+    });
+
+    it('sets the keyState of up key to false', () => {
+      releaseKey('ArrowUp');
+      expect(keyboarder.keyState.ArrowUp).toEqual(false);
+    });
+  });
 });
