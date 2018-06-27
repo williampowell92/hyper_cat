@@ -3,7 +3,6 @@ const Game = function Game() {
 };
 
 Game.prototype = {
-
   update(gameSize) {
     this.bodies.forEach((body) => {
       body.update(gameSize);
