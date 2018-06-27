@@ -7,17 +7,17 @@ describe('Game', () => {
   let gameFactory;
 
   beforeEach(() => {
-    gameFactory = new GameFactory();
-    game = gameFactory.build();
     canvas = { width: 800, height: 800 };
     context = { clearRect() {} };
     gameSize = { x: canvas.width, y: canvas.height };
     player = { draw() {}, update() {} };
+    gameFactory = new GameFactory();
+    game = gameFactory.build(player);
   });
 
   describe('initialize', () => {
     it('has a bodies array', () => {
-      expect(game.bodies).toEqual([]);
+      expect(game.bodies).toContain(player);
     });
   });
 

@@ -2,6 +2,7 @@ function Index(gameFactory = new GameFactory(), documentObject = document) {
   const canvas = documentObject.querySelector('canvas');
   const context = canvas.getContext('2d');
   const gameSize = { x: canvas.width, y: canvas.height };
+  console.log(gameFactory);
   this.game = gameFactory.build();
 
   const self = this;
