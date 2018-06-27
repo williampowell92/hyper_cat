@@ -13,6 +13,18 @@ function Keyboarder() {
   };
 }
 
-Keyboarder.prototype.isDown = function isDown(key) {
+Keyboarder.prototype._isDown = function isDown(key) {
   return this.keyState[key] === true;
+};
+
+Keyboarder.prototype.isRightKeyDown = function isRightKeyDown() {
+  return this._isDown(this.KEYS.RIGHT);
+};
+
+Keyboarder.prototype.isLeftKeyDown = function isLeftKeyDown() {
+  return this._isDown(this.KEYS.LEFT);
+};
+
+Keyboarder.prototype.isUpKeyDown = function isUpKeyDown() {
+  return this._isDown(this.KEYS.UP);
 };
