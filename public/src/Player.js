@@ -16,7 +16,10 @@ Player.prototype = {
 
     if (this.keyboarder.isUpKeyDown()) {
       this.velocity.y = this.movement.y;
-    };
+    }
+
+    this.center.x += this.velocity.x;
+
   },
 
   draw(context) {
