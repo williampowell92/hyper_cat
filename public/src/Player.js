@@ -19,7 +19,7 @@ Player.prototype = {
     }
 
     this.center.x += this.velocity.x;
-
+    this.center.y += this.velocity.y;
   },
 
   draw(context) {

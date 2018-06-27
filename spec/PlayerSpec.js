@@ -87,6 +87,19 @@ describe('Player', () => {
         player.update();
         expect(player.velocity.y).toEqual(0);
       });
+      it('player moves when up key is pressed', () => {
+        spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+        const initialYCenter = player.center.y;
+        player.update();
+        expect(player.center.y).toEqual(initialYCenter + player.movement.y);
+      });
+
+      it('player moves when up key is pressed', () => {
+        spyOn(keyboarder, 'isUpKeyDown').and.returnValue(false);
+        const initialYCenter = player.center.y;
+        player.update();
+        expect(player.center.y).toEqual(initialYCenter);
+      });
     });
   });
 });
