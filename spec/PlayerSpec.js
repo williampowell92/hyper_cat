@@ -1,15 +1,16 @@
 describe('Player', () => {
-  let player, context, keyboarder;
+  let player;
+  let context;
+  let keyboarder;
 
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     player = new Player(keyboarder);
-    context = { fillRect() {} };
+    context = jasmine.createSpyObj('context', ['fillRect']);
   });
 
   describe('Draw', () => {
     it('fills a rectange with players dimension', () => {
-      spyOn(context, 'fillRect');
       player.draw(context);
       expect(context.fillRect).toHaveBeenCalledWith(player.center.x - (player.size.x / 2),
         player.center.y - (player.size.y / 2),
@@ -45,29 +46,47 @@ describe('Player', () => {
         expect(player.center.x).toEqual(initialXCenter);
       });
     });
-    it('player velocity increases when left key is pressed', () => {
-      spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
-      player.update();
-      expect(player.velocity.x).toEqual(-player.movement.x);
+
+    describe('LeftKey', () => {
+      it('player velocity increases when left key is pressed', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
+        player.update();
+        expect(player.velocity.x).toEqual(-player.movement.x);
+      });
+
+      it('player velocity does not increase if left key is  not pressed', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(false);
+        player.update();
+        expect(player.velocity.x).toEqual(0);
+      });
+
+      it('player moves when left key is pressed', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
+        const initialXCenter = player.center.x;
+        player.update();
+        expect(player.center.x).toEqual(initialXCenter - player.movement.x);
+      });
+
+      it('player moves when left key is pressed', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(false);
+        const initialXCenter = player.center.x;
+        player.update();
+        expect(player.center.x).toEqual(initialXCenter);
+      });
     });
 
-    it('player velocity does not increase if left key is  not pressed', () => {
-      spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(false);
-      player.update();
-      expect(player.velocity.x).toEqual(0);
-    });
+    describe('UpKey', () => {
+      it('player velocity increases when up key is pressed', () => {
+        spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+        player.update();
+        expect(player.velocity.y).toEqual(player.movement.y);
+      });
 
-    it('player velocity increases when up key is pressed', () => {
-      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
-      player.update();
-      expect(player.velocity.y).toEqual(player.movement.y);
+      it('player velocity does not increase if the up key is not pressed', () => {
+        spyOn(keyboarder, 'isUpKeyDown').and.returnValue(false);
+        player.update();
+        expect(player.velocity.y).toEqual(0);
+      });
     });
-
-    it('player velocity does not increase if the up key is not pressed', () => {
-      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(false);
-      player.update();
-      expect(player.velocity.y).toEqual(0);
-    });
-
   });
 });
