@@ -2,7 +2,7 @@ describe('Player', () => {
   let player, context, keyboarder;
 
   beforeEach(() => {
-    keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {} };
+    keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     player = new Player(keyboarder);
     context = { fillRect() {} };
   });
@@ -21,7 +21,7 @@ describe('Player', () => {
     it('player can move right when right key is pressed', () => {
       spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
       player.update();
-      expect(player.velocity.x).toEqual(1.5);
+      expect(player.velocity.x).toEqual(player.movement.x);
     });
 
     it('player cannot move right when right key is  not pressed', () => {
@@ -33,13 +33,25 @@ describe('Player', () => {
     it('player can move left when left key is pressed', () => {
       spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
       player.update();
-      expect(player.velocity.x).toEqual(-1.5);
+      expect(player.velocity.x).toEqual(-player.movement.x);
     });
 
     it('player cannot move left when right key is  not pressed', () => {
       spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(false);
       player.update();
       expect(player.velocity.x).toEqual(0);
+    });
+
+    it('player can move up if up key is pressed', () => {
+      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+      player.update();
+      expect(player.velocity.y).toEqual(player.movement.y);
+    });
+
+    it('player does not move up if the up key is not pressed', () => {
+      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(false);
+      player.update();
+      expect(player.velocity.y).toEqual(0);
     });
   });
 });

@@ -1,8 +1,8 @@
 function Player(keyboarder = new Keyboarder()) {
   this.center = { x: 20, y: 0 };
   this.size = { x: 20, y: 55 };
-  this.velocity = { x: 0 };
-  this.movement = { x: 1.5 };
+  this.velocity = { x: 0, y: 0 };
+  this.movement = { x: 1.5, y: -25 };
   this.keyboarder = keyboarder;
 }
 
@@ -13,6 +13,10 @@ Player.prototype = {
     } else if (this.keyboarder.isLeftKeyDown()) {
       this.velocity.x -= this.movement.x;
     }
+
+    if (this.keyboarder.isUpKeyDown()) {
+      this.velocity.y = this.movement.y;
+    };
   },
 
   draw(context) {
