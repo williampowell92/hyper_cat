@@ -72,4 +72,26 @@ describe('Keyboarder', () => {
       expect(keyboarder.isRightKeyDown()).toEqual(false);
     });
   });
+
+  describe('isUpKeyDown', () => {
+    it('returns true if up key is down', () => {
+      pressKey(keyboarder.KEYS.UP);
+      expect(keyboarder.isUpKeyDown()).toEqual(true);
+    });
+
+    it('returns false if the up key has not been pressed', () => {
+      expect(keyboarder.isUpKeyDown()).toEqual(false);
+    });
+
+    it('returns false if a different key is pressed', () => {
+      pressKey(keyboarder.KEYS.RIGHT);
+      expect(keyboarder.isUpKeyDown()).toEqual(false);
+    });
+
+    it('returns false after the key has been pressed and released', () => {
+      pressKey(keyboarder.KEYS.UP);
+      releaseKey(keyboarder.KEYS.UP);
+      expect(keyboarder.isUpKeyDown()).toEqual(false);
+    });
+  });
 });
