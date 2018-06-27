@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "node_modules/.bin/karma start"
+    "test": "node_modules/.bin/karma start",
+    "lint": "node_modules/.bin/eslint public/src"
   },
   "repository": {
     "type": "git",
