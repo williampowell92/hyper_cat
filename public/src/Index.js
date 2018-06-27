@@ -7,6 +7,7 @@ function Index(GameClass = Game, documentObject = document) {
   const self = this;
   const tick = function tick() {
     self.game.update(gameSize);
+    self.game.draw();
   };
 
   tick();

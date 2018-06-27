@@ -46,5 +46,9 @@ describe('Index', () => {
     it('calls game.update with gameSize as an argument', () => {
       expect(index.game.updateArgs).toEqual([gameSize]);
     });
+
+    it('calls game.draw when an instance of index is created', () => {
+      expect(index.game.drawCalled).toEqual(1);
+    });
   });
 });
