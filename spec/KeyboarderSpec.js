@@ -84,4 +84,11 @@ describe('Keyboarder', () => {
       expect(keyboarder.isDown(keyboarder.KEYS.LEFT)).toEqual(false);
     });
   });
+
+  describe('isRightKeyDown', () => {
+    it('returns true if right key is down', () => {
+      pressKey(keyboarder.KEYS.RIGHT);
+      expect(keyboarder.isRightKeyDown()).toEqual(true);
+    })
+  })
 });
