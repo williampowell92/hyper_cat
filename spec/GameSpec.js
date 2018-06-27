@@ -1,9 +1,10 @@
 describe('Game', () => {
 
-  let game, canvas, context, gameSize, player;
+  let game, canvas, context, gameSize, player, gameFactory;
 
   beforeEach(() => {
-    game = new Game();
+    gameFactory = new GameFactory();
+    game = gameFactory.build();
     canvas = { width: 800, height: 800 };
     context = { clearRect () {} }
     gameSize = { x: canvas.width, y: canvas.height };
