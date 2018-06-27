@@ -1,9 +1,11 @@
 describe('Index', () => {
-  let index;
-  let mockDocument;
+  let gameFactory;
   let mockCanvas;
-  let gameSize;
+  let mockDocument;
   let mockContext;
+  let mockGame;
+  let gameSize;
+  let index;
 
   beforeEach(() => {
     gameFactory = new GameFactory();
@@ -17,14 +19,15 @@ describe('Index', () => {
     };
 
     mockContext = {};
+
     mockGame = jasmine.createSpyObj('game', ['update', 'draw']);
 
     spyOn(gameFactory, 'build').and.returnValue(mockGame);
     spyOn(mockCanvas, 'getContext').and.returnValue(mockContext);
     spyOn(mockDocument, 'querySelector').and.returnValue(mockCanvas);
+    spyOn(window, 'requestAnimationFrame');
 
     gameSize = { x: mockCanvas.width, y: mockCanvas.height };
-    spyOn(window, 'requestAnimationFrame');
 
     index = new Index(gameFactory, mockDocument);
   });
