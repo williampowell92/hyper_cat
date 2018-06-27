@@ -5,7 +5,7 @@ describe('Game', () => {
   beforeEach(() => {
     game = new Game();
     canvas = { width: 800, height: 800 };
-    context = { clearRect () {} }
+    context = { clearRect() {} };
     gameSize = { x: canvas.width, y: canvas.height };
     player = { draw() {}, update() {} };
   });
