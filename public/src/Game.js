@@ -1,4 +1,4 @@
-const Game = function Game (gameSize) {
+const Game = function Game(context, gameSize) {
   this.bodies = [];
 };
 
