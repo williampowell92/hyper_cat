@@ -3,10 +3,10 @@ describe('Index', () => {
   let mockDocument;
   let mockCanvas;
   let gameSize;
+  let mockContext;
 
   function MockGame() {
     this.updateCalled = 0;
-    this.updateArgs = [];
     this.drawCalled = 0;
   }
 
@@ -16,8 +16,9 @@ describe('Index', () => {
       this.updateArgs = args;
     },
 
-    draw() {
+    draw(...args) {
       this.drawCalled += 1;
+      this.drawArgs = args;
     }
   };
 
@@ -30,7 +31,9 @@ describe('Index', () => {
       querySelector() {}
     };
 
-    spyOn(mockCanvas, 'getContext').and.returnValue('Im a screen');
+    mockContext = {};
+
+    spyOn(mockCanvas, 'getContext').and.returnValue(mockContext);
     spyOn(mockDocument, 'querySelector').and.returnValue(mockCanvas);
 
     gameSize = { x: mockCanvas.width, y: mockCanvas.height };
@@ -49,6 +52,10 @@ describe('Index', () => {
 
     it('calls game.draw when an instance of index is created', () => {
       expect(index.game.drawCalled).toEqual(1);
+    });
+
+    it('calls game.draw with screen and gameSize as the arguments', () => {
+      expect(index.game.drawArgs).toEqual([mockContext, gameSize]);
     });
   });
 });
