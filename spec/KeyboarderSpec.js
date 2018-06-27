@@ -44,7 +44,29 @@ describe('Keyboarder', () => {
       expect(keyboarder.isRightKeyDown()).toEqual(false);
     });
 
-    it('returns false after the key has been released', () => {
+    it('returns false after the key has been pressed and released', () => {
+      pressKey(keyboarder.KEYS.RIGHT);
+      releaseKey(keyboarder.KEYS.RIGHT);
+      expect(keyboarder.isRightKeyDown()).toEqual(false);
+    });
+  });
+
+  describe('isLeftKeyDown', () => {
+    it('returns true if left key is down', () => {
+      pressKey(keyboarder.KEYS.LEFT);
+      expect(keyboarder.isLeftKeyDown()).toEqual(true);
+    });
+
+    it('returns false if the left key has not been pressed', () => {
+      expect(keyboarder.isLeftKeyDown()).toEqual(false);
+    });
+
+    it('returns false if a different key is pressed', () => {
+      pressKey(keyboarder.KEYS.RIGHT);
+      expect(keyboarder.isLeftKeyDown()).toEqual(false);
+    });
+
+    it('returns false after the key has been pressed and released', () => {
       pressKey(keyboarder.KEYS.RIGHT);
       releaseKey(keyboarder.KEYS.RIGHT);
       expect(keyboarder.isRightKeyDown()).toEqual(false);

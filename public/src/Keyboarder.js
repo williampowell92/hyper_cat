@@ -20,3 +20,7 @@ Keyboarder.prototype._isDown = function isDown(key) {
 Keyboarder.prototype.isRightKeyDown = function isRightKeyDown() {
   return this._isDown(this.KEYS.RIGHT);
 };
+
+Keyboarder.prototype.isLeftKeyDown = function isLeftKeyDown() {
+  return this._isDown(this.KEYS.LEFT);
+};
