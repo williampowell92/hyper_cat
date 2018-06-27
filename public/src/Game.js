@@ -1,9 +1,8 @@
-const Game = function Game(context, gameSize) {
+const Game = function Game() {
   this.bodies = [];
 };
 
 Game.prototype = {
-
   update(gameSize) {
     this.bodies.forEach((body) => {
       body.update(gameSize);
@@ -20,6 +19,6 @@ Game.prototype = {
 
 function GameFactory() {
   return {
-    build: gameSize => new Game(gameSize)
+    build: () => new Game()
   };
 }
