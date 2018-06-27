@@ -17,48 +17,48 @@ describe('Keyboarder', () => {
 
   describe('KEYS', () => {
     it('should have the correct keycode for left', () => {
-      expect(keyboarder.KEYS.LEFT).toEqual('ArrowLeft');
+      expect(keyboarder.KEYS.LEFT).toEqual(keyboarder.KEYS.LEFT);
     });
 
     it('should have the correct keycode for right', () => {
-      expect(keyboarder.KEYS.RIGHT).toEqual('ArrowRight');
+      expect(keyboarder.KEYS.RIGHT).toEqual(keyboarder.KEYS.RIGHT);
     });
 
     it('should have the correct keycode for up', () => {
-      expect(keyboarder.KEYS.UP).toEqual('ArrowUp');
+      expect(keyboarder.KEYS.UP).toEqual(keyboarder.KEYS.UP);
     });
   });
 
   describe('onkeydown', () => {
     it('sets the keyState of left key to true', () => {
-      pressKey('ArrowLeft');
+      pressKey(keyboarder.KEYS.LEFT);
       expect(keyboarder.keyState.ArrowLeft).toEqual(true);
     });
 
     it('sets the keyState of right key to true', () => {
-      pressKey('ArrowRight');
+      pressKey(keyboarder.KEYS.RIGHT);
       expect(keyboarder.keyState.ArrowRight).toEqual(true);
     });
 
     it('sets the keyState of up key to true', () => {
-      pressKey('ArrowUp');
+      pressKey(keyboarder.KEYS.UP);
       expect(keyboarder.keyState.ArrowUp).toEqual(true);
     });
   });
 
   describe('onkeyup', () => {
     it('sets the keyState of left key to false', () => {
-      releaseKey('ArrowLeft');
+      releaseKey(keyboarder.KEYS.LEFT);
       expect(keyboarder.keyState.ArrowLeft).toEqual(false);
     });
 
     it('sets the keyState of right key to false', () => {
-      releaseKey('ArrowRight');
+      releaseKey(keyboarder.KEYS.RIGHT);
       expect(keyboarder.keyState.ArrowRight).toEqual(false);
     });
 
     it('sets the keyState of up key to false', () => {
-      releaseKey('ArrowUp');
+      releaseKey(keyboarder.KEYS.UP);
       expect(keyboarder.keyState.ArrowUp).toEqual(false);
     });
   });
