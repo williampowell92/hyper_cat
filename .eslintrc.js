@@ -6,6 +6,7 @@ module.exports = {
       "browser": true
     },
     "rules": {
-      "comma-dangle": 0
+      "comma-dangle": 0,
+      "no-underscore-dangle": 0
     }
 };
