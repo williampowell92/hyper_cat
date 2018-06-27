@@ -37,7 +37,8 @@ describe('Index', () => {
     spyOn(mockDocument, 'querySelector').and.returnValue(mockCanvas);
 
     gameSize = { x: mockCanvas.width, y: mockCanvas.height };
-
+    spyOn(window, 'requestAnimationFrame');
+    
     index = new Index(MockGame, mockDocument);
   });
 
@@ -56,6 +57,10 @@ describe('Index', () => {
 
     it('calls game.draw with screen and gameSize as the arguments', () => {
       expect(index.game.drawArgs).toEqual([mockContext, gameSize]);
+    });
+
+    it('calls requestAnimationFrame on window', () => {
+      expect(window.requestAnimationFrame).toHaveBeenCalled();
     });
   });
 });

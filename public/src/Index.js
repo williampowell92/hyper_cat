@@ -8,6 +8,7 @@ function Index(GameClass = Game, documentObject = document) {
   const tick = function tick() {
     self.game.update(gameSize);
     self.game.draw(context, gameSize);
+    requestAnimationFrame(tick);
   };
 
   tick();
