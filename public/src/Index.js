@@ -1,8 +1,8 @@
-function Index(GameClass = Game, documentObject = document) {
+function Index(gameFactory = new GameFactory(), documentObject = document) {
   const canvas = documentObject.querySelector('canvas');
   const context = canvas.getContext('2d');
   const gameSize = { x: canvas.width, y: canvas.height };
-  this.game = new GameClass(context, gameSize);
+  this.game = gameFactory.build();
 
   const self = this;
   const tick = function tick() {
