@@ -10,7 +10,7 @@ module.exports = function (config) {
     ],
     browsers: ['Chrome'],
     singleRun: true,
-    reporters: ['progress', 'coverage'],
+    reporters: ['spec', 'coverage'],
     preprocessors: { 'public/src/*.js': ['coverage'] }
   });
 };

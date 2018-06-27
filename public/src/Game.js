@@ -17,3 +17,9 @@ Game.prototype = {
     });
   },
 };
+
+function GameFactory() {
+  return {
+    build: gameSize => new Game(gameSize)
+  };
+}
