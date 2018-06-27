@@ -15,20 +15,6 @@ describe('Keyboarder', () => {
     window.dispatchEvent(event);
   }
 
-  describe('KEYS', () => {
-    it('should have the correct keycode for left', () => {
-      expect(keyboarder.KEYS.LEFT).toEqual(keyboarder.KEYS.LEFT);
-    });
-
-    it('should have the correct keycode for right', () => {
-      expect(keyboarder.KEYS.RIGHT).toEqual(keyboarder.KEYS.RIGHT);
-    });
-
-    it('should have the correct keycode for up', () => {
-      expect(keyboarder.KEYS.UP).toEqual(keyboarder.KEYS.UP);
-    });
-  });
-
   describe('isRightKeyDown', () => {
     it('returns true if right key is down', () => {
       pressKey(keyboarder.KEYS.RIGHT);
