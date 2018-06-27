@@ -1,4 +1,4 @@
-const Game = function Game (gameSize) {
+const Game = function Game(gameSize) {
   this.bodies = [];
 };
 
@@ -17,3 +17,9 @@ Game.prototype = {
     });
   },
 };
+
+function GameFactory() {
+  return {
+    build: gameSize => new Game(gameSize)
+  };
+}
