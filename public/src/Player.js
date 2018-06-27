@@ -8,8 +8,8 @@ function Player(keyboarder = new Keyboarder()) {
 
 Player.prototype = {
   update() {
-    this._moveX();
-    this._moveY();
+    this._setXVelocity();
+    this._setYVelocity();
     this._movePlayer();
   },
 
@@ -22,18 +22,22 @@ Player.prototype = {
     );
   },
 
-  _moveX() {
+  _setXVelocity() {
     if (this.keyboarder.isRightKeyDown()) {
       this.velocity.x = this.speed.x;
     } else if (this.keyboarder.isLeftKeyDown()) {
       this.velocity.x = -this.speed.x;
-    } else { this.velocity.x = 0; }
+    } else {
+      this.velocity.x = 0;
+    }
   },
 
-  _moveY() {
+  _setYVelocity() {
     if (this.keyboarder.isUpKeyDown()) {
       this.velocity.y = this.speed.y;
-    } else { this.velocity.y = 0; }
+    } else {
+      this.velocity.y = 0;
+    }
   },
 
   _movePlayer() {

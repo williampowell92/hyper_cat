@@ -12,9 +12,11 @@ describe('Player', () => {
   describe('Draw', () => {
     it('fills a rectange with players dimension', () => {
       player.draw(context);
-      expect(context.fillRect).toHaveBeenCalledWith(player.center.x - (player.size.x / 2),
+      expect(context.fillRect).toHaveBeenCalledWith(
+        player.center.x - (player.size.x / 2),
         player.center.y - (player.size.y / 2),
-        player.size.x, player.size.y);
+        player.size.x, player.size.y
+      );
     });
   });
 
@@ -34,27 +36,20 @@ describe('Player', () => {
         expect(player.center.x).toEqual(initialXCenter + player.speed.x);
       });
 
-      it('player moves when right key is pressed', () => {
+      it('player does not move if right key is not pressed', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(false);
         player.update();
         expect(player.center.x).toEqual(initialXCenter);
       });
 
-      it('player moves when right key is pressed', () => {
+      it('player keeps moving if right key is held', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
         player.update();
         player.update();
         expect(player.center.x).toEqual(initialXCenter + (player.speed.x * 2));
       });
 
-      it('player moves when right key is pressed', () => {
-        spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
-        player.update();
-        player.update();
-        expect(player.center.x).toEqual(initialXCenter + (player.speed.x * 2));
-      });
-
-      it('only moves once if right key is released', () => {
+      it('player only moves once if right key is released', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
@@ -69,20 +64,20 @@ describe('Player', () => {
         expect(player.center.x).toEqual(initialXCenter - player.speed.x);
       });
 
-      it('player does not moe moves when left key not pressed twice', () => {
+      it('player does not move if left key is not pressed', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(false);
         player.update();
         expect(player.center.x).toEqual(initialXCenter);
       });
 
-      it('player moves when left key is pressed twice', () => {
+      it('player keeps moving if left key is held', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
         player.update();
         player.update();
         expect(player.center.x).toEqual(initialXCenter - (player.speed.x * 2));
       });
 
-      it('only moves once if left key is released', () => {
+      it('player only moves once if left key is released', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
@@ -97,13 +92,13 @@ describe('Player', () => {
         expect(player.center.y).toEqual(initialYCenter + player.speed.y);
       });
 
-      it('player moves when up key is pressed', () => {
+      it('player does not move if up key is not pressed', () => {
         spyOn(keyboarder, 'isUpKeyDown').and.returnValue(false);
         player.update();
         expect(player.center.y).toEqual(initialYCenter);
       });
 
-      it('only moves once if up key is released', () => {
+      it('player only moves once if up key is released', () => {
         spyOn(keyboarder, 'isUpKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
