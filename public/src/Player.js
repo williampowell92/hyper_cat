@@ -10,6 +10,7 @@ Player.prototype = {
   update() {
     this._moveX();
     this._moveY();
+    this._movePlayer();
   },
 
   draw(context) {
@@ -27,13 +28,16 @@ Player.prototype = {
     } else if (this.keyboarder.isLeftKeyDown()) {
       this.velocity.x -= this.movement.x;
     }
-    this.center.x += this.velocity.x;
   },
 
   _moveY() {
     if (this.keyboarder.isUpKeyDown()) {
       this.velocity.y = this.movement.y;
     }
+  },
+
+  _movePlayer() {
+    this.center.x += this.velocity.x;
     this.center.y += this.velocity.y;
   }
 };
