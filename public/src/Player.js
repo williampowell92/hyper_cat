@@ -8,18 +8,8 @@ function Player(keyboarder = new Keyboarder()) {
 
 Player.prototype = {
   update() {
-    if (this.keyboarder.isRightKeyDown()) {
-      this.velocity.x += this.movement.x;
-    } else if (this.keyboarder.isLeftKeyDown()) {
-      this.velocity.x -= this.movement.x;
-    }
-
-    if (this.keyboarder.isUpKeyDown()) {
-      this.velocity.y = this.movement.y;
-    }
-
-    this.center.x += this.velocity.x;
-    this.center.y += this.velocity.y;
+    this._moveX();
+    this._moveY();
   },
 
   draw(context) {
@@ -29,5 +19,21 @@ Player.prototype = {
       this.size.x,
       this.size.y
     );
+  },
+
+  _moveX() {
+    if (this.keyboarder.isRightKeyDown()) {
+      this.velocity.x += this.movement.x;
+    } else if (this.keyboarder.isLeftKeyDown()) {
+      this.velocity.x -= this.movement.x;
+    }
+    this.center.x += this.velocity.x;
+  },
+
+  _moveY() {
+    if (this.keyboarder.isUpKeyDown()) {
+      this.velocity.y = this.movement.y;
+    }
+    this.center.y += this.velocity.y;
   }
 };
