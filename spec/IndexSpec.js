@@ -5,23 +5,6 @@ describe('Index', () => {
   let gameSize;
   let mockContext;
 
-  // function MockGame() {
-  //   this.updateCalled = 0;
-  //   this.drawCalled = 0;
-  // }
-  //
-  // MockGame.prototype = {
-  //   update(...args) {
-  //     this.updateCalled += 1;
-  //     this.updateArgs = args;
-  //   },
-  //
-  //   draw(...args) {
-  //     this.drawCalled += 1;
-  //     this.drawArgs = args;
-  //   }
-  // };
-
   beforeEach(() => {
     gameFactory = new GameFactory();
 
