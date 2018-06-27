@@ -1,8 +1,8 @@
 function Player(keyboarder = new Keyboarder()) {
   this.center = { x: 20, y: 0 };
   this.size = { x: 20, y: 55 };
+  this.speed = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
-  this.movement = { x: 1.5, y: -25 };
   this.keyboarder = keyboarder;
 }
 
@@ -24,16 +24,16 @@ Player.prototype = {
 
   _moveX() {
     if (this.keyboarder.isRightKeyDown()) {
-      this.velocity.x += this.movement.x;
+      this.velocity.x = this.speed.x;
     } else if (this.keyboarder.isLeftKeyDown()) {
-      this.velocity.x -= this.movement.x;
-    }
+      this.velocity.x = -this.speed.x;
+    } else { this.velocity.x = 0; }
   },
 
   _moveY() {
     if (this.keyboarder.isUpKeyDown()) {
-      this.velocity.y = this.movement.y;
-    }
+      this.velocity.y = this.speed.y;
+    } else { this.velocity.y = 0; }
   },
 
   _movePlayer() {
