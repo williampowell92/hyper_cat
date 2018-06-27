@@ -2,7 +2,7 @@ describe('Player', () => {
   let player, context, keyboarder;
 
   beforeEach(() => {
-    keyboarder = { isRightKeyDown() {} };
+    keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {} };
     player = new Player(keyboarder);
     context = { fillRect() {} };
   });
@@ -26,6 +26,18 @@ describe('Player', () => {
 
     it('player cannot move right when right key is  not pressed', () => {
       spyOn(keyboarder, 'isRightKeyDown').and.returnValue(false);
+      player.update();
+      expect(player.velocity.x).toEqual(0);
+    });
+
+    it('player can move left when left key is pressed', () => {
+      spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
+      player.update();
+      expect(player.velocity.x).toEqual(-1.5);
+    });
+
+    it('player cannot move left when right key is  not pressed', () => {
+      spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(false);
       player.update();
       expect(player.velocity.x).toEqual(0);
     });

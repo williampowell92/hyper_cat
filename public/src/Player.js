@@ -8,8 +8,10 @@ function Player(keyboarder = new Keyboarder()) {
 
 Player.prototype = {
   update() {
-    if(this.keyboarder.isRightKeyDown()) {
+    if (this.keyboarder.isRightKeyDown()) {
       this.velocity.x += this.movement.x;
+    } else if (this.keyboarder.isLeftKeyDown()) {
+      this.velocity.x -= this.movement.x;
     }
   },
 
