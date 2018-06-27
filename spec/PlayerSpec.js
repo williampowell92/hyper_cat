@@ -1,8 +1,9 @@
 describe('Player', () => {
-  let player, context;
+  let player, context, keyboarder;
 
   beforeEach(() => {
-    player = new Player();
+    keyboarder = { isRightKeyDown() {} };
+    player = new Player(keyboarder);
     context = { fillRect() {} };
   });
 
@@ -13,6 +14,20 @@ describe('Player', () => {
       expect(context.fillRect).toHaveBeenCalledWith(player.center.x - (player.size.x / 2),
         player.center.y - (player.size.y / 2),
         player.size.x, player.size.y);
+    });
+  });
+
+  describe('Update', () => {
+    it('player can move right when right key is pressed', () => {
+      spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
+      player.update();
+      expect(player.velocity.x).toEqual(1.5);
+    });
+
+    it('player cannot move right when right key is  not pressed', () => {
+      spyOn(keyboarder, 'isRightKeyDown').and.returnValue(false);
+      player.update();
+      expect(player.velocity.x).toEqual(0);
     });
   });
 });
