@@ -1,23 +1,31 @@
 describe('Game', () => {
-  let game;
   let canvas;
   let context;
-  let gameSize;
-  let player;
+  let game;
   let gameFactory;
+  let gameSize;
+  let platform;
+  let platforms;
+  let player;
 
   beforeEach(() => {
     canvas = { width: 800, height: 800 };
     context = { clearRect() {} };
     gameSize = { x: canvas.width, y: canvas.height };
     player = { draw() {}, update() {} };
+    platform = { draw() {}, update() {} };
+    platforms = [platform];
     gameFactory = new GameFactory();
-    game = gameFactory.build(player);
+    game = gameFactory.build(player, platforms);
   });
 
   describe('initialize', () => {
-    it('has a bodies array', () => {
+    it('creates a bodies array containing player', () => {
       expect(game.bodies).toContain(player);
+    });
+
+    it('creates a bodies array containing platform', () => {
+      expect(game.bodies).toContain(platform);
     });
   });
 
