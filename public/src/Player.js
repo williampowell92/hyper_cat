@@ -1,5 +1,5 @@
 function Player(keyboarder = new Keyboarder()) {
-  this.center = { x: 20, y: 0 };
+  this.center = { x: 20, y: 780 };
   this.size = { x: 20, y: 55 };
   this.movement = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
@@ -14,7 +14,6 @@ Player.prototype = {
     this._setXVelocity();
     this._jump();
     this._movePlayer();
-    console.log(this.jumping)
   },
 
   draw(context) {
@@ -37,9 +36,9 @@ Player.prototype = {
   },
 
   _jump() {
-    if (this.keyboarder.isUpKeyDown() && this.jumping == false) {
-      this.jumping = true;
+    if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
       this.velocity.y += this.movement.y;
+      this.jumping = true;
     } else {
       this.velocity.y = 0;
     }
@@ -47,9 +46,15 @@ Player.prototype = {
 
   _movePlayer() {
     this.velocity.y += this.gravity;
-    this.center.x += this.velocity.x;
     this.center.y += this.velocity.y;
-    this.velocity.x *= this.friction;
     this.velocity.y *= this.friction;
+    this.center.x += this.velocity.x;
+    this.velocity.x *= this.friction;
+  },
+
+  resolveTopCollision(yCoordinate) {
+    this.jumping = false;
+    this.center.y = yCoordinate + this.size.y / 2;
   }
+
 };
