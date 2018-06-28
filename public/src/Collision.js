@@ -1,23 +1,39 @@
 function Collision(bodies) {
   this.player = bodies[0];
-  this.otherBodies = bodies.slice(1, bodies.length);
+  this.otherBodies = bodies.slice(1);
 }
 
 Collision.prototype = {
-  isCollidingOnTop(body1, body2) {
+  isCollidingOnTop(player, body) {
     return !(
-      body1.center.x + body1.size.x / 2 <= body2.center.x - body2.size.x / 2
-      || body1.center.x - body1.size.x / 2 >= body2.center.x + body2.size.x / 2
-      || body1.center.y + body1.size.y / 2 <= body2.center.y - body2.size.y / 2
-      || body1.center.y - body1.size.y / 2 >= body2.center.y - body2.size.y / 2
+      this._rightOf(player) <= this._leftOf(body)
+      || this._leftOf(player) >= this._rightOf(body)
+      || this._bottomOf(player) <= this._topOf(body)
+      || this._topOf(player) >= this._topOf(body)
     );
   },
 
   resolveCollisions() {
     this.otherBodies.forEach((body) => {
       if (this.isCollidingOnTop(this.player, body)) {
-        this.player.resolveTopCollision(body.center.y - body.size.y / 2);
+        this.player.resolveTopCollision(this._topOf(body));
       }
     });
+  },
+
+  _topOf(object) {
+    return object.center.y - object.size.y / 2;
+  },
+
+  _bottomOf(object) {
+    return object.center.y + object.size.y / 2;
+  },
+
+  _leftOf(object) {
+    return object.center.x - object.size.x / 2;
+  },
+
+  _rightOf(object) {
+    return object.center.x + object.size.x / 2;
   }
 };
