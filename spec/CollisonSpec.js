@@ -14,7 +14,7 @@ describe('Collision', () => {
 
   beforeEach(() => {
     platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 } };
-    player = { resolveCollision() {} };
+    player = { resolveTopCollision() {} };
     bodies = [player, platform];
     collision = new Collision(bodies);
   });
@@ -24,7 +24,7 @@ describe('Collision', () => {
       expect(collision.otherBodies).not.toContain(player);
     });
 
-    it('keeps adds platform from the otherBodies array', () => {
+    it('adds platform to the otherBodies array', () => {
       expect(collision.otherBodies).toContain(platform);
     });
   });
@@ -76,9 +76,9 @@ describe('Collision', () => {
 
   describe('resolveCollisions', () => {
     it('calls isColliding on the player', () => {
-      spyOn(player, 'resolveCollision');
+      spyOn(player, 'resolveTopCollision');
       collision.resolveCollisions(bodies);
-      expect(player.resolveCollision).toHaveBeenCalled();
+      expect(player.resolveTopCollision).toHaveBeenCalledWith(platform.center.y - platform.size.y / 2);
     });
   });
 });
