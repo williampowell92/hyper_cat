@@ -15,7 +15,9 @@ Collision.prototype = {
 
   resolveCollisions() {
     this.otherBodies.forEach((body) => {
-      this.player.resolveTopCollision(body.center.y - body.size.y / 2);
+      if (this.isCollidingOnTop(this.player, body)) {
+        this.player.resolveTopCollision(body.center.y - body.size.y / 2);
+      }
     });
   }
 };
