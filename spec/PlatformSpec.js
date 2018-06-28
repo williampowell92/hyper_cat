@@ -14,11 +14,6 @@ describe('Platform', () => {
   });
 
   describe('draw', () => {
-    it('calls function fillRect', () => {
-      platform.draw(context);
-      expect(context.fillRect).toHaveBeenCalled();
-    });
-
     it('call function fillRect with correct arguments', () => {
       platform.draw(context);
       expect(context.fillRect).toHaveBeenCalledWith(
