@@ -1,5 +1,6 @@
-function Collision() {
-
+function Collision(bodies) {
+  this.player = bodies[0];
+  this.otherBodies = bodies.slice(1, bodies.length);
 }
 
 Collision.prototype = {
@@ -10,5 +11,9 @@ Collision.prototype = {
       || body1.center.y + body1.size.y / 2 <= body2.center.y - body2.size.y / 2
       || body1.center.y - body1.size.y / 2 >= body2.center.y - body2.size.y / 2
     );
+  },
+
+  resolveCollisions() {
+    this.player.resolveCollision();
   }
 };

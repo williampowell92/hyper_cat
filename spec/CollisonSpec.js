@@ -1,6 +1,8 @@
 describe('Collision', () => {
+  let bodies;
   let collision;
   let platform;
+  let player
   let player1;
   let player2;
   let player3;
@@ -12,7 +14,19 @@ describe('Collision', () => {
 
   beforeEach(() => {
     platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 } };
-    collision = new Collision();
+    player = { resolveCollision() {} };
+    bodies = [player, platform];
+    collision = new Collision(bodies);
+  });
+
+  describe('initialize', () => {
+    it('removes player from the bodies array', () => {
+      expect(collision.otherBodies).not.toContain(player);
+    });
+
+    it('keeps adds platform from the otherBodies array', () => {
+      expect(collision.otherBodies).toContain(platform);
+    });
   });
 
   describe('isCollidingOnTop', () => {
@@ -57,6 +71,14 @@ describe('Collision', () => {
 
     it('returns false when player top is below platform top', () => {
       expect(collision.isCollidingOnTop(player8, platform)).toEqual(false);
+    });
+  });
+
+  describe('resolveCollisions', () => {
+    it('calls isColliding on the player', () => {
+      spyOn(player, 'resolveCollision');
+      collision.resolveCollisions(bodies);
+      expect(player.resolveCollision).toHaveBeenCalled();
     });
   });
 });
