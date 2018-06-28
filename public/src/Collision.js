@@ -14,6 +14,8 @@ Collision.prototype = {
   },
 
   resolveCollisions() {
-    this.player.resolveTopCollision(this.otherBodies[0].center.y - this.otherBodies[0].size.y / 2);
+    this.otherBodies.forEach((body) => {
+      this.player.resolveTopCollision(body.center.y - body.size.y / 2);
+    });
   }
 };

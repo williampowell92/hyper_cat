@@ -2,7 +2,8 @@ describe('Collision', () => {
   let bodies;
   let collision;
   let platform;
-  let player
+  let otherPlatform;
+  let player;
   let player1;
   let player2;
   let player3;
@@ -14,8 +15,9 @@ describe('Collision', () => {
 
   beforeEach(() => {
     platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 } };
+    otherPlatform = { center: { x: 450, y: 100 }, size: { x: 50, y: 75 } };
     player = { resolveTopCollision() {} };
-    bodies = [player, platform];
+    bodies = [player, platform, otherPlatform];
     collision = new Collision(bodies);
   });
 
@@ -75,10 +77,26 @@ describe('Collision', () => {
   });
 
   describe('resolveCollisions', () => {
-    it('calls isColliding on the player', () => {
+    it('calls resolveTopCollision on the player with first platform', () => {
       spyOn(player, 'resolveTopCollision');
       collision.resolveCollisions(bodies);
-      expect(player.resolveTopCollision).toHaveBeenCalledWith(platform.center.y - platform.size.y / 2);
+      expect(player.resolveTopCollision).toHaveBeenCalledWith(
+        platform.center.y - platform.size.y / 2
+      );
+    });
+
+    it('calls resolveTopCollision on the player once per platform', () => {
+      spyOn(player, 'resolveTopCollision');
+      collision.resolveCollisions(bodies);
+      expect(player.resolveTopCollision.calls.count()).toEqual(collision.otherBodies.length);
+    });
+
+    it('calls resolveTopCollision on the player with other platform', () => {
+      spyOn(player, 'resolveTopCollision');
+      collision.resolveCollisions(bodies);
+      expect(player.resolveTopCollision).toHaveBeenCalledWith(
+        otherPlatform.center.y - otherPlatform.size.y / 2
+      );
     });
   });
 });
