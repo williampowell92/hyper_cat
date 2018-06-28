@@ -1,5 +1,5 @@
-const Game = function Game() {
-  this.bodies = [];
+const Game = function Game(player) {
+  this.bodies = [player];
 };
 
 Game.prototype = {
@@ -19,6 +19,6 @@ Game.prototype = {
 
 function GameFactory() {
   return {
-    build: () => new Game()
+    build: (player = new Player()) => new Game(player)
   };
 }
