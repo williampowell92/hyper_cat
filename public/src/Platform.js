@@ -3,11 +3,17 @@ function Platform(center, size) {
   this.size = size;
 }
 
-Platform.prototype.draw = function draw(context) {
-  context.fillRect(
-    this.center.x - this.size.x / 2,
-    this.center.y - this.size.y / 2,
-    this.size.x,
-    this.size.y
-  );
+Platform.prototype = {
+  update() {
+
+  },
+
+  draw(context) {
+    context.fillRect(
+      this.center.x - this.size.x / 2,
+      this.center.y - this.size.y / 2,
+      this.size.x,
+      this.size.y
+    );
+  }
 };

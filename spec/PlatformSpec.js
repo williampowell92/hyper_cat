@@ -24,4 +24,10 @@ describe('Platform', () => {
       );
     });
   });
+
+  describe('update', () => {
+    it('has an update function', () => {
+      expect(typeof platform.update).toBe('function');
+    });
+  });
 });
