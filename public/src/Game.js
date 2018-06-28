@@ -1,6 +1,6 @@
-const Game = function Game(player, platforms) {
+function Game(player, platforms) {
   this.bodies = [player].concat(platforms);
-};
+}
 
 Game.prototype = {
   update(gameSize) {
