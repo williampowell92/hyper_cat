@@ -1,16 +1,20 @@
 function Player(keyboarder = new Keyboarder()) {
   this.center = { x: 20, y: 0 };
   this.size = { x: 20, y: 55 };
-  this.speed = { x: 1.5, y: -25 };
+  this.movement = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
   this.keyboarder = keyboarder;
+  this.jumping = false;
+  this.friction = 0.9;
+  this.gravity = 1.5;
 }
 
 Player.prototype = {
   update() {
     this._setXVelocity();
-    this._setYVelocity();
+    this._jump();
     this._movePlayer();
+    console.log(this.jumping)
   },
 
   draw(context) {
@@ -24,24 +28,28 @@ Player.prototype = {
 
   _setXVelocity() {
     if (this.keyboarder.isRightKeyDown()) {
-      this.velocity.x = this.speed.x;
+      this.velocity.x += this.movement.x;
     } else if (this.keyboarder.isLeftKeyDown()) {
-      this.velocity.x = -this.speed.x;
+      this.velocity.x -= this.movement.x;
     } else {
       this.velocity.x = 0;
     }
   },
 
-  _setYVelocity() {
-    if (this.keyboarder.isUpKeyDown()) {
-      this.velocity.y = this.speed.y;
+  _jump() {
+    if (this.keyboarder.isUpKeyDown() && this.jumping == false) {
+      this.jumping = true;
+      this.velocity.y += this.movement.y;
     } else {
       this.velocity.y = 0;
     }
   },
 
   _movePlayer() {
+    this.velocity.y += this.gravity;
     this.center.x += this.velocity.x;
     this.center.y += this.velocity.y;
+    this.velocity.x *= this.friction;
+    this.velocity.y *= this.friction;
   }
 };

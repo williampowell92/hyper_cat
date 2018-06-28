@@ -33,7 +33,7 @@ describe('Player', () => {
       it('player moves when right key is pressed', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.x).toEqual(initialXCenter + player.speed.x);
+        expect(player.center.x).toEqual(initialXCenter + player.movement.x);
       });
 
       it('player does not move if right key is not pressed', () => {
@@ -46,14 +46,14 @@ describe('Player', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter + (player.speed.x * 2));
+        expect(player.center.x).toEqual(initialXCenter + (player.movement.x * 2));
       });
 
       it('player only moves once if right key is released', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter + player.speed.x);
+        expect(player.center.x).toEqual(initialXCenter + player.movement.x);
       });
     });
 
@@ -61,7 +61,7 @@ describe('Player', () => {
       it('player moves when left key is pressed', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.x).toEqual(initialXCenter - player.speed.x);
+        expect(player.center.x).toEqual(initialXCenter - player.movement.x);
       });
 
       it('player does not move if left key is not pressed', () => {
@@ -74,14 +74,14 @@ describe('Player', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter - (player.speed.x * 2));
+        expect(player.center.x).toEqual(initialXCenter - (player.movement.x * 2));
       });
 
       it('player only moves once if left key is released', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter - player.speed.x);
+        expect(player.center.x).toEqual(initialXCenter - player.movement.x);
       });
     });
 
@@ -89,7 +89,7 @@ describe('Player', () => {
       it('player moves when up key is pressed', () => {
         spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.y).toEqual(initialYCenter + player.speed.y);
+        expect(player.center.y).toEqual(initialYCenter + player.movement.y);
       });
 
       it('player does not move if up key is not pressed', () => {
@@ -102,7 +102,7 @@ describe('Player', () => {
         spyOn(keyboarder, 'isUpKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
-        expect(player.center.y).toEqual(initialYCenter + player.speed.y);
+        expect(player.center.y).toEqual(initialYCenter += player.movement.y);
       });
     });
   });
