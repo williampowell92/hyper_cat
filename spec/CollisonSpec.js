@@ -108,5 +108,23 @@ describe('Collision', () => {
       collision.resolveCollisions(bodies);
       expect(player.resolveTopCollision.calls.count()).toEqual(0);
     });
+
+    it('calls resolveTopCollision with first body if it isColliding', () => {
+      spyOn(collision, 'isCollidingOnTop').and.returnValues(true, false);
+      spyOn(player, 'resolveTopCollision');
+      collision.resolveCollisions(bodies);
+      expect(player.resolveTopCollision).toHaveBeenCalledWith(
+        platform.center.y - platform.size.y / 2
+      );
+    });
+
+    it('does not call resolveTopCollision with first body if it isColliding', () => {
+      spyOn(collision, 'isCollidingOnTop').and.returnValues(false, true);
+      spyOn(player, 'resolveTopCollision');
+      collision.resolveCollisions(bodies);
+      expect(player.resolveTopCollision).not.toHaveBeenCalledWith(
+        platform.center.y - platform.size.y / 2
+      );
+    });
   });
 });
