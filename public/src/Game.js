@@ -1,5 +1,5 @@
-const Game = function Game(player) {
-  this.bodies = [player];
+const Game = function Game(player, platforms) {
+  this.bodies = [player].concat(platforms);
 };
 
 Game.prototype = {
@@ -19,6 +19,6 @@ Game.prototype = {
 
 function GameFactory() {
   return {
-    build: (player = new Player()) => new Game(player)
+    build: (player = new Player(), platforms = []) => new Game(player, platforms)
   };
 }
