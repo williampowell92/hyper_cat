@@ -24,7 +24,7 @@ describe('Game', () => {
       expect(game.bodies).toContain(player);
     });
 
-    it('creates a bodies array containing platforms', () => {
+    it('creates a bodies array containing platform', () => {
       expect(game.bodies).toContain(platform);
     });
   });
