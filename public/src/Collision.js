@@ -37,3 +37,9 @@ Collision.prototype = {
     return object.center.x + object.size.x / 2;
   }
 };
+
+function CollisionFactory() {
+  return {
+    build: bodies => new Collision(bodies)
+  };
+}

@@ -1,6 +1,7 @@
-describe('Collision', () => {
+fdescribe('Collision', () => {
   let bodies;
   let collision;
+  let collisionFactory;
   let platform;
   let otherPlatform;
   let player;
@@ -18,7 +19,8 @@ describe('Collision', () => {
     otherPlatform = { center: { x: 450, y: 100 }, size: { x: 50, y: 75 } };
     player = { resolveTopCollision() {} };
     bodies = [player, platform, otherPlatform];
-    collision = new Collision(bodies);
+    collisionFactory = new CollisionFactory();
+    collision = collisionFactory.build(bodies);
   });
 
   describe('initialize', () => {
