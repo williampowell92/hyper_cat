@@ -24,7 +24,7 @@ describe('Player', () => {
     });
   });
 
-  fdescribe('resolveTopCollision', () => {
+  describe('resolveTopCollision', () => {
     it('stops the player falling', () => {
       player.update();
       player.resolveTopCollision(initialYCenter + player.size.y / 2);
@@ -102,7 +102,7 @@ describe('Player', () => {
       });
     });
 
-    describe('UpKey', () => {
+    fdescribe('UpKey', () => {
       it('player moves when up key is pressed', () => {
         spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
         player.update();

@@ -12,7 +12,7 @@ function Player(keyboarder = new Keyboarder()) {
 Player.prototype = {
   update() {
     this._setXVelocity();
-    this._jump();
+    this._setYVelocity();
     this._movePlayer();
   },
 
@@ -45,14 +45,20 @@ Player.prototype = {
 
   _jump() {
     if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
-      this.velocity.y += this.movement.y;
+      this.velocity.y = this.movement.y;
       this.jumping = true;
     } else {
       this.velocity.y = 0;
     }
+  },
 
-    this.velocity.y *= this.friction;
+  _addGravity() {
     this.velocity.y += this.gravity;
+  },
+
+  _setYVelocity() {
+    this._addGravity();
+    this._jump();
   },
 
   _movePlayer() {
