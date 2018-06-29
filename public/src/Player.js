@@ -25,6 +25,11 @@ Player.prototype = {
     );
   },
 
+  resolveTopCollision(yCoordinate) {
+    this.center.y = yCoordinate - this.size.y / 2;
+    this.jumping = false;
+  },
+
   _setXVelocity() {
     if (this.keyboarder.isRightKeyDown()) {
       this.velocity.x += this.movement.x;
@@ -33,6 +38,8 @@ Player.prototype = {
     } else {
       this.velocity.x = 0;
     }
+
+    this.velocity.x *= this.friction;
   },
 
   _jump() {
@@ -42,19 +49,14 @@ Player.prototype = {
     } else {
       this.velocity.y = 0;
     }
+
+    this.velocity.y *= this.friction;
+    this.velocity.y += this.gravity;
   },
 
   _movePlayer() {
-    this.velocity.y += this.gravity;
     this.center.y += this.velocity.y;
-    this.velocity.y *= this.friction;
     this.center.x += this.velocity.x;
-    this.velocity.x *= this.friction;
-  },
-
-  resolveTopCollision(yCoordinate) {
-    this.jumping = false;
-    this.center.y = yCoordinate + this.size.y / 2;
   }
 
 };
