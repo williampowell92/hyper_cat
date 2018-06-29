@@ -119,6 +119,14 @@ describe('Collision', () => {
     it('returns true when player colliding with left of body', () => {
       expect(collision.isCollidingOnLeft(player12, platform)).toEqual(true);
     });
+
+    it('returns true when player colliing with top left corner of body', () => {
+      expect(collision.isCollidingOnLeft(player2, platform)).toEqual(true);
+    });
+
+    it('returns true when player colliding with bottom left corner of body', () => {
+      expect(collision.isCollidingOnLeft(player10, platform)).toEqual(true);
+    });
   });
 
   describe('resolveCollisions', () => {
