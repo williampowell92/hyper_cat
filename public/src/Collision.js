@@ -27,6 +27,7 @@ Collision.prototype = {
       this._rightOf(player) <= this._leftOf(body)
       || this._bottomOf(player) <= this._topOf(body)
       || this._topOf(player) >= this._bottomOf(body)
+      || this._leftOf(player) >= this._leftOf(body)
     );
   },
 

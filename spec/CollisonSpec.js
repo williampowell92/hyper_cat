@@ -137,6 +137,10 @@ describe('Collision', () => {
     it('returns false when player is below the body', () => {
       expect(collision.isCollidingOnLeft(player7, platform)).toEqual(false);
     });
+
+    it('returns false when left of player is right of the left body', () => {
+      expect(collision.isCollidingOnLeft(player8, platform)).toEqual(false);
+    });
   });
 
   describe('resolveCollisions', () => {
