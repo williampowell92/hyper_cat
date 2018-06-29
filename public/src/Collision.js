@@ -13,6 +13,12 @@ Collision.prototype = {
     );
   },
 
+  isCollidingOnBottom(player, body) {
+    return !(
+      this._topOf(player) >= this._bottomOf(body)
+    )
+  },
+
   resolveCollisions() {
     this.otherBodies.forEach((body) => {
       if (this.isCollidingOnTop(this.player, body)) {
