@@ -32,5 +32,7 @@
     "karma-jasmine": "^1.1.2",
     "karma-spec-reporter": "0.0.32"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
