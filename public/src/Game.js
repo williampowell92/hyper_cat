@@ -1,5 +1,6 @@
-function Game(player, platforms) {
+function Game(player, platforms, collisionFactory) {
   this.bodies = [player].concat(platforms);
+  this.collision = collisionFactory.build(this.bodies);
 }
 
 Game.prototype = {
@@ -7,6 +8,7 @@ Game.prototype = {
     this.bodies.forEach((body) => {
       body.update(gameSize);
     });
+    this.collision.resolveCollisions();
   },
 
   draw(context, gameSize) {
@@ -19,6 +21,10 @@ Game.prototype = {
 
 function GameFactory() {
   return {
-    build: (player = new Player(), platforms = []) => new Game(player, platforms)
+    build: (
+      player = new Player(),
+      platforms = [],
+      collisionFactory = new CollisionFactory()
+    ) => new Game(player, platforms, collisionFactory)
   };
 }

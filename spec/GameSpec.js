@@ -3,6 +3,8 @@ describe('Game', () => {
   let context;
   let game;
   let gameFactory;
+  let collision;
+  let collisionFactory;
   let gameSize;
   let platform;
   let platforms;
@@ -15,8 +17,11 @@ describe('Game', () => {
     player = { draw() {}, update() {} };
     platform = { draw() {}, update() {} };
     platforms = [platform];
+    collisionFactory = new CollisionFactory();
+    collision = jasmine.createSpyObj('collision', ['resolveCollisions']);
+    spyOn(collisionFactory, 'build').and.returnValue(collision);
     gameFactory = new GameFactory();
-    game = gameFactory.build(player, platforms);
+    game = gameFactory.build(player, platforms, collisionFactory);
   });
 
   describe('initialize', () => {
@@ -53,6 +58,11 @@ describe('Game', () => {
       game.bodies = [player];
       game.update(gameSize);
       expect(player.update).toHaveBeenCalled();
+    });
+
+    it('calls resolveCollisions', () => {
+      game.update(gameSize);
+      expect(collision.resolveCollisions).toHaveBeenCalled();
     });
   });
 });

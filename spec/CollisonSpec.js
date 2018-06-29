@@ -1,4 +1,4 @@
-fdescribe('Collision', () => {
+describe('Collision', () => {
   let bodies;
   let collision;
   let collisionFactory;
