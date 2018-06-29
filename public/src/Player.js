@@ -28,6 +28,7 @@ Player.prototype = {
   resolveTopCollision(yCoordinate) {
     this.center.y = yCoordinate - this.size.y / 2;
     this.jumping = false;
+    this.velocity.y = 0;
   },
 
   _setXVelocity() {

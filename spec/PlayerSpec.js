@@ -37,6 +37,12 @@ describe('Player', () => {
       player.resolveTopCollision(initialYCenter + player.size.y / 2);
       expect(player.jumping).toEqual(false);
     });
+
+    it('sets y velocity to 0', () => {
+      player.update();
+      player.resolveTopCollision(initialYCenter + player.size.y / 2);
+      expect(player.velocity.y).toEqual(0);
+    });
   });
 
   describe('Update', () => {
