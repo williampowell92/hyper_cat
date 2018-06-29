@@ -25,6 +25,8 @@ Collision.prototype = {
   isCollidingOnLeft(player, body) {
     return !(
       this._rightOf(player) <= this._leftOf(body)
+      || this._bottomOf(player) <= this._topOf(body)
+      || this._topOf(player) >= this._bottomOf(body)
     );
   },
 

@@ -16,6 +16,7 @@ describe('Collision', () => {
   let player10;
   let player11;
   let player12;
+  // let player13;
 
   beforeEach(() => {
     platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 } };
@@ -35,6 +36,7 @@ describe('Collision', () => {
     player10 = { center: { x: 100, y: 200 }, size: { x: 20, y: 20 } };
     player11 = { center: { x: 200, y: 200 }, size: { x: 20, y: 20 } };
     player12 = { center: { x: 100, y: 150 }, size: { x: 20, y: 20 } };
+    // player13 = { center: { x: 150, y: 150 }, size: { x: 20, y: 20 } };
   });
 
   describe('initialize', () => {
@@ -126,6 +128,14 @@ describe('Collision', () => {
 
     it('returns true when player colliding with bottom left corner of body', () => {
       expect(collision.isCollidingOnLeft(player10, platform)).toEqual(true);
+    });
+
+    it('returns false when player is above the body', () => {
+      expect(collision.isCollidingOnLeft(player6, platform)).toEqual(false);
+    });
+
+    it('returns false when player is below the body', () => {
+      expect(collision.isCollidingOnLeft(player7, platform)).toEqual(false);
     });
   });
 
