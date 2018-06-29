@@ -78,7 +78,7 @@ describe('Player', () => {
       it('player moves when left key is pressed', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.x).toEqual(initialXCenter - player.movement.x);
+        expect(player.center.x).toEqual(initialXCenter - player.movement.x * player.friction);
       });
 
       it('player does not move if left key is not pressed', () => {
@@ -91,18 +91,22 @@ describe('Player', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter - (player.movement.x * 2));
+        expect(Math.round(player.center.x * 1000) / 1000).toEqual(
+          initialXCenter - player.friction * (player.movement.x * (2 + player.friction))
+        );
       });
 
-      it('player only moves once if left key is released', () => {
+      it('player begins sliding if left key is released', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter - player.movement.x);
+        expect(player.center.x).toEqual(
+          initialXCenter - (player.movement.x * player.friction) * (1 + player.friction)
+        );
       });
     });
 
-    fdescribe('UpKey', () => {
+    describe('UpKey', () => {
       it('player moves when up key is pressed', () => {
         spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
         player.update();
@@ -112,14 +116,15 @@ describe('Player', () => {
       it('player does not move if up key is not pressed', () => {
         spyOn(keyboarder, 'isUpKeyDown').and.returnValue(false);
         player.update();
+        player.resolveTopCollision(initialYCenter + player.size.y / 2);
         expect(player.center.y).toEqual(initialYCenter);
       });
 
-      it('player only moves once if up key is released', () => {
-        spyOn(keyboarder, 'isUpKeyDown').and.returnValues(true, false);
+      it('player increases y position on the second update after the jump if up key is released', () => {
+        spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
         player.update();
         player.update();
-        expect(player.center.y).toEqual(initialYCenter += player.movement.y);
+        expect(player.center.y).toEqual(initialYCenter + 2 * player.movement.y + player.gravity);
       });
     });
   });

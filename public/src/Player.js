@@ -36,9 +36,7 @@ Player.prototype = {
       this.velocity.x += this.movement.x;
     } else if (this.keyboarder.isLeftKeyDown()) {
       this.velocity.x -= this.movement.x;
-    } else {
-      this.velocity.x = 0;
-    }
+    } 
 
     this.velocity.x *= this.friction;
   },
@@ -47,8 +45,6 @@ Player.prototype = {
     if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
       this.velocity.y = this.movement.y;
       this.jumping = true;
-    } else {
-      this.velocity.y = 0;
     }
   },
 
