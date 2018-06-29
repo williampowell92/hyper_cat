@@ -50,27 +50,31 @@ describe('Player', () => {
       it('player moves when right key is pressed', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.x).toEqual(initialXCenter + player.movement.x);
+        expect(player.center.x).toEqual(initialXCenter + player.movement.x * player.friction);
       });
 
-      it('player does not move if right key is not pressed', () => {
+      it('player does not move if left key is not pressed', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(false);
         player.update();
         expect(player.center.x).toEqual(initialXCenter);
       });
 
-      it('player keeps moving if right key is held', () => {
+      it('player keeps moving if left key is held', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter + (player.movement.x * 2));
+        expect(Math.round(player.center.x * 1000) / 1000).toEqual(
+          initialXCenter + player.friction * (player.movement.x * (2 + player.friction))
+        );
       });
 
-      it('player only moves once if right key is released', () => {
+      it('player begins sliding if left key is released', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
-        expect(player.center.x).toEqual(initialXCenter + player.movement.x);
+        expect(player.center.x).toEqual(
+          initialXCenter + (player.movement.x * player.friction) * (1 + player.friction)
+        );
       });
     });
 
