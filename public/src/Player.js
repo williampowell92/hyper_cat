@@ -36,7 +36,7 @@ Player.prototype = {
       this.velocity.x += this.movement.x;
     } else if (this.keyboarder.isLeftKeyDown()) {
       this.velocity.x -= this.movement.x;
-    } 
+    }
 
     this.velocity.x *= this.friction;
   },
