@@ -1,9 +1,12 @@
 function Player(keyboarder = new Keyboarder()) {
-  this.center = { x: 20, y: 0 };
+  this.center = { x: 20, y: 780 };
   this.size = { x: 20, y: 55 };
-  this.speed = { x: 1.5, y: -25 };
+  this.acceleration = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
   this.keyboarder = keyboarder;
+  this.jumping = true;
+  this.friction = 0.9;
+  this.gravity = 1.5;
 }
 
 Player.prototype = {
@@ -22,26 +25,41 @@ Player.prototype = {
     );
   },
 
+  resolveTopCollision(yCoordinate) {
+    this.center.y = yCoordinate - this.size.y / 2;
+    this.jumping = false;
+    this.velocity.y = 0;
+  },
+
   _setXVelocity() {
     if (this.keyboarder.isRightKeyDown()) {
-      this.velocity.x = this.speed.x;
+      this.velocity.x += this.acceleration.x;
     } else if (this.keyboarder.isLeftKeyDown()) {
-      this.velocity.x = -this.speed.x;
-    } else {
-      this.velocity.x = 0;
+      this.velocity.x -= this.acceleration.x;
     }
+
+    this.velocity.x *= this.friction;
+  },
+
+  _jump() {
+    if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
+      this.velocity.y = this.acceleration.y;
+      this.jumping = true;
+    }
+  },
+
+  _addGravity() {
+    this.velocity.y += this.gravity;
   },
 
   _setYVelocity() {
-    if (this.keyboarder.isUpKeyDown()) {
-      this.velocity.y = this.speed.y;
-    } else {
-      this.velocity.y = 0;
-    }
+    this._addGravity();
+    this._jump();
   },
 
   _movePlayer() {
-    this.center.x += this.velocity.x;
     this.center.y += this.velocity.y;
+    this.center.x += this.velocity.x;
   }
+
 };
