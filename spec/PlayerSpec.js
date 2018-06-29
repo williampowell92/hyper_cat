@@ -50,30 +50,30 @@ describe('Player', () => {
       it('player moves when right key is pressed', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.x).toEqual(initialXCenter + player.movement.x * player.friction);
+        expect(player.center.x).toEqual(initialXCenter + player.acceleration.x * player.friction);
       });
 
-      it('player does not move if left key is not pressed', () => {
+      it('player does not move if right key is not pressed', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(false);
         player.update();
         expect(player.center.x).toEqual(initialXCenter);
       });
 
-      it('player keeps moving if left key is held', () => {
+      it('player keeps moving if right key is held', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
         player.update();
         player.update();
         expect(Math.round(player.center.x * 1000) / 1000).toEqual(
-          initialXCenter + player.friction * (player.movement.x * (2 + player.friction))
+          initialXCenter + player.friction * (player.acceleration.x * (2 + player.friction))
         );
       });
 
-      it('player begins sliding if left key is released', () => {
+      it('player begins sliding if right key is released', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValues(true, false);
         player.update();
         player.update();
         expect(player.center.x).toEqual(
-          initialXCenter + (player.movement.x * player.friction) * (1 + player.friction)
+          initialXCenter + (player.acceleration.x * player.friction) * (1 + player.friction)
         );
       });
     });
@@ -82,7 +82,7 @@ describe('Player', () => {
       it('player moves when left key is pressed', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.x).toEqual(initialXCenter - player.movement.x * player.friction);
+        expect(player.center.x).toEqual(initialXCenter - player.acceleration.x * player.friction);
       });
 
       it('player does not move if left key is not pressed', () => {
@@ -96,7 +96,7 @@ describe('Player', () => {
         player.update();
         player.update();
         expect(Math.round(player.center.x * 1000) / 1000).toEqual(
-          initialXCenter - player.friction * (player.movement.x * (2 + player.friction))
+          initialXCenter - player.friction * (player.acceleration.x * (2 + player.friction))
         );
       });
 
@@ -105,16 +105,17 @@ describe('Player', () => {
         player.update();
         player.update();
         expect(player.center.x).toEqual(
-          initialXCenter - (player.movement.x * player.friction) * (1 + player.friction)
+          initialXCenter - (player.acceleration.x * player.friction) * (1 + player.friction)
         );
       });
     });
 
     describe('UpKey', () => {
       it('player moves when up key is pressed', () => {
+        player.jumping = false;
         spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
         player.update();
-        expect(player.center.y).toEqual(initialYCenter + player.movement.y);
+        expect(player.center.y).toEqual(initialYCenter + player.acceleration.y);
       });
 
       it('player does not move if up key is not pressed', () => {
@@ -124,11 +125,14 @@ describe('Player', () => {
         expect(player.center.y).toEqual(initialYCenter);
       });
 
-      it('player increases y position on the second update after the jump if up key is released', () => {
+      it('player continues to ascend in second update after jump', () => {
+        player.jumping = false;
         spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
         player.update();
         player.update();
-        expect(player.center.y).toEqual(initialYCenter + 2 * player.movement.y + player.gravity);
+        expect(player.center.y).toEqual(
+          initialYCenter + 2 * player.acceleration.y + player.gravity
+        );
       });
     });
   });
