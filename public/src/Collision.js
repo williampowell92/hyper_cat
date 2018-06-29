@@ -31,6 +31,15 @@ Collision.prototype = {
     );
   },
 
+  isCollidingOnRight(player, body) {
+    return !(
+      this._leftOf(player) >= this._rightOf(body)
+      || this._bottomOf(player) <= this._topOf(body)
+      || this._topOf(player) >= this._bottomOf(body)
+      || this._rightOf(player) <= this._rightOf(body)
+    );
+  },
+
   resolveCollisions() {
     this.otherBodies.forEach((body) => {
       if (this.isCollidingOnTop(this.player, body)) {
