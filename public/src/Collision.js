@@ -15,28 +15,30 @@ Collision.prototype = {
 
   isCollidingOnBottom(player, body) {
     return !(
-      this._topOf(player) >= this._bottomOf(body)
-      || this._rightOf(player) <= this._leftOf(body)
+      this._rightOf(player) <= this._leftOf(body)
       || this._leftOf(player) >= this._rightOf(body)
       || this._bottomOf(player) <= this._bottomOf(body)
+      || this._topOf(player) >= this._bottomOf(body)
     );
   },
 
   isCollidingOnLeft(player, body) {
     return !(
       this._rightOf(player) <= this._leftOf(body)
+      || this._leftOf(player) >= this._leftOf(body)
       || this._bottomOf(player) <= this._topOf(body)
       || this._topOf(player) >= this._bottomOf(body)
-      || this._leftOf(player) >= this._leftOf(body)
+
     );
   },
 
   isCollidingOnRight(player, body) {
     return !(
-      this._leftOf(player) >= this._rightOf(body)
+      this._rightOf(player) <= this._rightOf(body)
+      ||this._leftOf(player) >= this._rightOf(body)
       || this._bottomOf(player) <= this._topOf(body)
       || this._topOf(player) >= this._bottomOf(body)
-      || this._rightOf(player) <= this._rightOf(body)
+      
     );
   },
 
