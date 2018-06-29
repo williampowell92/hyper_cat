@@ -8,5 +8,15 @@ module.exports = {
     "rules": {
       "comma-dangle": 0,
       "no-underscore-dangle": 0
+    },
+    "globals": {
+      "Collision": true,
+      "CollisionFactory": true,
+      "Game": true,
+      "GameFactory": true,
+      "Index": true,
+      "Keyboarder": true,
+      "Platform": true,
+      "Player": true
     }
 };

@@ -1,6 +1,7 @@
 describe('Collision', () => {
   let bodies;
   let collision;
+  let collisionFactory;
   let platform;
   let otherPlatform;
   let player;
@@ -23,7 +24,8 @@ describe('Collision', () => {
     otherPlatform = { center: { x: 450, y: 100 }, size: { x: 50, y: 75 } };
     player = { resolveTopCollision() {} };
     bodies = [player, platform, otherPlatform];
-    collision = new Collision(bodies);
+    collisionFactory = new CollisionFactory();
+    collision = collisionFactory.build(bodies);
     player1 = { center: { x: 90, y: 150 }, size: { x: 20, y: 20 } };
     player2 = { center: { x: 100, y: 100 }, size: { x: 20, y: 20 } };
     player3 = { center: { x: 150, y: 100 }, size: { x: 20, y: 20 } };
