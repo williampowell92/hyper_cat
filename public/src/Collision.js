@@ -22,6 +22,12 @@ Collision.prototype = {
     );
   },
 
+  isCollidingOnLeft(player, body) {
+    return !(
+      this._rightOf(player) <= this._leftOf(body)
+    );
+  },
+
   resolveCollisions() {
     this.otherBodies.forEach((body) => {
       if (this.isCollidingOnTop(this.player, body)) {
