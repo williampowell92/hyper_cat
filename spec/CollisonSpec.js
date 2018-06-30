@@ -189,6 +189,47 @@ describe('Collision', () => {
           platform.center.y + platform.size.y / 2
         );
       });
+
+      it('calls resolveBottomCollision on the player once per platform', () => {
+        spyOn(collision, 'isCollidingOnBottom').and.returnValue(true);
+        spyOn(player, 'resolveBottomCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveBottomCollision.calls.count()).toEqual(collision.otherBodies.length);
+      });
+
+      it('calls resolveBottomCollision on the player with other platform', () => {
+        spyOn(collision, 'isCollidingOnBottom').and.returnValue(true);
+        spyOn(player, 'resolveBottomCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveBottomCollision).toHaveBeenCalledWith(
+          otherPlatform.center.y + otherPlatform.size.y / 2
+        );
+      });
+
+      it('does not call resolveBottomCollision if isColliding is false', () => {
+        spyOn(collision, 'isCollidingOnBottom').and.returnValue(false);
+        spyOn(player, 'resolveBottomCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveBottomCollision.calls.count()).toEqual(0);
+      });
+
+      it('calls resolveBottomCollision with first body if it isColliding', () => {
+        spyOn(collision, 'isCollidingOnBottom').and.returnValues(true, false);
+        spyOn(player, 'resolveBottomCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveBottomCollision).toHaveBeenCalledWith(
+          platform.center.y + platform.size.y / 2
+        );
+      });
+
+      it('does not call resolveBottomCollision with first body if it isColliding', () => {
+        spyOn(collision, 'isCollidingOnBottom').and.returnValues(false, true);
+        spyOn(player, 'resolveBottomCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveBottomCollision).not.toHaveBeenCalledWith(
+          platform.center.y + platform.size.y / 2
+        );
+      });
     });
 
     describe('resolveTopCollision', () => {
