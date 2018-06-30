@@ -41,6 +41,11 @@ Player.prototype = {
     this.velocity.x = 0;
   },
 
+  resolveRightCollision(xCoordinate) {
+    this.center.x = xCoordinate + this.size.x / 2;
+    this.velocity.x = 0;
+  },
+
   _setXVelocity() {
     if (this.keyboarder.isRightKeyDown()) {
       this.velocity.x += this.acceleration.x;
