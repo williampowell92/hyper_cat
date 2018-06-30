@@ -2,7 +2,14 @@ language: node_js
 dist: trusty
 sudo: required
 node_js:
-  - "node"
+- node
 
 addons:
   chrome: stable
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: JSWgJSzUI02L64eAsvWMUTIh3Rqv+tWxaDMYJ+Ytdd1rljUx029+mEfDe+LY9c9TGPIBumHmnJ95AwX5DI3MsTmhSRF31dtf0urY67hTj+x0ex/UvEkgRRns50oBmeCEWg7umwl+Z0Px2SVT8sji3sHjJj2EU0jAGu+Mk/PJ+mREQ/StSMzhUdQt7IM7TjPLbEmNLc46nxNsaPp7AUJly1xEC1CJ3ksTpHBL+DnCYxu8vjPoUTAyqBRfTPQWFnOh+vjll/8Fi9yCjKoU1Hg76p06JKCoxVtPPYZihHuPpephCph/YHQeBo6rnJ/cjI/e5FbNd3wPRtNdzD+7yu6f+DkIXEyO+i7Ys3ovtncWsHQs2Wyouc8mr8ZYhCJQSO23Ja3VJ0ICKNENk8Ee4QXUTOKo2svJ/SsoG+1WN6RZWee1rdZMUrYbQ13G1gJUGosOghuZLMGsUNalDgAaX85g/kurrQM7NSnvQZcuRpVf4Hxxf4N4VJUoNSUfkx/e3zsPFxqRgY6w1Kaje7D1A3km2AozZz4BksErX6LEA/qzOquAuBrm5Kk8mXL/TxNA2h4qkbDmjK6Uq/oFKR0nNNQHhMa1c1FFsqTjIUNcS3Era9inqtIjRvm/XWelxHKXGX0xdm0Y4x3Cdol6FtyL+Buyb3XEx9oZokdELAki1iYb+PI=
+  app: arcane-bastion-95251
+  on: 34_deploy_to_heroku

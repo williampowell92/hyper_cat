@@ -1,4 +1,5 @@
-/* eslint func-names: 0 */
+/* eslint func-names: 0 import/no-extraneous-dependencies: 0 */
+
 process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
