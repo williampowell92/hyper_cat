@@ -45,6 +45,7 @@ Collision.prototype = {
     this.otherBodies.forEach((body) => {
       this._resolveTopCollisions(body);
       this._resolveBottomCollisions(body);
+      this._resolveLeftCollisions(body);
     });
   },
 
@@ -57,6 +58,12 @@ Collision.prototype = {
   _resolveBottomCollisions(body) {
     if (this.isCollidingOnBottom(this.player, body)) {
       this.player.resolveBottomCollision(this._bottomOf(body));
+    }
+  },
+
+  _resolveLeftCollisions(body) {
+    if (this.isCollidingOnLeft(this.player, body)) {
+      this.player.resolveLeftCollision(this._leftOf(body));
     }
   },
 
