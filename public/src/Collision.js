@@ -9,7 +9,7 @@ Collision.prototype = {
       this._rightOf(player) <= this._leftOf(body)
       || this._leftOf(player) >= this._rightOf(body)
       || this._bottomOf(player) <= this._topOf(body)
-      || this._topOf(player) >= this._topOf(body)
+      || this._bottomOf(player) - player.velocity.y > this._topOf(body)
     );
   },
 
@@ -17,8 +17,8 @@ Collision.prototype = {
     return !(
       this._rightOf(player) <= this._leftOf(body)
       || this._leftOf(player) >= this._rightOf(body)
-      || this._bottomOf(player) <= this._bottomOf(body)
       || this._topOf(player) >= this._bottomOf(body)
+      || this._topOf(player) - player.velocity.y < this._bottomOf(body)
     );
   },
 
@@ -52,6 +52,8 @@ Collision.prototype = {
 
   _resolveTopCollisions(body) {
     if (this.isCollidingOnTop(this.player, body)) {
+      console.log('top of platform: ', this._topOf(body));
+      console.log('old player bottom: ', this._bottomOf(this.player) - this.player.velocity.y);
       this.player.resolveTopCollision(this._topOf(body));
     }
   },

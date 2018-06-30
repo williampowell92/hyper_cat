@@ -1,5 +1,5 @@
 function Player(keyboarder = new Keyboarder()) {
-  this.center = { x: 20, y: 780 };
+  this.center = { x: 20, y: 700 };
   this.size = { x: 20, y: 55 };
   this.acceleration = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
