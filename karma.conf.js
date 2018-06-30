@@ -1,4 +1,5 @@
 /* eslint func-names: 0 */
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
   const configuration = {
@@ -16,10 +17,10 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'Chrome',
+        base: 'ChromeHeadless',
         flags: ['--no-sandbox']
       }
     },
