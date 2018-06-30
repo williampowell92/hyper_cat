@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "node_modules/.bin/karma start",
-    "lint": "node_modules/.bin/eslint public/src"
+    "lint": "node_modules/.bin/eslint public/src",
+    "app": "node_modules/.bin/nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,10 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.2",
     "karma-jasmine": "^1.1.2",
-    "karma-spec-reporter": "0.0.32"
+    "karma-spec-reporter": "0.0.32",
+    "nodemon": "^1.17.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
