@@ -5,7 +5,6 @@ function Collision(bodies) {
 
 Collision.prototype = {
   isCollidingOnTop(player, body) {
-    console.log(player);
     return !(
       this._rightOf(player) <= this._leftOf(body)
       || this._leftOf(player) >= this._rightOf(body)

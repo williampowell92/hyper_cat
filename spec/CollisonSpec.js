@@ -185,7 +185,9 @@ describe('Collision', () => {
         spyOn(collision, 'isCollidingOnBottom').and.returnValue(true);
         spyOn(player, 'resolveBottomCollision');
         collision.resolveCollisions(bodies);
-        expect(player.resolveBottomCollision).toHaveBeenCalled();
+        expect(player.resolveBottomCollision).toHaveBeenCalledWith(
+          platform.center.y + platform.size.y / 2
+        );
       });
     });
 
