@@ -88,6 +88,11 @@ describe('Collision', () => {
     it('returns false when player top is below platform top', () => {
       expect(collision.isCollidingOnTop(player8, platform)).toEqual(false);
     });
+
+    it('return false when the player is falling within the platform', () => {
+      player2.velocity.y = 5;
+      expect(collision.isCollidingOnTop(player2, platform)).toEqual(false);
+    });
   });
 
   describe('isCollidingOnBottom', () => {
@@ -117,6 +122,11 @@ describe('Collision', () => {
 
     it('returns false when player bottom is above platform bottom', () => {
       expect(collision.isCollidingOnBottom(player8, platform)).toEqual(false);
+    });
+
+    it('return false when the player is jumping within the platform', () => {
+      player9.velocity.y = -5;
+      expect(collision.isCollidingOnBottom(player9, platform)).toEqual(false);
     });
   });
 
