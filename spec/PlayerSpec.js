@@ -47,19 +47,16 @@ describe('Player', () => {
 
   describe('resolveBottomCollision', () => {
     it('stops the player jumping through platform', () => {
+      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+      player.jumping = false;
       player.update();
       player.resolveBottomCollision(initialYCenter - player.size.y / 2);
       expect(player.center.y).toEqual(initialYCenter);
     });
 
-    // it('sets jumping status to false', () => {
-    //   player.jumping = true;
-    //   player.update();
-    //   player.resolveTopCollision(initialYCenter + player.size.y / 2);
-    //   expect(player.jumping).toEqual(false);
-    // });
-
     it('sets y velocity to 0', () => {
+      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+      player.jumping = false;
       player.update();
       player.resolveBottomCollision(initialYCenter - player.size.y / 2);
       expect(player.velocity.y).toEqual(0);
