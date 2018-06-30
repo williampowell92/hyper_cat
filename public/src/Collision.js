@@ -52,8 +52,6 @@ Collision.prototype = {
 
   _resolveTopCollisions(body) {
     if (this.isCollidingOnTop(this.player, body)) {
-      console.log('top of platform: ', this._topOf(body));
-      console.log('old player bottom: ', this._bottomOf(this.player) - this.player.velocity.y);
       this.player.resolveTopCollision(this._topOf(body));
     }
   },
