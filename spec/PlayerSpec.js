@@ -63,6 +63,22 @@ describe('Player', () => {
     });
   });
 
+  describe('resolveLeftCollision', () => {
+    it('stops the player moving through platform', () => {
+      spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
+      player.update();
+      player.resolveLeftCollision(initialXCenter + player.size.x / 2);
+      expect(player.center.x).toEqual(initialXCenter);
+    });
+
+    it('sets x velocity to 0', () => {
+      spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
+      player.update();
+      player.resolveLeftCollision(initialXCenter + player.size.x / 2);
+      expect(player.velocity.x).toEqual(0);
+    });
+  });
+
   describe('Update', () => {
     describe('RightKey', () => {
       it('player moves when right key is pressed', () => {
