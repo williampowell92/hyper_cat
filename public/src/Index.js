@@ -5,8 +5,10 @@ function Index(gameFactory = new GameFactory(), documentObject = document) {
   this.game = gameFactory.build(
     undefined,
     [
-      new Platform({ x: canvas.width / 2, y: canvas.height - 10 }, { x: canvas.width, y: 20 }),
-      new Platform({ x: canvas.width / 2, y: 600 }, { x: 200, y: 20 })
+      new Platform({ x: canvas.width / 2, y: canvas.height - 10 }, { x: canvas.width, y: 30 }),
+      new Platform({ x: canvas.width / 2, y: 700 }, { x: 200, y: 200 }),
+      new Platform({ x: canvas.width / 4, y: 400 }, { x: 200, y: 30 }),
+      new Platform({ x: canvas.width * 3 / 4, y: 400 }, { x: 200, y: 30 })
     ]
   );
 
