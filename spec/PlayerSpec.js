@@ -45,6 +45,27 @@ describe('Player', () => {
     });
   });
 
+  describe('resolveBottomCollision', () => {
+    it('stops the player jumping through platform', () => {
+      player.update();
+      player.resolveBottomCollision(initialYCenter - player.size.y / 2);
+      expect(player.center.y).toEqual(initialYCenter);
+    });
+
+    // it('sets jumping status to false', () => {
+    //   player.jumping = true;
+    //   player.update();
+    //   player.resolveTopCollision(initialYCenter + player.size.y / 2);
+    //   expect(player.jumping).toEqual(false);
+    // });
+
+    it('sets y velocity to 0', () => {
+      player.update();
+      player.resolveBottomCollision(initialYCenter - player.size.y / 2);
+      expect(player.velocity.y).toEqual(0);
+    });
+  });
+
   describe('Update', () => {
     describe('RightKey', () => {
       it('player moves when right key is pressed', () => {

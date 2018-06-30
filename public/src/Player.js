@@ -31,6 +31,11 @@ Player.prototype = {
     this.velocity.y = 0;
   },
 
+  resolveBottomCollision(yCoordinate) {
+    this.center.y = yCoordinate + this.size.y / 2;
+    this.velocity.y = 0;
+  },
+
   _setXVelocity() {
     if (this.keyboarder.isRightKeyDown()) {
       this.velocity.x += this.acceleration.x;
