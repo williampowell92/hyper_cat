@@ -22,7 +22,12 @@ describe('Collision', () => {
   beforeEach(() => {
     platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 } };
     otherPlatform = { center: { x: 450, y: 100 }, size: { x: 50, y: 75 } };
-    player = { resolveTopCollision() {}, resolveBottomCollision() {}, resolveLeftCollision() {} };
+    player = {
+      resolveTopCollision() {},
+      resolveBottomCollision() {},
+      resolveLeftCollision() {},
+      resolveRightCollision() {}
+    };
     bodies = [player, platform, otherPlatform];
     collisionFactory = new CollisionFactory();
     collision = collisionFactory.build(bodies);
@@ -180,6 +185,7 @@ describe('Collision', () => {
       beforeEach(() => {
         spyOn(collision, 'isCollidingOnTop').and.returnValue(false);
         spyOn(collision, 'isCollidingOnLeft').and.returnValue(false);
+        spyOn(collision, 'isCollidingOnRight').and.returnValue(false);
       });
 
       it('calls resolveBottomCollision on the player with first platform', () => {
@@ -237,6 +243,7 @@ describe('Collision', () => {
       beforeEach(() => {
         spyOn(collision, 'isCollidingOnBottom').and.returnValue(false);
         spyOn(collision, 'isCollidingOnLeft').and.returnValue(false);
+        spyOn(collision, 'isCollidingOnRight').and.returnValue(false);
       });
 
       it('calls resolveTopCollision on the player with first platform', () => {
@@ -294,6 +301,7 @@ describe('Collision', () => {
       beforeEach(() => {
         spyOn(collision, 'isCollidingOnBottom').and.returnValue(false);
         spyOn(collision, 'isCollidingOnTop').and.returnValue(false);
+        spyOn(collision, 'isCollidingOnRight').and.returnValue(false);
       });
 
       it('calls resolveLeftCollision on the player with first platform', () => {
@@ -343,6 +351,64 @@ describe('Collision', () => {
         collision.resolveCollisions(bodies);
         expect(player.resolveLeftCollision).not.toHaveBeenCalledWith(
           platform.center.x - platform.size.x / 2
+        );
+      });
+    });
+
+    describe('resolveRightCollision', () => {
+      beforeEach(() => {
+        spyOn(collision, 'isCollidingOnBottom').and.returnValue(false);
+        spyOn(collision, 'isCollidingOnTop').and.returnValue(false);
+        spyOn(collision, 'isCollidingOnLeft').and.returnValue(false);
+      });
+
+      it('calls resolveRightCollision on the player with first platform', () => {
+        spyOn(collision, 'isCollidingOnRight').and.returnValue(true);
+        spyOn(player, 'resolveRightCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveRightCollision).toHaveBeenCalledWith(
+          platform.center.x + platform.size.x / 2
+        );
+      });
+
+      it('calls resolveRightCollision on the player once per platform', () => {
+        spyOn(collision, 'isCollidingOnRight').and.returnValue(true);
+        spyOn(player, 'resolveRightCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveRightCollision.calls.count()).toEqual(collision.otherBodies.length);
+      });
+
+      it('calls resolveRightCollision on the player with other platform', () => {
+        spyOn(collision, 'isCollidingOnRight').and.returnValue(true);
+        spyOn(player, 'resolveRightCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveRightCollision).toHaveBeenCalledWith(
+          otherPlatform.center.x + otherPlatform.size.x / 2
+        );
+      });
+
+      it('does not call resolveRightCollision if isColliding is false', () => {
+        spyOn(collision, 'isCollidingOnRight').and.returnValue(false);
+        spyOn(player, 'resolveRightCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveRightCollision.calls.count()).toEqual(0);
+      });
+
+      it('calls resolveRightCollision with first body if it isColliding', () => {
+        spyOn(collision, 'isCollidingOnRight').and.returnValues(true, false);
+        spyOn(player, 'resolveRightCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveRightCollision).toHaveBeenCalledWith(
+          platform.center.x + platform.size.x / 2
+        );
+      });
+
+      it('does not call resolveRightCollision with first body if it isColliding', () => {
+        spyOn(collision, 'isCollidingOnRight').and.returnValues(false, true);
+        spyOn(player, 'resolveRightCollision');
+        collision.resolveCollisions(bodies);
+        expect(player.resolveRightCollision).not.toHaveBeenCalledWith(
+          platform.center.x + platform.size.x / 2
         );
       });
     });

@@ -46,6 +46,7 @@ Collision.prototype = {
       this._resolveTopCollisions(body);
       this._resolveBottomCollisions(body);
       this._resolveLeftCollisions(body);
+      this._resolveRightCollisions(body);
     });
   },
 
@@ -64,6 +65,12 @@ Collision.prototype = {
   _resolveLeftCollisions(body) {
     if (this.isCollidingOnLeft(this.player, body)) {
       this.player.resolveLeftCollision(this._leftOf(body));
+    }
+  },
+
+  _resolveRightCollisions(body) {
+    if (this.isCollidingOnRight(this.player, body)) {
+      this.player.resolveRightCollision(this._rightOf(body));
     }
   },
 
