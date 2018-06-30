@@ -1,5 +1,5 @@
 function Player(keyboarder = new Keyboarder()) {
-  this.center = { x: 20, y: 780 };
+  this.center = { x: 20, y: 700 };
   this.size = { x: 20, y: 55 };
   this.acceleration = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
@@ -29,6 +29,21 @@ Player.prototype = {
     this.center.y = yCoordinate - this.size.y / 2;
     this.jumping = false;
     this.velocity.y = 0;
+  },
+
+  resolveBottomCollision(yCoordinate) {
+    this.center.y = yCoordinate + this.size.y / 2;
+    this.velocity.y = 0;
+  },
+
+  resolveLeftCollision(xCoordinate) {
+    this.center.x = xCoordinate - this.size.x / 2;
+    this.velocity.x = 0;
+  },
+
+  resolveRightCollision(xCoordinate) {
+    this.center.x = xCoordinate + this.size.x / 2;
+    this.velocity.x = 0;
   },
 
   _setXVelocity() {

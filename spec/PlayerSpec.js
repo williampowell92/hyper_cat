@@ -45,6 +45,56 @@ describe('Player', () => {
     });
   });
 
+  describe('resolveBottomCollision', () => {
+    it('stops the player jumping through platform', () => {
+      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+      player.jumping = false;
+      player.update();
+      player.resolveBottomCollision(initialYCenter - player.size.y / 2);
+      expect(player.center.y).toEqual(initialYCenter);
+    });
+
+    it('sets y velocity to 0', () => {
+      spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+      player.jumping = false;
+      player.update();
+      player.resolveBottomCollision(initialYCenter - player.size.y / 2);
+      expect(player.velocity.y).toEqual(0);
+    });
+  });
+
+  describe('resolveLeftCollision', () => {
+    it('stops the player moving through platform', () => {
+      spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
+      player.update();
+      player.resolveLeftCollision(initialXCenter + player.size.x / 2);
+      expect(player.center.x).toEqual(initialXCenter);
+    });
+
+    it('sets x velocity to 0', () => {
+      spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
+      player.update();
+      player.resolveLeftCollision(initialXCenter + player.size.x / 2);
+      expect(player.velocity.x).toEqual(0);
+    });
+  });
+
+  describe('resolveRightCollision', () => {
+    it('stops the player moving through platform', () => {
+      spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
+      player.update();
+      player.resolveRightCollision(initialXCenter - player.size.x / 2);
+      expect(player.center.x).toEqual(initialXCenter);
+    });
+
+    it('sets x velocity to 0', () => {
+      spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
+      player.update();
+      player.resolveRightCollision(initialXCenter - player.size.x / 2);
+      expect(player.velocity.x).toEqual(0);
+    });
+  });
+
   describe('Update', () => {
     describe('RightKey', () => {
       it('player moves when right key is pressed', () => {

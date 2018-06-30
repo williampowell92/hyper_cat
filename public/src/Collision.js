@@ -9,7 +9,7 @@ Collision.prototype = {
       this._rightOf(player) <= this._leftOf(body)
       || this._leftOf(player) >= this._rightOf(body)
       || this._bottomOf(player) <= this._topOf(body)
-      || this._topOf(player) >= this._topOf(body)
+      || this._bottomOf(player) - player.velocity.y > this._topOf(body)
     );
   },
 
@@ -17,8 +17,8 @@ Collision.prototype = {
     return !(
       this._rightOf(player) <= this._leftOf(body)
       || this._leftOf(player) >= this._rightOf(body)
-      || this._bottomOf(player) <= this._bottomOf(body)
       || this._topOf(player) >= this._bottomOf(body)
+      || this._topOf(player) - player.velocity.y < this._bottomOf(body)
     );
   },
 
@@ -35,19 +35,43 @@ Collision.prototype = {
   isCollidingOnRight(player, body) {
     return !(
       this._rightOf(player) <= this._rightOf(body)
-      ||this._leftOf(player) >= this._rightOf(body)
+      || this._leftOf(player) >= this._rightOf(body)
       || this._bottomOf(player) <= this._topOf(body)
       || this._topOf(player) >= this._bottomOf(body)
-      
     );
   },
 
   resolveCollisions() {
     this.otherBodies.forEach((body) => {
-      if (this.isCollidingOnTop(this.player, body)) {
-        this.player.resolveTopCollision(this._topOf(body));
-      }
+      this._resolveTopCollisions(body);
+      this._resolveBottomCollisions(body);
+      this._resolveLeftCollisions(body);
+      this._resolveRightCollisions(body);
     });
+  },
+
+  _resolveTopCollisions(body) {
+    if (this.isCollidingOnTop(this.player, body)) {
+      this.player.resolveTopCollision(this._topOf(body));
+    }
+  },
+
+  _resolveBottomCollisions(body) {
+    if (this.isCollidingOnBottom(this.player, body)) {
+      this.player.resolveBottomCollision(this._bottomOf(body));
+    }
+  },
+
+  _resolveLeftCollisions(body) {
+    if (this.isCollidingOnLeft(this.player, body)) {
+      this.player.resolveLeftCollision(this._leftOf(body));
+    }
+  },
+
+  _resolveRightCollisions(body) {
+    if (this.isCollidingOnRight(this.player, body)) {
+      this.player.resolveRightCollision(this._rightOf(body));
+    }
   },
 
   _topOf(object) {
