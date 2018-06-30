@@ -5,6 +5,7 @@ function Collision(bodies) {
 
 Collision.prototype = {
   isCollidingOnTop(player, body) {
+    console.log(player);
     return !(
       this._rightOf(player) <= this._leftOf(body)
       || this._leftOf(player) >= this._rightOf(body)
@@ -35,19 +36,29 @@ Collision.prototype = {
   isCollidingOnRight(player, body) {
     return !(
       this._rightOf(player) <= this._rightOf(body)
-      ||this._leftOf(player) >= this._rightOf(body)
+      || this._leftOf(player) >= this._rightOf(body)
       || this._bottomOf(player) <= this._topOf(body)
       || this._topOf(player) >= this._bottomOf(body)
-      
     );
   },
 
   resolveCollisions() {
     this.otherBodies.forEach((body) => {
-      if (this.isCollidingOnTop(this.player, body)) {
-        this.player.resolveTopCollision(this._topOf(body));
-      }
+      this._resolveTopCollisions(body);
+      this._resolveBottomCollisions(body);
     });
+  },
+
+  _resolveTopCollisions(body) {
+    if (this.isCollidingOnTop(this.player, body)) {
+      this.player.resolveTopCollision(this._topOf(body));
+    }
+  },
+
+  _resolveBottomCollisions(body) {
+    if (this.isCollidingOnBottom(this.player, body)) {
+      this.player.resolveBottomCollision(this._bottomOf(body));
+    }
   },
 
   _topOf(object) {
