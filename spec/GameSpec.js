@@ -45,8 +45,15 @@ describe('Game', () => {
       expect(context.clearRect).toHaveBeenCalledWith(0, 0, gameSize.x, gameSize.y);
     });
 
-    it('draws all the bodies from array', () => {
+    it('calls draw on bodies with the correct arguments', () => {
       const offset = 200;
+      game.bodies[0].center.x += offset;
+      game.draw(context, gameSize);
+      expect(player.draw).toHaveBeenCalledWith(context, offset);
+    });
+
+    it('calls draw on bodies with a different offset', () => {
+      const offset = 400;
       game.bodies[0].center.x += offset;
       game.draw(context, gameSize);
       expect(player.draw).toHaveBeenCalledWith(context, offset);
