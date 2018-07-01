@@ -4,6 +4,7 @@ describe('Player', () => {
   let keyboarder;
   let initialXCenter;
   let initialYCenter;
+  let gameSize;
 
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
@@ -11,15 +12,17 @@ describe('Player', () => {
     context = jasmine.createSpyObj('context', ['fillRect']);
     initialXCenter = player.center.x;
     initialYCenter = player.center.y;
+    gameSize = { x: 800, y: 800 };
   });
 
   describe('Draw', () => {
     it('fills a rectange with players dimension', () => {
-      player.draw(context);
+      player.draw(context, undefined, gameSize);
       expect(context.fillRect).toHaveBeenCalledWith(
-        player.center.x - (player.size.x / 2),
+        gameSize.x / 2 - (player.size.x / 2),
         player.center.y - (player.size.y / 2),
-        player.size.x, player.size.y
+        player.size.x,
+        player.size.y
       );
     });
   });
