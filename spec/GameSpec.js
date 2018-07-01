@@ -49,14 +49,14 @@ describe('Game', () => {
       const playerOffset = 200;
       game.bodies[0].center.x += playerOffset;
       game.draw(context, gameSize);
-      expect(player.draw).toHaveBeenCalledWith(context, playerOffset);
+      expect(player.draw).toHaveBeenCalledWith(context, playerOffset, gameSize);
     });
 
     it('calls draw on bodies with a different playerOffset', () => {
       const playerOffset = 400;
       game.bodies[0].center.x += playerOffset;
       game.draw(context, gameSize);
-      expect(player.draw).toHaveBeenCalledWith(context, playerOffset);
+      expect(player.draw).toHaveBeenCalledWith(context, playerOffset, gameSize);
     });
   });
 

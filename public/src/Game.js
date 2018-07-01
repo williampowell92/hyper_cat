@@ -16,7 +16,7 @@ Game.prototype = {
     const playerOffset = this.bodies[0].center.x - this.playerXOrigin;
     context.clearRect(0, 0, gameSize.x, gameSize.y);
     this.bodies.forEach((body) => {
-      body.draw(context, playerOffset);
+      body.draw(context, playerOffset, gameSize);
     });
   },
 };
