@@ -14,12 +14,25 @@ describe('Player', () => {
   });
 
   describe('Draw', () => {
-    it('fills a rectange with players dimension', () => {
-      player.draw(context);
+    it('fills a rectangle with players dimension', () => {
+      const gameSize = { x: 800, y: 800 };
+      player.draw(context, undefined, gameSize);
       expect(context.fillRect).toHaveBeenCalledWith(
-        player.center.x - (player.size.x / 2),
+        gameSize.x / 2 - (player.size.x / 2),
         player.center.y - (player.size.y / 2),
-        player.size.x, player.size.y
+        player.size.x,
+        player.size.y
+      );
+    });
+
+    it('fills a rectangle with players dimension using different gameSize', () => {
+      const gameSize = { x: 900, y: 900 };
+      player.draw(context, undefined, gameSize);
+      expect(context.fillRect).toHaveBeenCalledWith(
+        gameSize.x / 2 - (player.size.x / 2),
+        player.center.y - (player.size.y / 2),
+        player.size.x,
+        player.size.y
       );
     });
   });

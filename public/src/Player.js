@@ -1,5 +1,5 @@
 function Player(keyboarder = new Keyboarder()) {
-  this.center = { x: 20, y: 700 };
+  this.center = { x: 400, y: 700 };
   this.size = { x: 20, y: 55 };
   this.acceleration = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
@@ -16,9 +16,9 @@ Player.prototype = {
     this._movePlayer();
   },
 
-  draw(context) {
+  draw(context, offset, gameSize) {
     context.fillRect(
-      this.center.x - (this.size.x / 2),
+      gameSize.x / 2 - (this.size.x / 2),
       this.center.y - (this.size.y / 2),
       this.size.x,
       this.size.y
