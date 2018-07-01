@@ -14,7 +14,7 @@ Game.prototype = {
   draw(context, gameSize) {
     context.clearRect(0, 0, gameSize.x, gameSize.y);
     this.bodies.forEach((body) => {
-      body.draw(context);
+      body.draw(context, 200);
     });
   },
 };

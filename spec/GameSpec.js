@@ -14,7 +14,7 @@ describe('Game', () => {
     canvas = { width: 800, height: 800 };
     context = { clearRect() {} };
     gameSize = { x: canvas.width, y: canvas.height };
-    player = { draw() {}, update() {} };
+    player = { draw() {}, update() {}, center: { x: canvas.width / 2, y: 700 } };
     platform = { draw() {}, update() {} };
     platforms = [platform];
     collisionFactory = new CollisionFactory();
@@ -46,9 +46,10 @@ describe('Game', () => {
     });
 
     it('draws all the bodies from array', () => {
-      game.bodies = [player];
+      const offset = 200;
+      game.bodies[0].center.x += offset;
       game.draw(context, gameSize);
-      expect(player.draw).toHaveBeenCalled();
+      expect(player.draw).toHaveBeenCalledWith(context, offset);
     });
   });
 
