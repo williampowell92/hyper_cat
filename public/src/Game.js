@@ -13,10 +13,10 @@ Game.prototype = {
   },
 
   draw(context, gameSize) {
-    const offset = this.bodies[0].center.x - this.playerXOrigin;
+    const playerOffset = this.bodies[0].center.x - this.playerXOrigin;
     context.clearRect(0, 0, gameSize.x, gameSize.y);
     this.bodies.forEach((body) => {
-      body.draw(context, offset);
+      body.draw(context, playerOffset);
     });
   },
 };

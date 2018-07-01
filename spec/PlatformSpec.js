@@ -15,9 +15,10 @@ describe('Platform', () => {
 
   describe('draw', () => {
     it('call function fillRect with correct arguments', () => {
-      platform.draw(context);
+      const playerOffset = 200;
+      platform.draw(context, playerOffset);
       expect(context.fillRect).toHaveBeenCalledWith(
-        center.x - size.x / 2,
+        center.x - size.x / 2 - playerOffset,
         center.y - size.y / 2,
         size.x,
         size.y
