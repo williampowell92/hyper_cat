@@ -194,7 +194,7 @@ describe('Collision', () => {
 
   describe('resolveCollisions', () => {
     beforeEach(() => {
-      spyOn(platform, 'resolveCollision');
+      spyOn(mouse, 'resolveCollision');
     });
 
     describe('ResolveBottomCollisions', () => {
@@ -258,7 +258,7 @@ describe('Collision', () => {
         spyOn(collision, 'isCollidingOnBottom').and.returnValue(true);
         spyOn(player, 'resolveBottomCollision');
         collision.resolveCollisions(bodies);
-        expect(platform.resolveCollision).toHaveBeenCalled();
+        expect(mouse.resolveCollision).toHaveBeenCalled();
       });
     });
 
@@ -323,7 +323,7 @@ describe('Collision', () => {
         spyOn(collision, 'isCollidingOnTop').and.returnValue(true);
         spyOn(player, 'resolveTopCollision');
         collision.resolveCollisions(bodies);
-        expect(platform.resolveCollision).toHaveBeenCalled();
+        expect(mouse.resolveCollision).toHaveBeenCalled();
       });
     });
 
@@ -388,7 +388,7 @@ describe('Collision', () => {
         spyOn(collision, 'isCollidingOnLeft').and.returnValue(true);
         spyOn(player, 'resolveLeftCollision');
         collision.resolveCollisions(bodies);
-        expect(platform.resolveCollision).toHaveBeenCalled();
+        expect(mouse.resolveCollision).toHaveBeenCalled();
       });
     });
 
@@ -453,7 +453,7 @@ describe('Collision', () => {
         spyOn(collision, 'isCollidingOnRight').and.returnValue(true);
         spyOn(player, 'resolveRightCollision');
         collision.resolveCollisions(bodies);
-        expect(platform.resolveCollision).toHaveBeenCalled();
+        expect(mouse.resolveCollision).toHaveBeenCalled();
       });
     });
   });

@@ -1,14 +1,10 @@
 describe('Mouse', () => {
   let mouse;
   let context;
-  let handlers;
 
   beforeEach(() => {
     mouse = new Mouse();
     context = jasmine.createSpyObj('context', ['fillRect']);
-    handlers = {
-      locationReload: document.location.reload
-    };
   });
 
   describe('update', () => {
@@ -32,9 +28,9 @@ describe('Mouse', () => {
 
   describe('resolveCollision', () => {
     it('calls alert when colliding with player', () => {
-      spyOn(document, 'write');
+      spyOn(window, 'alert');
       mouse.resolveCollision();
-      expect(document.write).toHaveBeenCalledWith('YOU WIN! ');
+      expect(window.alert).toHaveBeenCalledWith('YOU WIN!');
     });
   });
 });
