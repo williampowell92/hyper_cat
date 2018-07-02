@@ -4,6 +4,7 @@ describe('Animation', () => {
   let sprite;
   let sheet;
   let animationFactory;
+  let context;
 
   beforeEach(() => {
     sprite = { sheetWidth: 900, columns: 10, path: 'public/assets/sprite_idle.png' };
@@ -12,6 +13,7 @@ describe('Animation', () => {
     sheet = 'idle';
     animationFactory = new AnimationFactory();
     animation = animationFactory.build(sheet, spriteFactory);
+    context = jasmine.createSpyObj('context', ['drawImage']);
   });
 
   describe('initialize', () => {
@@ -39,19 +41,24 @@ describe('Animation', () => {
       expect(animation.frameX).toEqual(0);
     });
   });
-});
 
-// it('calls draw on animation', () => {
-//   const gameSize = { x: 800, y: 800 };
-//   player.draw(context, undefined, gameSize);
-//   expect(context.drawImage).toHaveBeenCalledWith(
-//     player.animation.sprite.img,
-//     player.animation.frameX,
-//     0,
-//     player.animation.sprite.sheetWidth / player.animation.sprite.columns,
-//     79,
-//     gameSize.x / 2 - player.size.x / 2,
-//     player.center.y - player.size.y / 2,
-//     player.animation.sprite.sheetWidth / player.animation.sprite.columns,
-//     79
-//   );
+  fdescribe('draw', () => {
+    it('calls drawImage on context with the correct args', () => {
+      const gameSize = { x: 800, y: 800 };
+      const center = { x: 400, y: 700 };
+      const size = { x: 45, y: 72 };
+      animation.draw(context, gameSize, center, size);
+      expect(context.drawImage).toHaveBeenCalledWith(
+        animation.sprite.img,
+        animation.frameX,
+        5,
+        animation.sprite.sheetWidth / animation.sprite.columns,
+        79,
+        gameSize.x / 2 - (animation.sprite.sheetWidth / animation.sprite.columns) / 2 + 2.5,
+        center.y - size.y / 2,
+        animation.sprite.sheetWidth / animation.sprite.columns,
+        79
+      );
+    });
+  });
+});
