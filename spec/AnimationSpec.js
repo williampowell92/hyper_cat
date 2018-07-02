@@ -7,14 +7,15 @@ describe('Animation', () => {
   let context;
 
   beforeEach(() => {
-    sprite = { sheetWidth: 900,
-                columns: 10,
-                img: new Image(),
-                posOffsetX: 18,
-                posOffsetY: 5,
-                clippedWidth: 48,
-                clippedHeight: 79
-              };
+    sprite = {
+      sheetWidth: 900,
+      columns: 10,
+      img: new Image(),
+      posOffsetX: 18,
+      posOffsetY: 5,
+      clippedWidth: 48,
+      clippedHeight: 79
+    };
 
     spriteFactory = { build() {} };
     spyOn(spriteFactory, 'build').and.returnValue(sprite);

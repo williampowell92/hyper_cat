@@ -11,7 +11,9 @@ describe('Player', () => {
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     sprite = { sheetWidth: 900, columns: 10, img: {} };
-    animation = { frameX: 0, sprite, repositionFrame() {}, draw() {} };
+    animation = {
+      frameX: 0, sprite, repositionFrame() {}, draw() {}
+    };
     spyOn(animation, 'repositionFrame');
     spyOn(animation, 'draw');
     animationFactory = { build() {} };

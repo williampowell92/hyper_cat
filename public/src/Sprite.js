@@ -1,13 +1,14 @@
 function Sprite(sheet, imageFactory = new ImageFactory()) {
   const sheets = {
-    idle: { width: 900,
-            columns: 10,
-            src: 'public/assets/sprite_idle.png',
-            posOffsetX: 18,
-            posOffsetY: 5,
-            clippedWidth: 48,
-            clippedHeight: 79
-            }
+    idle: {
+      width: 900,
+      columns: 10,
+      src: 'public/assets/sprite_idle.png',
+      posOffsetX: 18,
+      posOffsetY: 5,
+      clippedWidth: 48,
+      clippedHeight: 79
+    }
   };
 
   this.sheetWidth = sheets[sheet].width;
