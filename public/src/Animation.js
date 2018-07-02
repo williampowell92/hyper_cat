@@ -4,11 +4,12 @@ function Animation() {
 }
 
 Animation.prototype = {
-  updateFrame() {
-    this.currentFrame = (this.currentFrame + 1) % 10;
+  repositionFrame(width, columnCount) {
+    this._updateFrame(columnCount);
+    this.frameX = width / columnCount * this.currentFrame;
   },
 
-  positionFrame() {
-    this.frameX = (this.frameX + 90);
+  _updateFrame(columnCount) {
+    this.currentFrame = (this.currentFrame + 1) % columnCount;
   }
 };
