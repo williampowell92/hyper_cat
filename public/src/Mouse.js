@@ -18,6 +18,6 @@ Mouse.prototype = {
   },
 
   resolveCollision() {
-    alert('You WIN! but you are still a loser');
+    document.write('YOU WIN! ');
   }
 };

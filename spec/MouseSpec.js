@@ -32,9 +32,9 @@ describe('Mouse', () => {
 
   describe('resolveCollision', () => {
     it('calls alert when colliding with player', () => {
-      spyOn(window, 'alert');
+      spyOn(document, 'write');
       mouse.resolveCollision();
-      expect(window.alert).toHaveBeenCalledWith('You WIN! but you are still a loser');
+      expect(document.write).toHaveBeenCalledWith('YOU WIN! ');
     });
   });
 });
