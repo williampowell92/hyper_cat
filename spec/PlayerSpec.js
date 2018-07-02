@@ -4,36 +4,42 @@ describe('Player', () => {
   let keyboarder;
   let initialXCenter;
   let initialYCenter;
+  let sprite;
+  let animation;
+  let animationFactory;
 
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
-    player = new Player(keyboarder);
-    context = jasmine.createSpyObj('context', ['fillRect']);
+    sprite = { sheetWidth: 900, columns: 10, img: {} };
+    animation = {
+      frameX: 0, sprite, repositionFrame() {}, draw() {}
+    };
+    spyOn(animation, 'repositionFrame');
+    spyOn(animation, 'draw');
+    animationFactory = { build() {} };
+    spyOn(animationFactory, 'build').and.returnValue(animation);
+    player = new Player(keyboarder, animationFactory);
+    context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
     initialYCenter = player.center.y;
   });
 
   describe('Draw', () => {
-    it('fills a rectangle with players dimension', () => {
+    it('calls draw on animation', () => {
       const gameSize = { x: 800, y: 800 };
       player.draw(context, undefined, gameSize);
-      expect(context.fillRect).toHaveBeenCalledWith(
-        gameSize.x / 2 - (player.size.x / 2),
-        player.center.y - (player.size.y / 2),
-        player.size.x,
-        player.size.y
+      expect(animation.draw).toHaveBeenCalledWith(
+        context,
+        gameSize,
+        player.center,
+        player.size
       );
     });
 
-    it('fills a rectangle with players dimension using different gameSize', () => {
-      const gameSize = { x: 900, y: 900 };
+    it('calls repositionFrame on animation', () => {
+      const gameSize = { x: 800, y: 800 };
       player.draw(context, undefined, gameSize);
-      expect(context.fillRect).toHaveBeenCalledWith(
-        gameSize.x / 2 - (player.size.x / 2),
-        player.center.y - (player.size.y / 2),
-        player.size.x,
-        player.size.y
-      );
+      expect(animation.repositionFrame).toHaveBeenCalled();
     });
   });
 

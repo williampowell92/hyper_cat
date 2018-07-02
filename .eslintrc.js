@@ -7,7 +7,8 @@ module.exports = {
     },
     "rules": {
       "comma-dangle": 0,
-      "no-underscore-dangle": 0
+      "no-underscore-dangle": 0,
+      "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
     },
     "globals": {
       "Collision": true,

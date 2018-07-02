@@ -1,12 +1,13 @@
-function Player(keyboarder = new Keyboarder()) {
+function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
   this.center = { x: 400, y: 700 };
-  this.size = { x: 20, y: 55 };
+  this.size = { x: 45, y: 72 };
   this.acceleration = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
   this.keyboarder = keyboarder;
   this.jumping = true;
   this.friction = 0.9;
   this.gravity = 1.5;
+  this.animation = animationFactory.build('idle');
 }
 
 Player.prototype = {
@@ -17,12 +18,9 @@ Player.prototype = {
   },
 
   draw(context, offset, gameSize) {
-    context.fillRect(
-      gameSize.x / 2 - (this.size.x / 2),
-      this.center.y - (this.size.y / 2),
-      this.size.x,
-      this.size.y
-    );
+    this.animation.draw(context, gameSize, this.center, this.size);
+
+    this.animation.repositionFrame();
   },
 
   resolveTopCollision(yCoordinate) {
