@@ -18,7 +18,7 @@ Player.prototype = {
   },
 
   draw(context, offset, gameSize) {
-    this.animation.draw(context, gameSize, this.center, this.size)
+    this.animation.draw(context, gameSize, this.center, this.size);
 
     this.animation.repositionFrame();
   },
