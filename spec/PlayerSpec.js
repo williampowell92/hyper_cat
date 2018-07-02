@@ -4,37 +4,57 @@ describe('Player', () => {
   let keyboarder;
   let initialXCenter;
   let initialYCenter;
+  let sprite;
+  let animation;
 
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
-    player = new Player(keyboarder);
-    context = jasmine.createSpyObj('context', ['fillRect']);
+    sprite = { img: { src: '../assets/sprite_idle.png' } };
+    animation = jasmine.createSpyObj('animation', ['currentFrame', 'frameX']);
+    player = new Player(keyboarder, sprite, animation);
+    context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
     initialYCenter = player.center.y;
   });
 
   describe('Draw', () => {
-    it('fills a rectangle with players dimension', () => {
+    it('calls draw image with correct arguments', () => {
       const gameSize = { x: 800, y: 800 };
       player.draw(context, undefined, gameSize);
-      expect(context.fillRect).toHaveBeenCalledWith(
-        gameSize.x / 2 - (player.size.x / 2),
-        player.center.y - (player.size.y / 2),
-        player.size.x,
-        player.size.y
+      expect(context.drawImage).toHaveBeenCalledWith(
+        player.sprite.img,
+        player.animation.frameX,
+        0,
+        player.sprite.sheetWidth / player.sprite.columns,
+        79,
+        gameSize.x / 2 - player.size.x / 2,
+        player.center.y - player.size.y / 2,
+        player.sprite.sheetWidth / player.sprite.columns,
+        79
       );
     });
 
-    it('fills a rectangle with players dimension using different gameSize', () => {
-      const gameSize = { x: 900, y: 900 };
-      player.draw(context, undefined, gameSize);
-      expect(context.fillRect).toHaveBeenCalledWith(
-        gameSize.x / 2 - (player.size.x / 2),
-        player.center.y - (player.size.y / 2),
-        player.size.x,
-        player.size.y
-      );
-    });
+    // it('fills a rectangle with players dimension', () => {
+    //   const gameSize = { x: 800, y: 800 };
+    //   player.draw(context, undefined, gameSize);
+    //   expect(context.fillRect).toHaveBeenCalledWith(
+    //     gameSize.x / 2 - (player.size.x / 2),
+    //     player.center.y - (player.size.y / 2),
+    //     player.size.x,
+    //     player.size.y
+    //   );
+    // });
+    //
+    // it('fills a rectangle with players dimension using different gameSize', () => {
+    //   const gameSize = { x: 900, y: 900 };
+    //   player.draw(context, undefined, gameSize);
+    //   expect(context.fillRect).toHaveBeenCalledWith(
+    //     gameSize.x / 2 - (player.size.x / 2),
+    //     player.center.y - (player.size.y / 2),
+    //     player.size.x,
+    //     player.size.y
+    //   );
+    // });
   });
 
   describe('resolveTopCollision', () => {

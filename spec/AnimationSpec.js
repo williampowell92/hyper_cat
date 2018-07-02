@@ -2,6 +2,7 @@ describe('Animation', () => {
   let animation;
   let spriteSheetWidth;
   let spriteSheetColumns;
+  let sprite;
 
   beforeEach(() => {
     animation = new Animation();
