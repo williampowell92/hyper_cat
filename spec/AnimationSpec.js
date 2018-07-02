@@ -7,7 +7,15 @@ describe('Animation', () => {
   let context;
 
   beforeEach(() => {
-    sprite = { sheetWidth: 900, columns: 10, path: 'public/assets/sprite_idle.png' };
+    sprite = { sheetWidth: 900,
+                columns: 10,
+                img: new Image(),
+                posOffsetX: 18,
+                posOffsetY: 5,
+                clippedWidth: 48,
+                clippedHeight: 79
+              };
+
     spriteFactory = { build() {} };
     spyOn(spriteFactory, 'build').and.returnValue(sprite);
     sheet = 'idle';
@@ -42,22 +50,22 @@ describe('Animation', () => {
     });
   });
 
-  fdescribe('draw', () => {
+  describe('draw', () => {
     it('calls drawImage on context with the correct args', () => {
       const gameSize = { x: 800, y: 800 };
       const center = { x: 400, y: 700 };
       const size = { x: 45, y: 72 };
       animation.draw(context, gameSize, center, size);
       expect(context.drawImage).toHaveBeenCalledWith(
-        animation.sprite.img,
-        animation.frameX,
-        5,
-        animation.sprite.sheetWidth / animation.sprite.columns,
-        79,
-        gameSize.x / 2 - (animation.sprite.sheetWidth / animation.sprite.columns) / 2 + 2.5,
+        sprite.img,
+        animation.frameX + sprite.posOffsetX,
+        sprite.posOffsetY,
+        sprite.clippedWidth,
+        sprite.clippedHeight,
+        gameSize.x / 2 - sprite.clippedWidth / 2,
         center.y - size.y / 2,
-        animation.sprite.sheetWidth / animation.sprite.columns,
-        79
+        sprite.clippedWidth,
+        sprite.clippedHeight
       );
     });
   });

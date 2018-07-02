@@ -13,14 +13,14 @@ Animation.prototype = {
   draw(context, gameSize, center, size) {
     context.drawImage(
       this.sprite.img,
-      this.frameX,
-      5,
-      this.sprite.sheetWidth / this.sprite.columns,
-      79,
-      gameSize.x / 2 - (this.sprite.sheetWidth / this.sprite.columns) / 2 + 2.5,
+      this.frameX + this.sprite.posOffsetX,
+      this.sprite.posOffsetY,
+      this.sprite.clippedWidth,
+      this.sprite.clippedHeight,
+      gameSize.x / 2 - this.sprite.clippedWidth / 2,
       center.y - size.y / 2,
-      this.sprite.sheetWidth / this.sprite.columns,
-      79
+      this.sprite.clippedWidth,
+      this.sprite.clippedHeight
     );
   },
 
