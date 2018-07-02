@@ -22,7 +22,15 @@ describe('Mouse', () => {
         mouse.center.y - mouse.size.y / 2,
         mouse.size.x,
         mouse.size.y
-      )
+      );
+    });
+  });
+
+  describe('resolveCollision', () => {
+    it('calls alert when colliding with player', () => {
+      spyOn(window, 'alert');
+      mouse.resolveCollision();
+      expect(window.alert).toHaveBeenCalledWith('You WIN! but you are still a loser');
     });
   });
 });

@@ -1,6 +1,6 @@
 function Collision(bodies) {
   this.player = bodies[0];
-  this.otherBodies = bodies.slice(2);
+  this.otherBodies = bodies.slice(1);
 }
 
 Collision.prototype = {

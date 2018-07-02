@@ -29,7 +29,6 @@ Player.prototype = {
     this.center.y = yCoordinate - this.size.y / 2;
     this.jumping = false;
     this.velocity.y = 0;
-
   },
 
   resolveBottomCollision(yCoordinate) {

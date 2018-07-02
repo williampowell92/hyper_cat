@@ -15,5 +15,9 @@ Mouse.prototype = {
       this.size.x,
       this.size.y
     );
+  },
+
+  resolveCollision() {
+    alert('You WIN! but you are still a loser');
   }
 };
