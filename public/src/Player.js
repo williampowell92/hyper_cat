@@ -29,6 +29,8 @@ Player.prototype = {
       this.animation.sprite.sheetWidth / this.animation.sprite.columns,
       79
     );
+
+    this.animation.repositionFrame();
   },
 
   resolveTopCollision(yCoordinate) {

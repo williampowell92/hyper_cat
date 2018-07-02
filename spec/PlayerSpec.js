@@ -11,7 +11,8 @@ describe('Player', () => {
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     sprite = { sheetWidth: 900, columns: 10, img: {} };
-    animation = { frameX: 0, sprite };
+    animation = { frameX: 0, sprite, repositionFrame() {} };
+    spyOn(animation, 'repositionFrame');
     animationFactory = { build() {} };
     spyOn(animationFactory, 'build').and.returnValue(animation);
     player = new Player(keyboarder, animationFactory);
@@ -37,27 +38,11 @@ describe('Player', () => {
       );
     });
 
-    // it('fills a rectangle with players dimension', () => {
-    //   const gameSize = { x: 800, y: 800 };
-    //   player.draw(context, undefined, gameSize);
-    //   expect(context.fillRect).toHaveBeenCalledWith(
-    //     gameSize.x / 2 - (player.size.x / 2),
-    //     player.center.y - (player.size.y / 2),
-    //     player.size.x,
-    //     player.size.y
-    //   );
-    // });
-    //
-    // it('fills a rectangle with players dimension using different gameSize', () => {
-    //   const gameSize = { x: 900, y: 900 };
-    //   player.draw(context, undefined, gameSize);
-    //   expect(context.fillRect).toHaveBeenCalledWith(
-    //     gameSize.x / 2 - (player.size.x / 2),
-    //     player.center.y - (player.size.y / 2),
-    //     player.size.x,
-    //     player.size.y
-    //   );
-    // });
+    it('calls repositionFrame on animation', () => {
+      const gameSize = { x: 800, y: 800 };
+      player.draw(context, undefined, gameSize);
+      expect(animation.repositionFrame).toHaveBeenCalled();
+    });
   });
 
   describe('resolveTopCollision', () => {
