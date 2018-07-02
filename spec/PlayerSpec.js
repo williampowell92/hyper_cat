@@ -203,6 +203,15 @@ describe('Player', () => {
           initialYCenter + 2 * player.acceleration.y + player.gravity
         );
       });
+
+      it('player cannot jump after walking off platform', () => {
+        player.update();
+        player.resolveTopCollision(initialYCenter + player.size.y / 2);
+        player.update();
+        spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+        player.update();
+        expect(player.center.y).toEqual(initialYCenter + 3 * player.gravity);
+      });
     });
   });
 });

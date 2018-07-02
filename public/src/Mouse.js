@@ -1,9 +1,9 @@
-function Platform(center, size) {
-  this.center = center;
-  this.size = size;
+function Mouse() {
+  this.center = { x: 600, y: 375 };
+  this.size = { x: 20, y: 20 };
 }
 
-Platform.prototype = {
+Mouse.prototype = {
   update() {
 
   },
@@ -18,6 +18,10 @@ Platform.prototype = {
   },
 
   resolveCollision() {
+    this._winScreen();
+  },
 
+  _winScreen() {
+    window.location.replace('/win');
   }
 };

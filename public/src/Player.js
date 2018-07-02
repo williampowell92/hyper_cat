@@ -57,8 +57,8 @@ Player.prototype = {
   _jump() {
     if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
       this.velocity.y = this.acceleration.y;
-      this.jumping = true;
     }
+    this.jumping = true;
   },
 
   _addGravity() {
