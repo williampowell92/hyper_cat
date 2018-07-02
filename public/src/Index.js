@@ -4,6 +4,7 @@ function Index(gameFactory = new GameFactory(), documentObject = document) {
   const gameSize = { x: canvas.width, y: canvas.height };
   this.game = gameFactory.build(
     undefined,
+    undefined,
     [
       new Platform({ x: canvas.width / 2, y: canvas.height - 10 }, { x: canvas.width, y: 30 }),
       new Platform({ x: canvas.width / 2, y: 650 }, { x: 200, y: 100 }),
