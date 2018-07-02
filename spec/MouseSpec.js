@@ -1,10 +1,14 @@
 describe('Mouse', () => {
   let mouse;
   let context;
+  let handlers;
 
   beforeEach(() => {
     mouse = new Mouse();
     context = jasmine.createSpyObj('context', ['fillRect']);
+    handlers = {
+      locationReload: document.location.reload
+    };
   });
 
   describe('update', () => {

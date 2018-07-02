@@ -21,9 +21,9 @@ describe('Collision', () => {
   let player13;
 
   beforeEach(() => {
-    platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 } };
-    otherPlatform = { center: { x: 450, y: 100 }, size: { x: 50, y: 75 } };
-    mouse = { center: { x: 600, y: 375 }, size: { x: 20, y: 20 } };
+    platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 }, resolveCollision() {} };
+    otherPlatform = { center: { x: 450, y: 100 }, size: { x: 50, y: 75 }, resolveCollision() {} };
+    mouse = { center: { x: 600, y: 375 }, size: { x: 20, y: 20 }, resolveCollision() {} };
     player = {
       resolveTopCollision() {},
       resolveBottomCollision() {},
@@ -193,11 +193,16 @@ describe('Collision', () => {
   });
 
   describe('resolveCollisions', () => {
+    beforeEach(() => {
+      spyOn(platform, 'resolveCollision');
+    });
+
     describe('ResolveBottomCollisions', () => {
       beforeEach(() => {
         spyOn(collision, 'isCollidingOnTop').and.returnValue(false);
         spyOn(collision, 'isCollidingOnLeft').and.returnValue(false);
         spyOn(collision, 'isCollidingOnRight').and.returnValue(false);
+        spyOn(platform, 'resolveCollision');
       });
 
       it('calls resolveBottomCollision on the player with first platform', () => {
@@ -248,6 +253,13 @@ describe('Collision', () => {
         expect(player.resolveBottomCollision).not.toHaveBeenCalledWith(
           platform.center.y + platform.size.y / 2
         );
+      });
+
+      it('calls resolveCollision with the first body if it isColliding', () => {
+        spyOn(collision, 'isCollidingOnBottom').and.returnValue(true);
+        spyOn(player, 'resolveBottomCollision');
+        collision.resolveCollisions(bodies);
+        expect(platform.resolveCollision).toHaveBeenCalled();
       });
     });
 

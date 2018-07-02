@@ -59,6 +59,7 @@ Collision.prototype = {
   _resolveBottomCollisions(body) {
     if (this.isCollidingOnBottom(this.player, body)) {
       this.player.resolveBottomCollision(this._bottomOf(body));
+      body.resolveCollision();
     }
   },
 
