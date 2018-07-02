@@ -18,6 +18,10 @@ Mouse.prototype = {
   },
 
   resolveCollision() {
-    alert('YOU WIN!');
+    this._winScreen();
+  },
+
+  _winScreen() {
+    window.location.replace('/win');
   }
 };

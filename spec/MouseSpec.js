@@ -28,9 +28,9 @@ describe('Mouse', () => {
 
   describe('resolveCollision', () => {
     it('calls alert when colliding with player', () => {
-      spyOn(window, 'alert');
+      spyOn(mouse, '_winScreen');
       mouse.resolveCollision();
-      expect(window.alert).toHaveBeenCalledWith('YOU WIN!');
+      expect(mouse._winScreen).toHaveBeenCalled();
     });
   });
 });
