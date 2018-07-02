@@ -14,6 +14,7 @@ Player.prototype = {
     this._setXVelocity();
     this._setYVelocity();
     this._movePlayer();
+
   },
 
   draw(context, offset, gameSize) {
@@ -59,8 +60,8 @@ Player.prototype = {
   _jump() {
     if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
       this.velocity.y = this.acceleration.y;
-      this.jumping = true;
     }
+    this.jumping = true;
   },
 
   _addGravity() {
