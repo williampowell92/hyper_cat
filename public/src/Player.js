@@ -14,7 +14,6 @@ Player.prototype = {
     this._setXVelocity();
     this._setYVelocity();
     this._movePlayer();
-
   },
 
   draw(context, offset, gameSize) {

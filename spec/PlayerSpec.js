@@ -199,7 +199,6 @@ describe('Player', () => {
       });
 
       it('player cannot jump after walking off platform', () => {
-        spyOn(keyboarder, 'isLeftKeyDown').and.returnValues(true, true);
         player.update();
         player.resolveTopCollision(initialYCenter + player.size.y / 2);
         player.update();
