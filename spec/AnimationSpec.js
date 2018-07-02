@@ -3,13 +3,15 @@ describe('Animation', () => {
   let spriteFactory;
   let sprite;
   let sheet;
+  let animationFactory;
 
   beforeEach(() => {
     sprite = { sheetWidth: 900, columns: 10, path: 'public/assets/sprite_idle.png' };
     spriteFactory = { build() {} };
     spyOn(spriteFactory, 'build').and.returnValue(sprite);
     sheet = 'idle';
-    animation = new Animation(sheet, spriteFactory);
+    animationFactory = new AnimationFactory();
+    animation = animationFactory.build(sheet, spriteFactory);
   });
 
   describe('initialize', () => {

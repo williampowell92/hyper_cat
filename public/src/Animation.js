@@ -14,3 +14,11 @@ Animation.prototype = {
     this.currentFrame = (this.currentFrame + 1) % this.sprite.columns;
   }
 };
+
+function AnimationFactory() {
+  return {
+    build: (
+      sheet, spriteFactory = new SpriteFactory()
+    ) => new Animation(sheet, spriteFactory)
+  };
+}
