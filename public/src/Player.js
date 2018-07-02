@@ -11,15 +11,15 @@ function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationF
 }
 
 Player.prototype = {
-  update() {
+  update(gameSize) {
     this._setXVelocity();
     this._setYVelocity();
     this._movePlayer();
+    this._checkYPosition(gameSize);
   },
 
   draw(context, offset, gameSize) {
     this.animation.draw(context, gameSize, this.center, this.size);
-
     this.animation.repositionFrame();
   },
 
@@ -73,6 +73,15 @@ Player.prototype = {
   _movePlayer() {
     this.center.y += this.velocity.y;
     this.center.x += this.velocity.x;
-  }
+  },
 
+  _checkYPosition(gameSize) {
+    if (this.center.y > gameSize.y) {
+      this._loseScreen();
+    }
+  },
+
+  _loseScreen() {
+    window.location.replace('/lose');
+  }
 };
