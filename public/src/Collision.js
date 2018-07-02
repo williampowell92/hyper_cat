@@ -13,11 +13,6 @@ Collision.prototype = {
     );
   },
 
-  isJumping(player) {
-    if(isCollidingOnTop() === false) {
-      player.jumping = true; }
-  },
-
   isCollidingOnBottom(player, body) {
     return !(
       this._rightOf(player) <= this._leftOf(body)
