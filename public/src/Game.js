@@ -1,5 +1,5 @@
-function Game(player, platforms, collisionFactory) {
-  this.bodies = [player].concat(platforms);
+function Game(player, mouse, platforms, collisionFactory) {
+  this.bodies = [player, mouse].concat(platforms);
   this.collision = collisionFactory.build(this.bodies);
   this.playerXOrigin = player.center.x;
 }
@@ -25,8 +25,9 @@ function GameFactory() {
   return {
     build: (
       player = new Player(),
+      mouse = new Mouse(),
       platforms = [],
       collisionFactory = new CollisionFactory()
-    ) => new Game(player, platforms, collisionFactory)
+    ) => new Game(player, mouse, platforms, collisionFactory)
   };
 }

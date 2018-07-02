@@ -53,25 +53,33 @@ Collision.prototype = {
   _resolveTopCollisions(body) {
     if (this.isCollidingOnTop(this.player, body)) {
       this.player.resolveTopCollision(this._topOf(body));
+      this._resolveBodyCollisions(body);
     }
   },
 
   _resolveBottomCollisions(body) {
     if (this.isCollidingOnBottom(this.player, body)) {
       this.player.resolveBottomCollision(this._bottomOf(body));
+      this._resolveBodyCollisions(body);
     }
   },
 
   _resolveLeftCollisions(body) {
     if (this.isCollidingOnLeft(this.player, body)) {
       this.player.resolveLeftCollision(this._leftOf(body));
+      this._resolveBodyCollisions(body);
     }
   },
 
   _resolveRightCollisions(body) {
     if (this.isCollidingOnRight(this.player, body)) {
       this.player.resolveRightCollision(this._rightOf(body));
+      this._resolveBodyCollisions(body);
     }
+  },
+
+  _resolveBodyCollisions(body) {
+    body.resolveCollision();
   },
 
   _topOf(object) {
