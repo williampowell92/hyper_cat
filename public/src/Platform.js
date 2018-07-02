@@ -15,5 +15,9 @@ Platform.prototype = {
       this.size.x,
       this.size.y
     );
+  },
+
+  resolveCollision() {
+
   }
 };

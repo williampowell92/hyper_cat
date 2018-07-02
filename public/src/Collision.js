@@ -53,6 +53,7 @@ Collision.prototype = {
   _resolveTopCollisions(body) {
     if (this.isCollidingOnTop(this.player, body)) {
       this.player.resolveTopCollision(this._topOf(body));
+      body.resolveCollision();
     }
   },
 
@@ -66,12 +67,14 @@ Collision.prototype = {
   _resolveLeftCollisions(body) {
     if (this.isCollidingOnLeft(this.player, body)) {
       this.player.resolveLeftCollision(this._leftOf(body));
+      body.resolveCollision();
     }
   },
 
   _resolveRightCollisions(body) {
     if (this.isCollidingOnRight(this.player, body)) {
       this.player.resolveRightCollision(this._rightOf(body));
+      body.resolveCollision();
     }
   },
 
