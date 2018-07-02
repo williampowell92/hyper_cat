@@ -1,4 +1,4 @@
-function Player(keyboarder = new Keyboarder(), sprite, animation) {
+function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
   this.center = { x: 400, y: 700 };
   this.size = { x: 20, y: 55 };
   this.acceleration = { x: 1.5, y: -25 };
@@ -7,8 +7,7 @@ function Player(keyboarder = new Keyboarder(), sprite, animation) {
   this.jumping = true;
   this.friction = 0.9;
   this.gravity = 1.5;
-  this.sprite = sprite;
-  this.animation = animation;
+  this.animation = animationFactory.build('idle');
 }
 
 Player.prototype = {
@@ -20,14 +19,14 @@ Player.prototype = {
 
   draw(context, offset, gameSize) {
     context.drawImage(
-      this.sprite.img,
+      this.animation.sprite.img,
       this.animation.frameX,
       0,
-      this.sprite.sheetWidth / this.sprite.columns,
+      this.animation.sprite.sheetWidth / this.animation.sprite.columns,
       79,
       gameSize.x / 2 - this.size.x / 2,
       this.center.y - this.size.y / 2,
-      this.sprite.sheetWidth / this.sprite.columns,
+      this.animation.sprite.sheetWidth / this.animation.sprite.columns,
       79
     );
   },

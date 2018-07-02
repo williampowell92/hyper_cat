@@ -6,12 +6,15 @@ describe('Player', () => {
   let initialYCenter;
   let sprite;
   let animation;
+  let animationFactory;
 
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
-    sprite = { img: { src: '../assets/sprite_idle.png' } };
-    animation = jasmine.createSpyObj('animation', ['currentFrame', 'frameX']);
-    player = new Player(keyboarder, sprite, animation);
+    sprite = { sheetWidth: 900, columns: 10, img: {} };
+    animation = { frameX: 0, sprite };
+    animationFactory = { build() {} };
+    spyOn(animationFactory, 'build').and.returnValue(animation);
+    player = new Player(keyboarder, animationFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
     initialYCenter = player.center.y;
@@ -22,14 +25,14 @@ describe('Player', () => {
       const gameSize = { x: 800, y: 800 };
       player.draw(context, undefined, gameSize);
       expect(context.drawImage).toHaveBeenCalledWith(
-        player.sprite.img,
+        player.animation.sprite.img,
         player.animation.frameX,
         0,
-        player.sprite.sheetWidth / player.sprite.columns,
+        player.animation.sprite.sheetWidth / player.animation.sprite.columns,
         79,
         gameSize.x / 2 - player.size.x / 2,
         player.center.y - player.size.y / 2,
-        player.sprite.sheetWidth / player.sprite.columns,
+        player.animation.sprite.sheetWidth / player.animation.sprite.columns,
         79
       );
     });
