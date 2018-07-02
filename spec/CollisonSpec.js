@@ -2,6 +2,7 @@ describe('Collision', () => {
   let bodies;
   let collision;
   let collisionFactory;
+  let mouse;
   let platform;
   let otherPlatform;
   let player;
@@ -22,13 +23,14 @@ describe('Collision', () => {
   beforeEach(() => {
     platform = { center: { x: 150, y: 150 }, size: { x: 100, y: 100 } };
     otherPlatform = { center: { x: 450, y: 100 }, size: { x: 50, y: 75 } };
+    mouse = {};
     player = {
       resolveTopCollision() {},
       resolveBottomCollision() {},
       resolveLeftCollision() {},
       resolveRightCollision() {}
     };
-    bodies = [player, platform, otherPlatform];
+    bodies = [player, mouse, platform, otherPlatform];
     collisionFactory = new CollisionFactory();
     collision = collisionFactory.build(bodies);
     player1 = { center: { x: 90, y: 150 }, size: { x: 20, y: 20 }, velocity: { y: 10 } };
