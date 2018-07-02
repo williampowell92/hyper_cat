@@ -6,6 +6,7 @@ describe('Game', () => {
   let collision;
   let collisionFactory;
   let gameSize;
+  let mouse;
   let platform;
   let platforms;
   let player;
@@ -14,6 +15,7 @@ describe('Game', () => {
     canvas = { width: 800, height: 800 };
     context = { clearRect() {} };
     gameSize = { x: canvas.width, y: canvas.height };
+    mouse = { draw() {}, update() {} };
     player = { draw() {}, update() {}, center: { x: canvas.width / 2, y: 700 } };
     platform = { draw() {}, update() {} };
     platforms = [platform];
@@ -21,12 +23,16 @@ describe('Game', () => {
     collision = jasmine.createSpyObj('collision', ['resolveCollisions']);
     spyOn(collisionFactory, 'build').and.returnValue(collision);
     gameFactory = new GameFactory();
-    game = gameFactory.build(player, platforms, collisionFactory);
+    game = gameFactory.build(player, mouse, platforms, collisionFactory);
   });
 
   describe('initialize', () => {
     it('creates a bodies array containing player', () => {
       expect(game.bodies).toContain(player);
+    });
+
+    it('creates a bodies array containing mouse', () => {
+      expect(game.bodies).toContain(mouse);
     });
 
     it('creates a bodies array containing platform', () => {
