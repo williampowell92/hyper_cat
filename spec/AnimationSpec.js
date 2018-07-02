@@ -40,3 +40,18 @@ describe('Animation', () => {
     });
   });
 });
+
+// it('calls draw on animation', () => {
+//   const gameSize = { x: 800, y: 800 };
+//   player.draw(context, undefined, gameSize);
+//   expect(context.drawImage).toHaveBeenCalledWith(
+//     player.animation.sprite.img,
+//     player.animation.frameX,
+//     0,
+//     player.animation.sprite.sheetWidth / player.animation.sprite.columns,
+//     79,
+//     gameSize.x / 2 - player.size.x / 2,
+//     player.center.y - player.size.y / 2,
+//     player.animation.sprite.sheetWidth / player.animation.sprite.columns,
+//     79
+//   );

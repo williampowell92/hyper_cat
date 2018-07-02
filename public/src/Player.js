@@ -1,6 +1,6 @@
 function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
   this.center = { x: 400, y: 700 };
-  this.size = { x: 20, y: 55 };
+  this.size = { x: 45, y: 72 };
   this.acceleration = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
   this.keyboarder = keyboarder;
@@ -18,17 +18,7 @@ Player.prototype = {
   },
 
   draw(context, offset, gameSize) {
-    context.drawImage(
-      this.animation.sprite.img,
-      this.animation.frameX,
-      0,
-      this.animation.sprite.sheetWidth / this.animation.sprite.columns,
-      79,
-      gameSize.x / 2 - this.size.x / 2,
-      this.center.y - this.size.y / 2,
-      this.animation.sprite.sheetWidth / this.animation.sprite.columns,
-      79
-    );
+    this.animation.draw(context, gameSize, this.center, this.size)
 
     this.animation.repositionFrame();
   },

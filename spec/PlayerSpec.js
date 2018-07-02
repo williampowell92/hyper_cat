@@ -11,8 +11,9 @@ describe('Player', () => {
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     sprite = { sheetWidth: 900, columns: 10, img: {} };
-    animation = { frameX: 0, sprite, repositionFrame() {} };
+    animation = { frameX: 0, sprite, repositionFrame() {}, draw() {} };
     spyOn(animation, 'repositionFrame');
+    spyOn(animation, 'draw');
     animationFactory = { build() {} };
     spyOn(animationFactory, 'build').and.returnValue(animation);
     player = new Player(keyboarder, animationFactory);
@@ -22,19 +23,14 @@ describe('Player', () => {
   });
 
   describe('Draw', () => {
-    it('calls draw image with correct arguments', () => {
+    it('calls draw on animation', () => {
       const gameSize = { x: 800, y: 800 };
       player.draw(context, undefined, gameSize);
-      expect(context.drawImage).toHaveBeenCalledWith(
-        player.animation.sprite.img,
-        player.animation.frameX,
-        0,
-        player.animation.sprite.sheetWidth / player.animation.sprite.columns,
-        79,
-        gameSize.x / 2 - player.size.x / 2,
-        player.center.y - player.size.y / 2,
-        player.animation.sprite.sheetWidth / player.animation.sprite.columns,
-        79
+      expect(animation.draw).toHaveBeenCalledWith(
+        context,
+        gameSize,
+        player.center,
+        player.size
       );
     });
 
