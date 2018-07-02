@@ -23,16 +23,16 @@ describe('Animation', () => {
   });
 
   describe('repositionFrame', () => {
-    xit('should iterate frameX from 90 to 810', () => {
-      for (let i = 1; i < spriteSheetColumns; i++) {
-        animation.repositionFrame(spriteSheetWidth, spriteSheetColumns);
-        expect(animation.frameX).toEqual(i * spriteSheetWidth / spriteSheetColumns);
+    it('should iterate frameX from 90 to 810', () => {
+      for (let i = 1; i < sprite.columns; i++) {
+        animation.repositionFrame();
+        expect(animation.frameX).toEqual(i * sprite.sheetWidth / sprite.columns);
       }
     });
 
-    xit('should reset frameX to 0 after 810', () => {
-      for (let i = 1; i < spriteSheetColumns + 1; i++) {
-        animation.repositionFrame(spriteSheetWidth, spriteSheetColumns);
+    it('should reset frameX to 0 after 810', () => {
+      for (let i = 1; i < sprite.columns + 1; i++) {
+        animation.repositionFrame();
       }
       expect(animation.frameX).toEqual(0);
     });

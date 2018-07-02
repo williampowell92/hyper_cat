@@ -5,12 +5,12 @@ function Animation(sheet, spriteFactory = new SpriteFactory()) {
 }
 
 Animation.prototype = {
-  repositionFrame(width, columnCount) {
-    this._updateFrame(columnCount);
-    this.frameX = width / columnCount * this.currentFrame;
+  repositionFrame() {
+    this._updateFrame();
+    this.frameX = this.sprite.sheetWidth / this.sprite.columns * this.currentFrame;
   },
 
-  _updateFrame(columnCount) {
-    this.currentFrame = (this.currentFrame + 1) % columnCount;
+  _updateFrame() {
+    this.currentFrame = (this.currentFrame + 1) % this.sprite.columns;
   }
 };
