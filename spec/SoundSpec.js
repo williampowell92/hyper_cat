@@ -8,6 +8,7 @@ describe('Sound', () => {
     src = 'public/assets/sounds/background_music.mp3';
     mockAudio = document.createElement('audio');
     spyOn(document, 'createElement').and.returnValue(mockAudio);
+    spyOn(document.body, 'appendChild');
     soundFactory = new SoundFactory();
     sound = soundFactory.build(src);
   });
@@ -31,6 +32,10 @@ describe('Sound', () => {
 
     it('adds controls none to the element', () => {
       expect(mockAudio.attributes.controls.value).toEqual('none');
+    });
+
+    it('calls append child with audio element', () => {
+      expect(document.body.appendChild).toHaveBeenCalledWith(mockAudio);
     });
   });
 });
