@@ -1,10 +1,12 @@
 describe('Mouse', () => {
   let mouse;
   let context;
+  let image;
 
   beforeEach(() => {
     mouse = new Mouse();
-    context = jasmine.createSpyObj('context', ['fillRect']);
+    context = jasmine.createSpyObj('context', ['drawImage']);
+    image = new Image();
   });
 
   describe('update', () => {
@@ -14,10 +16,11 @@ describe('Mouse', () => {
   });
 
   describe('draw', () => {
-    it('calls function fillRect with correct arguments', () => {
+    it('calls function drawImage with correct arguments', () => {
       const playerOffset = 200;
       mouse.draw(context, playerOffset);
-      expect(context.fillRect).toHaveBeenCalledWith(
+      expect(context.drawImage).toHaveBeenCalledWith(
+        mouse.image,
         mouse.center.x - mouse.size.x / 2 - playerOffset,
         mouse.center.y - mouse.size.y / 2,
         mouse.size.x,
