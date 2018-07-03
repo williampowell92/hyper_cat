@@ -7,7 +7,9 @@ function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationF
   this.jumping = true;
   this.friction = 0.9;
   this.gravity = 1.5;
-  this.currentAnimation = animationFactory.build('idle');
+  this.animations = {};
+  this.animations.idle = animationFactory.build('idle');
+  this.currentAnimation = this.animations.idle;
 }
 
 Player.prototype = {
