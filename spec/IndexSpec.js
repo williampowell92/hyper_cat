@@ -35,6 +35,10 @@ describe('Index', () => {
       const src = 'public/assets/sounds/background_music.mp3';
       expect(soundFactory.build).toHaveBeenCalledWith(src);
     });
+
+    it('plays the background music', () => {
+      expect(mockSound.play).toHaveBeenCalled();
+    });
   })
 
   describe('tick', () => {
