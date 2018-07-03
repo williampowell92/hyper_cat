@@ -1,7 +1,6 @@
 function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
   const animationNames = ['idle', 'right', 'left'];
-
-  this.center = { x: 400, y: 700 };
+  this.center = { x: 800, y: 700 };
   this.size = { x: 45, y: 72 };
   this.acceleration = { x: 1.5, y: -25 };
   this.velocity = { x: 0, y: 0 };
