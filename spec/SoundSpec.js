@@ -7,6 +7,7 @@ describe('Sound', () => {
   beforeEach(() => {
     src = 'public/assets/sounds/background_music.mp3';
     mockAudio = jasmine.createSpyObj('audio', ['setAttribute', 'play']);
+    mockAudio.style = {};
     spyOn(document, 'createElement').and.returnValue(mockAudio);
     spyOn(document.body, 'appendChild');
     soundFactory = new SoundFactory();
@@ -37,6 +38,10 @@ describe('Sound', () => {
     it('calls append child with audio element', () => {
       expect(document.body.appendChild).toHaveBeenCalledWith(mockAudio);
     });
+
+    it('has no display', () => {
+      expect(mockAudio.style.display).toEqual('none');
+    })
   });
 
   describe('play', () => {
