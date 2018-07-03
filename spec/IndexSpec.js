@@ -33,7 +33,7 @@ describe('Index', () => {
   describe('initialize', () => {
     it('creates music with the correct src', () => {
       const src = 'public/assets/sounds/background_music.mp3';
-      expect(soundFactory.build).toHaveBeenCalledWith(src);
+      expect(soundFactory.build).toHaveBeenCalledWith(src, true);
     });
 
     it('plays the background music', () => {
