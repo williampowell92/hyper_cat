@@ -3,21 +3,25 @@ describe('Platform', () => {
   let context;
   let center;
   let size;
+  let imageFactory;
+  let imgSrc;
 
   beforeEach(() => {
     center = { x: 400, y: 400 };
     size = { x: 100, y: 20 };
-
-    platform = new Platform(center, size);
-
+    imgSrc = 'black';
+    imageFactory = new ImageFactory();
+    spyOn(imageFactory, 'build').and.returnValue({});
+    platform = new Platform(center, size, imageFactory, imgSrc);
     context = jasmine.createSpyObj('context', ['fillRect']);
   });
 
   describe('draw', () => {
-    it('call function fillRect with correct arguments', () => {
+    it('call function drawImage with correct arguments', () => {
       const playerOffset = 200;
       platform.draw(context, playerOffset);
-      expect(context.fillRect).toHaveBeenCalledWith(
+      expect(context.drawImage).toHaveBeenCalledWith(
+        platform.image,
         center.x - size.x / 2 - playerOffset,
         center.y - size.y / 2,
         size.x,
