@@ -38,4 +38,11 @@ describe('Sound', () => {
       expect(document.body.appendChild).toHaveBeenCalledWith(mockAudio);
     });
   });
+
+  describe('play', () => {
+    it('calls play on audio element', () => {
+      sound.play();
+      expect(mockAudio.play).toHaveBeenCalled();
+    });
+  });
 });

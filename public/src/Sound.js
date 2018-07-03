@@ -7,6 +7,12 @@ function Sound(src) {
   document.body.appendChild(this.audio);
 }
 
+Sound.prototype = {
+  play() {
+    this.audio.play();
+  }
+};
+
 function SoundFactory() {
   return {
     build: src => new Sound(src)
