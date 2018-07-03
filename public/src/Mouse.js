@@ -1,6 +1,8 @@
-function Mouse() {
-  this.center = { x: 1200, y: 375 };
-  this.size = { x: 20, y: 20 };
+function Mouse(imageFactory = new ImageFactory()) {
+  this.center = { x: 1200, y: 360 };
+  this.size = { x: 50, y: 50 };
+  this.image = imageFactory.build();
+  this.image.src = 'public/assets/imgs/Mouse.png';
 }
 
 Mouse.prototype = {
@@ -9,7 +11,8 @@ Mouse.prototype = {
   },
 
   draw(context, playerOffset) {
-    context.fillRect(
+    context.drawImage(
+      this.image,
       this.center.x - this.size.x / 2 - playerOffset,
       this.center.y - this.size.y / 2,
       this.size.x,
@@ -25,3 +28,9 @@ Mouse.prototype = {
     window.location.replace('/win');
   }
 };
+
+function ImageFactory() {
+  return {
+    build: () => new Image()
+  };
+}

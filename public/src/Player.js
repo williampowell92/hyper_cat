@@ -1,4 +1,5 @@
 function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
+  const animationNames = ['idle', 'right', 'left'];
   this.center = { x: 800, y: 700 };
   this.size = { x: 45, y: 72 };
   this.acceleration = { x: 1.5, y: -25 };
@@ -7,20 +8,27 @@ function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationF
   this.jumping = true;
   this.friction = 0.9;
   this.gravity = 1.5;
-  this.animation = animationFactory.build('idle');
+  this.animations = {};
+
+  animationNames.forEach((animationName) => {
+    this.animations[animationName] = animationFactory.build(animationName);
+  });
+
+  this.currentAnimation = this.animations.idle;
 }
 
 Player.prototype = {
   update(gameSize) {
     this._setXVelocity();
     this._setYVelocity();
+    this._setAnimation();
     this._movePlayer();
     this._checkYPosition(gameSize);
   },
 
   draw(context, offset, gameSize) {
-    this.animation.draw(context, gameSize, this.center, this.size);
-    this.animation.repositionFrame();
+    this.currentAnimation.draw(context, gameSize, this.center, this.size);
+    this.currentAnimation.repositionFrame();
   },
 
   resolveTopCollision(yCoordinate) {
@@ -83,5 +91,15 @@ Player.prototype = {
 
   _loseScreen() {
     window.location.replace('/lose');
+  },
+
+  _setAnimation() {
+    if (this.keyboarder.isRightKeyDown()) {
+      this.currentAnimation = this.animations.right;
+    } else if (this.keyboarder.isLeftKeyDown()) {
+      this.currentAnimation = this.animations.left;
+    } else {
+      this.currentAnimation = this.animations.idle;
+    }
   }
 };

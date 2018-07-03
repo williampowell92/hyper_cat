@@ -6,19 +6,27 @@ describe('Player', () => {
   let initialYCenter;
   let sprite;
   let animation;
+  let rightAnimation;
+  let leftAnimation;
   let animationFactory;
-  let gameSize
+  let gameSize;
 
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     sprite = { sheetWidth: 900, columns: 10, img: {} };
     animation = {
-      frameX: 0, sprite, repositionFrame() {}, draw() {}
+      frameX: 0, type: 'idle', sprite, repositionFrame() {}, draw() {}
+    };
+    rightAnimation = {
+      frameX: 0, type: 'right', sprite, repositionFrame() {}, draw() {}
+    };
+    leftAnimation = {
+      frameX: 0, type: 'left', sprite, repositionFrame() {}, draw() {}
     };
     spyOn(animation, 'repositionFrame');
     spyOn(animation, 'draw');
     animationFactory = { build() {} };
-    spyOn(animationFactory, 'build').and.returnValue(animation);
+    spyOn(animationFactory, 'build').and.returnValues(animation, rightAnimation, leftAnimation);
     player = new Player(keyboarder, animationFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
@@ -26,8 +34,22 @@ describe('Player', () => {
     gameSize = { x: 800, y: 800 };
   });
 
+  describe('initialize', () => {
+    it('adds idle animation to animations array', () => {
+      expect(player.animations.idle).toEqual(animation);
+    });
+
+    it('adds right animation to animations array', () => {
+      expect(player.animations.right).toEqual(rightAnimation);
+    });
+
+    it('adds left animation to animations array', () => {
+      expect(player.animations.left).toEqual(leftAnimation);
+    });
+  });
+
   describe('Draw', () => {
-    it('calls draw on animation', () => {
+    it('calls draw on currentAnimation', () => {
       player.draw(context, undefined, gameSize);
       expect(animation.draw).toHaveBeenCalledWith(
         context,
@@ -37,7 +59,7 @@ describe('Player', () => {
       );
     });
 
-    it('calls repositionFrame on animation', () => {
+    it('calls repositionFrame on currentAnimation', () => {
       player.draw(context, undefined, gameSize);
       expect(animation.repositionFrame).toHaveBeenCalled();
     });
@@ -145,6 +167,19 @@ describe('Player', () => {
           initialXCenter + (player.acceleration.x * player.friction) * (1 + player.friction)
         );
       });
+
+      it('updates player animation to right when right key is pressed', () => {
+        spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
+        player.update(gameSize);
+        expect(player.currentAnimation).toEqual(rightAnimation);
+      });
+
+      it('updates player animation back to idle when right key is released', () => {
+        spyOn(keyboarder, 'isRightKeyDown').and.returnValues(true, true, false, false);
+        player.update(gameSize);
+        player.update(gameSize);
+        expect(player.currentAnimation).toEqual(animation);
+      });
     });
 
     describe('LeftKey', () => {
@@ -176,6 +211,19 @@ describe('Player', () => {
         expect(player.center.x).toEqual(
           initialXCenter - (player.acceleration.x * player.friction) * (1 + player.friction)
         );
+      });
+
+      it('updates player animation to left when left key is pressed', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
+        player.update(gameSize);
+        expect(player.currentAnimation).toEqual(leftAnimation);
+      });
+
+      it('updates player animation back to idle when left key is released', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValues(true, true, false, false);
+        player.update(gameSize);
+        player.update(gameSize);
+        expect(player.currentAnimation).toEqual(animation);
       });
     });
 
