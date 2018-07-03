@@ -2,10 +2,11 @@ function Sound(src, loop) {
   this.audio = document.createElement('audio');
   this.audio.src = src;
   this.audio.setAttribute('preload', 'auto');
-  this.audio.setAttribute('loop', loop);
+  if (loop) { this.audio.loop = true; }
   this.audio.setAttribute('controls', 'none');
   this.audio.style.display = 'none';
   document.body.appendChild(this.audio);
+  console.log(this.audio);
 }
 
 Sound.prototype = {

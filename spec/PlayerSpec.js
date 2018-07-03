@@ -274,7 +274,15 @@ describe('Player', () => {
         player.update(gameSize);
         expect(player.center.y).toEqual(initialYCenter + 3 * player.gravity);
       });
+
+      it('calls jump sound', () => {
+        player.jumping = false;
+        spyOn(keyboarder, 'isUpKeyDown').and.returnValue(true);
+        player.update(gameSize);
+        expect(player.jumpSound.play).toHaveBeenCalled();
+      });
     });
+
     describe('_checkYPosition', () => {
       it('ends the game if the player drops off the screen', () => {
         spyOn(player, '_loseScreen');

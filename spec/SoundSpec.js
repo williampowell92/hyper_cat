@@ -1,4 +1,4 @@
-describe('Sound', () => {
+fdescribe('Sound', () => {
   let src;
   let soundFactory;
   let sound;
@@ -32,7 +32,7 @@ describe('Sound', () => {
       });
 
       it('adds loop true to the element', () => {
-        expect(mockAudio.setAttribute).toHaveBeenCalledWith('loop', true);
+        expect(mockAudio.loop).toBeTruthy();
       });
 
       it('adds controls none to the element', () => {
@@ -54,7 +54,7 @@ describe('Sound', () => {
       });
 
       it('adds loop false to the element', () => {
-        expect(mockAudio.setAttribute).toHaveBeenCalledWith('loop', false);
+        expect(mockAudio.loop).toBeFalsy();
       });
     });
   });

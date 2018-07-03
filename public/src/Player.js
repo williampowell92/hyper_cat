@@ -13,7 +13,7 @@ function Player(
   this.friction = 0.9;
   this.gravity = 1.5;
   this.animations = {};
-  this.jumpSound = soundFactory.build('public/assets/sounds/jump.mp3', false);
+  this.jumpSound = soundFactory.build('public/assets/sounds/jump.mp3');
 
   animationNames.forEach((animationName) => {
     this.animations[animationName] = animationFactory.build(animationName);
@@ -70,6 +70,7 @@ Player.prototype = {
   _jump() {
     if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
       this.velocity.y = this.acceleration.y;
+      this.jumpSound.play();
     }
     this.jumping = true;
   },
