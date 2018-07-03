@@ -1,0 +1,14 @@
+. {
+  margin: auto 0;
+  overflow: hidden;
+}
+canvas {
+  outline: 1px solid #000;
+  background-image: url("../imgs/BG.png");
+  /* background-size:cover; */
+  /* background-repeat: no-repeat; */
+  /* background-position: relative; */
+  /* background-size: 100%; */
+  width: 100vw;
+  height: 100vh;
+}
