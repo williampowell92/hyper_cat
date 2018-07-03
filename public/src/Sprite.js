@@ -7,7 +7,7 @@ function Sprite(sheet, imageFactory = new ImageFactory()) {
       posOffsetX: 18,
       posOffsetY: 5,
       clippedWidth: 48,
-      clippedHeight: 79
+      clippedHeight: 72
     },
     right: {
       width: 517,

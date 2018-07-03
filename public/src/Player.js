@@ -7,7 +7,7 @@ function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationF
   this.jumping = true;
   this.friction = 0.9;
   this.gravity = 1.5;
-  this.animation = animationFactory.build('idle');
+  this.currentAnimation = animationFactory.build('idle');
 }
 
 Player.prototype = {
@@ -19,8 +19,8 @@ Player.prototype = {
   },
 
   draw(context, offset, gameSize) {
-    this.animation.draw(context, gameSize, this.center, this.size);
-    this.animation.repositionFrame();
+    this.currentAnimation.draw(context, gameSize, this.center, this.size);
+    this.currentAnimation.repositionFrame();
   },
 
   resolveTopCollision(yCoordinate) {

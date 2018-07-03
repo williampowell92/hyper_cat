@@ -5,20 +5,20 @@ describe('Player', () => {
   let initialXCenter;
   let initialYCenter;
   let sprite;
-  let animation;
+  let currentAnimation;
   let animationFactory;
   let gameSize
 
   beforeEach(() => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     sprite = { sheetWidth: 900, columns: 10, img: {} };
-    animation = {
+    currentAnimation = {
       frameX: 0, sprite, repositionFrame() {}, draw() {}
     };
-    spyOn(animation, 'repositionFrame');
-    spyOn(animation, 'draw');
+    spyOn(currentAnimation, 'repositionFrame');
+    spyOn(currentAnimation, 'draw');
     animationFactory = { build() {} };
-    spyOn(animationFactory, 'build').and.returnValue(animation);
+    spyOn(animationFactory, 'build').and.returnValue(currentAnimation);
     player = new Player(keyboarder, animationFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
@@ -29,7 +29,7 @@ describe('Player', () => {
   describe('Draw', () => {
     it('calls draw on animation', () => {
       player.draw(context, undefined, gameSize);
-      expect(animation.draw).toHaveBeenCalledWith(
+      expect(currentAnimation.draw).toHaveBeenCalledWith(
         context,
         gameSize,
         player.center,
@@ -39,7 +39,7 @@ describe('Player', () => {
 
     it('calls repositionFrame on animation', () => {
       player.draw(context, undefined, gameSize);
-      expect(animation.repositionFrame).toHaveBeenCalled();
+      expect(currentAnimation.repositionFrame).toHaveBeenCalled();
     });
   });
 
