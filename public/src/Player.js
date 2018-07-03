@@ -22,6 +22,7 @@ Player.prototype = {
   update(gameSize) {
     this._setXVelocity();
     this._setYVelocity();
+    this._setAnimation();
     this._movePlayer();
     this._checkYPosition(gameSize);
   },
@@ -91,5 +92,13 @@ Player.prototype = {
 
   _loseScreen() {
     window.location.replace('/lose');
+  },
+
+  _setAnimation() {
+    if (this.keyboarder.isRightKeyDown()) {
+      this.currentAnimation = this.animations.right;
+    } else {
+      this.currentAnimation = this.animations.idle;
+    }
   }
 };

@@ -6,6 +6,7 @@ describe('Player', () => {
   let initialYCenter;
   let sprite;
   let animation;
+  let rightAnimation;
   let animationFactory;
   let gameSize;
 
@@ -13,12 +14,15 @@ describe('Player', () => {
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     sprite = { sheetWidth: 900, columns: 10, img: {} };
     animation = {
-      frameX: 0, sprite, repositionFrame() {}, draw() {}
+      frameX: 0, type: 'idle', sprite, repositionFrame() {}, draw() {}
+    };
+    rightAnimation = {
+      frameX: 0, type: 'right', sprite, repositionFrame() {}, draw() {}
     };
     spyOn(animation, 'repositionFrame');
     spyOn(animation, 'draw');
     animationFactory = { build() {} };
-    spyOn(animationFactory, 'build').and.returnValue(animation);
+    spyOn(animationFactory, 'build').and.returnValues(animation, rightAnimation);
     player = new Player(keyboarder, animationFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
@@ -32,7 +36,7 @@ describe('Player', () => {
     });
 
     it('adds right animation to animations array', () => {
-      expect(player.animations.right).toEqual(animation);
+      expect(player.animations.right).toEqual(rightAnimation);
     });
   });
 
@@ -154,6 +158,19 @@ describe('Player', () => {
         expect(player.center.x).toEqual(
           initialXCenter + (player.acceleration.x * player.friction) * (1 + player.friction)
         );
+      });
+
+      it('updates player animation to right when right key is pressed', () => {
+        spyOn(keyboarder, 'isRightKeyDown').and.returnValue(true);
+        player.update(gameSize);
+        expect(player.currentAnimation).toEqual(rightAnimation);
+      });
+
+      it('updates player animation back to idle when right key is released', () => {
+        spyOn(keyboarder, 'isRightKeyDown').and.returnValues(true, true, false, false);
+        player.update(gameSize);
+        player.update(gameSize);
+        expect(player.currentAnimation.type).toEqual('idle');
       });
     });
 
