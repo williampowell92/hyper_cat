@@ -16,5 +16,13 @@ describe('Sound', () => {
     it('creates an audio element', () => {
       expect(sound.audio).toEqual(mockAudio);
     });
+
+    it('adds the src to the element', () => {
+      expect(mockAudio.src).toContain(src);
+    });
+
+    it('adds preload auto to the element', () => {
+      expect(mockAudio.attributes.preload.value).toEqual('auto');
+    });
   });
 });
