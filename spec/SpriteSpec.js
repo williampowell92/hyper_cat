@@ -64,5 +64,38 @@ describe('Sprite', () => {
         expect(sprite.clippedHeight).toEqual(sheets.idle.clippedHeight);
       });
     });
+    describe('right', () => {
+      beforeEach(() => {
+        sprite = spriteFactory.build('right', imageFactory);
+      });
+
+      it('stores the sheetWidth', () => {
+        expect(sprite.sheetWidth).toEqual(sheets.right.width);
+      });
+
+      it('stores the columns', () => {
+        expect(sprite.columns).toEqual(sheets.right.columns);
+      });
+
+      it('stores the src on the image', () => {
+        expect(sprite.img.src).toContain(sheets.right.src.slice(2, -1));
+      });
+
+      it('stores the posOffsetX', () => {
+        expect(sprite.posOffsetX).toEqual(sheets.right.posOffsetX);
+      });
+
+      it('stores the posOffsetY', () => {
+        expect(sprite.posOffsetY).toEqual(sheets.right.posOffsetY);
+      });
+
+      it('stores the clippedWidth', () => {
+        expect(sprite.clippedWidth).toEqual(sheets.right.clippedWidth);
+      });
+
+      it('stores the clippedHeight', () => {
+        expect(sprite.clippedHeight).toEqual(sheets.right.clippedHeight);
+      });
+    });
   });
 });
