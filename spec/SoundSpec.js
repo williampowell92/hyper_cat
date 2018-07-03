@@ -6,7 +6,7 @@ describe('Sound', () => {
 
   beforeEach(() => {
     src = 'public/assets/sounds/background_music.mp3';
-    mockAudio = document.createElement('audio');
+    mockAudio = jasmine.createSpyObj('audio', ['setAttribute', 'play']);
     spyOn(document, 'createElement').and.returnValue(mockAudio);
     spyOn(document.body, 'appendChild');
     soundFactory = new SoundFactory();
@@ -23,15 +23,15 @@ describe('Sound', () => {
     });
 
     it('adds preload auto to the element', () => {
-      expect(mockAudio.attributes.preload.value).toEqual('auto');
+      expect(mockAudio.setAttribute).toHaveBeenCalledWith('preload', 'auto');
     });
 
     it('adds loop true to the element', () => {
-      expect(mockAudio.attributes.loop.value).toEqual('true');
+      expect(mockAudio.setAttribute).toHaveBeenCalledWith('loop', 'true');
     });
 
     it('adds controls none to the element', () => {
-      expect(mockAudio.attributes.controls.value).toEqual('none');
+      expect(mockAudio.setAttribute).toHaveBeenCalledWith('controls', 'none');
     });
 
     it('calls append child with audio element', () => {
