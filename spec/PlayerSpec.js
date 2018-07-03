@@ -7,6 +7,7 @@ describe('Player', () => {
   let sprite;
   let animation;
   let rightAnimation;
+  let leftAnimation;
   let animationFactory;
   let gameSize;
 
@@ -19,10 +20,13 @@ describe('Player', () => {
     rightAnimation = {
       frameX: 0, type: 'right', sprite, repositionFrame() {}, draw() {}
     };
+    leftAnimation = {
+      frameX: 0, type: 'left', sprite, repositionFrame() {}, draw() {}
+    };
     spyOn(animation, 'repositionFrame');
     spyOn(animation, 'draw');
     animationFactory = { build() {} };
-    spyOn(animationFactory, 'build').and.returnValues(animation, rightAnimation);
+    spyOn(animationFactory, 'build').and.returnValues(animation, rightAnimation, leftAnimation);
     player = new Player(keyboarder, animationFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
@@ -37,6 +41,10 @@ describe('Player', () => {
 
     it('adds right animation to animations array', () => {
       expect(player.animations.right).toEqual(rightAnimation);
+    });
+
+    it('adds left animation to animations array', () => {
+      expect(player.animations.left).toEqual(leftAnimation);
     });
   });
 
@@ -203,6 +211,19 @@ describe('Player', () => {
         expect(player.center.x).toEqual(
           initialXCenter - (player.acceleration.x * player.friction) * (1 + player.friction)
         );
+      });
+
+      it('updates player animation to left when left key is pressed', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValue(true);
+        player.update(gameSize);
+        expect(player.currentAnimation).toEqual(leftAnimation);
+      });
+
+      it('updates player animation back to idle when left key is released', () => {
+        spyOn(keyboarder, 'isLeftKeyDown').and.returnValues(true, true, false, false);
+        player.update(gameSize);
+        player.update(gameSize);
+        expect(player.currentAnimation.type).toEqual('idle');
       });
     });
 

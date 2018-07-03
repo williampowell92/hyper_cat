@@ -1,5 +1,5 @@
 function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
-  const animationNames = ['idle', 'right'];
+  const animationNames = ['idle', 'right', 'left'];
 
   this.center = { x: 400, y: 700 };
   this.size = { x: 45, y: 72 };
@@ -97,6 +97,8 @@ Player.prototype = {
   _setAnimation() {
     if (this.keyboarder.isRightKeyDown()) {
       this.currentAnimation = this.animations.right;
+    } else if (this.keyboarder.isLeftKeyDown()) {
+      this.currentAnimation = this.animations.left;
     } else {
       this.currentAnimation = this.animations.idle;
     }
