@@ -2,7 +2,7 @@ function Index(gameFactory = new GameFactory(), documentObject = document, sound
   const canvas = documentObject.querySelector('canvas');
   const context = canvas.getContext('2d');
   const gameSize = { x: canvas.width, y: canvas.height };
-  const backgroundMusic = soundFactory.build('public/assets/sounds/background_music.mp3');
+  const backgroundMusic = soundFactory.build('public/assets/sounds/background_music.mp3', true);
   backgroundMusic.play();
   this.game = gameFactory.build(
     undefined,
