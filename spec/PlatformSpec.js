@@ -4,15 +4,13 @@ describe('Platform', () => {
   let center;
   let size;
   let imageFactory;
-  let imgSrc;
 
   beforeEach(() => {
     center = { x: 400, y: 400 };
     size = { x: 100, y: 20 };
-    imgSrc = 'black';
     imageFactory = new ImageFactory();
     spyOn(imageFactory, 'build').and.returnValue({});
-    platform = new Platform(center, size, imageFactory, imgSrc);
+    platform = new Platform(center, size, imageFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
   });
 

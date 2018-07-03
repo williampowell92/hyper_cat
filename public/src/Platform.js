@@ -1,8 +1,8 @@
-function Platform(center, size, imageFactory = new ImageFactory(), imgSrc = 'public/assets/imgs/platform_mid.png') {
+function Platform(center, size, imageFactory = new ImageFactory()) {
   this.center = center;
   this.size = size;
   this.image = imageFactory.build();
-  this.image.src = imgSrc;
+  this.image.src = 'public/assets/imgs/platform_mid.png';
 }
 
 Platform.prototype = {
