@@ -1,12 +1,14 @@
 describe('Mouse', () => {
   let mouse;
   let context;
-  let image;
+  let imageFactory;
 
   beforeEach(() => {
-    mouse = new Mouse();
+    imageFactory = new ImageFactory();
+    spyOn(imageFactory, 'build').and.returnValue({});
+    mouse = new Mouse(imageFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
-    image = new Image();
+
   });
 
   describe('update', () => {
