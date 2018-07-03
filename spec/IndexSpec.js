@@ -1,13 +1,16 @@
 describe('Index', () => {
+  let platformFactory;
   let gameFactory;
   let mockCanvas;
   let mockDocument;
   let mockContext;
+  let mockPlatform;
   let mockGame;
   let gameSize;
   let index;
 
   beforeEach(() => {
+    platformFactory = new PlatformFactory();
     gameFactory = new GameFactory();
 
     mockCanvas = {
@@ -19,9 +22,10 @@ describe('Index', () => {
     };
 
     mockContext = {};
-
+    mockPlatform = jasmine.createSpyObj('platform', ['draw']);
     mockGame = jasmine.createSpyObj('game', ['update', 'draw']);
 
+    spyOn(platformFactory, 'build').and.returnValue(mockPlatform);
     spyOn(gameFactory, 'build').and.returnValue(mockGame);
     spyOn(mockCanvas, 'getContext').and.returnValue(mockContext);
     spyOn(mockDocument, 'querySelector').and.returnValue(mockCanvas);
@@ -29,7 +33,7 @@ describe('Index', () => {
 
     gameSize = { x: mockCanvas.width, y: mockCanvas.height };
 
-    index = new Index(gameFactory, mockDocument);
+    index = new Index(gameFactory, platformFactory, mockDocument);
   });
 
   describe('tick', () => {
