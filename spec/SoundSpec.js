@@ -24,5 +24,13 @@ describe('Sound', () => {
     it('adds preload auto to the element', () => {
       expect(mockAudio.attributes.preload.value).toEqual('auto');
     });
+
+    it('adds loop true to the element', () => {
+      expect(mockAudio.attributes.loop.value).toEqual('true');
+    });
+
+    it('adds controls none to the element', () => {
+      expect(mockAudio.attributes.controls.value).toEqual('none');
+    });
   });
 });
