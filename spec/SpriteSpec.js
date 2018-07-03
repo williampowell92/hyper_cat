@@ -17,10 +17,10 @@ describe('Sprite', () => {
       width: 517,
       columns: 8,
       src: 'public/assets/sprite_running_right.png',
-      posOffsetX: 18,
+      posOffsetX: 5,
       posOffsetY: 0,
-      clippedWidth: 48,
-      clippedHeight: 79
+      clippedWidth: 56,
+      clippedHeight: 78
     }
   };
 

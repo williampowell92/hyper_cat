@@ -19,8 +19,8 @@ Animation.prototype = {
       this.sprite.clippedHeight,
       gameSize.x / 2 - this.sprite.clippedWidth / 2,
       center.y - size.y / 2,
-      this.sprite.clippedWidth,
-      this.sprite.clippedHeight
+      size.x,
+      size.y
     );
   },
 

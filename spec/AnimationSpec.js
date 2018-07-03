@@ -65,8 +65,8 @@ describe('Animation', () => {
         sprite.clippedHeight,
         gameSize.x / 2 - sprite.clippedWidth / 2,
         center.y - size.y / 2,
-        sprite.clippedWidth,
-        sprite.clippedHeight
+        size.x,
+        size.y
       );
     });
   });
