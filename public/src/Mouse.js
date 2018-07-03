@@ -1,5 +1,5 @@
 function Mouse(imageFactory = new ImageFactory()) {
-  this.center = { x: 1200, y: 360 };
+  this.center = { x: 1400, y: 360 };
   this.size = { x: 50, y: 50 };
   this.image = imageFactory.build();
   this.image.src = 'public/assets/imgs/Mouse.png';
