@@ -1,4 +1,4 @@
-function Platform(center, size, imageFactory = new ImageFactory(), imgSrc) {
+function Platform(center, size, imageFactory = new ImageFactory(), imgSrc = 'public/assets/imgs/platform_mid.png') {
   this.center = center;
   this.size = size;
   this.image = imageFactory.build();
