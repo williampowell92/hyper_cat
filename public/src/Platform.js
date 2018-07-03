@@ -30,3 +30,11 @@ function ImageFactory() {
     build: () => new Image()
   };
 }
+
+function PlatformFactory() {
+  return {
+    build: (
+      center, size, imageFactory = new ImageFactory()
+    ) => new Platform(center, size, imageFactory)
+  };
+}
