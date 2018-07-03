@@ -1,5 +1,5 @@
 function Mouse() {
-  this.center = { x: 800, y: 375 };
+  this.center = { x: 1200, y: 375 };
   this.size = { x: 20, y: 20 };
 }
 

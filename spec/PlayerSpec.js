@@ -178,7 +178,7 @@ describe('Player', () => {
         spyOn(keyboarder, 'isRightKeyDown').and.returnValues(true, true, false, false);
         player.update(gameSize);
         player.update(gameSize);
-        expect(player.currentAnimation.type).toEqual('idle');
+        expect(player.currentAnimation).toEqual(animation);
       });
     });
 
@@ -223,7 +223,7 @@ describe('Player', () => {
         spyOn(keyboarder, 'isLeftKeyDown').and.returnValues(true, true, false, false);
         player.update(gameSize);
         player.update(gameSize);
-        expect(player.currentAnimation.type).toEqual('idle');
+        expect(player.currentAnimation).toEqual(animation);
       });
     });
 
