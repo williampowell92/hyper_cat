@@ -13,7 +13,7 @@ describe('Platform', () => {
     imageFactory = new ImageFactory();
     spyOn(imageFactory, 'build').and.returnValue({});
     platform = new Platform(center, size, imageFactory, imgSrc);
-    context = jasmine.createSpyObj('context', ['fillRect']);
+    context = jasmine.createSpyObj('context', ['drawImage']);
   });
 
   describe('draw', () => {
