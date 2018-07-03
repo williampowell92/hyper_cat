@@ -6,7 +6,6 @@ function Sound(src, loop) {
   this.audio.setAttribute('controls', 'none');
   this.audio.style.display = 'none';
   document.body.appendChild(this.audio);
-  console.log(this.audio);
 }
 
 Sound.prototype = {

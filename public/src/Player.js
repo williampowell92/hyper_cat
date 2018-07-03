@@ -13,7 +13,7 @@ function Player(
   this.friction = 0.9;
   this.gravity = 1.5;
   this.animations = {};
-  this.jumpSound = soundFactory.build('public/assets/sounds/jump.mp3');
+  this.jumpSound = soundFactory.build('public/assets/sounds/jump.mp3', false);
 
   animationNames.forEach((animationName) => {
     this.animations[animationName] = animationFactory.build(animationName);

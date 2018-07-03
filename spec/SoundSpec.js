@@ -1,4 +1,4 @@
-fdescribe('Sound', () => {
+describe('Sound', () => {
   let src;
   let soundFactory;
   let sound;
