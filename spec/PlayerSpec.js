@@ -10,8 +10,14 @@ describe('Player', () => {
   let leftAnimation;
   let animationFactory;
   let gameSize;
+  let soundFactory;
+  let jumpSound;
 
   beforeEach(() => {
+    soundFactory = new SoundFactory();
+    jumpSound = jasmine.createSpyObj('sound', ['play']);
+    spyOn(soundFactory, 'build').and.returnValue(jumpSound);
+
     keyboarder = { isRightKeyDown() {}, isLeftKeyDown() {}, isUpKeyDown() {} };
     sprite = { sheetWidth: 900, columns: 10, img: {} };
     animation = {
@@ -27,7 +33,7 @@ describe('Player', () => {
     spyOn(animation, 'draw');
     animationFactory = { build() {} };
     spyOn(animationFactory, 'build').and.returnValues(animation, rightAnimation, leftAnimation);
-    player = new Player(keyboarder, animationFactory);
+    player = new Player(keyboarder, animationFactory, soundFactory);
     context = jasmine.createSpyObj('context', ['drawImage']);
     initialXCenter = player.center.x;
     initialYCenter = player.center.y;
@@ -45,6 +51,14 @@ describe('Player', () => {
 
     it('adds left animation to animations array', () => {
       expect(player.animations.left).toEqual(leftAnimation);
+    });
+
+    it('creates a sound with correct args', () => {
+      expect(soundFactory.build).toHaveBeenCalledWith('public/assets/sounds/jump.mp3', false);
+    });
+
+    it('saves sound into jumpSound', () => {
+      expect(player.jumpSound).toEqual(jumpSound);
     });
   });
 
