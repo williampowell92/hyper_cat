@@ -21,6 +21,15 @@ describe('Sprite', () => {
       posOffsetY: 0,
       clippedWidth: 56,
       clippedHeight: 78
+    },
+    left: {
+      width: 517,
+      columns: 8,
+      src: 'public/assets/sprite_running_left.png',
+      posOffsetX: 5,
+      posOffsetY: 0,
+      clippedWidth: 56,
+      clippedHeight: 78
     }
   };
 
@@ -64,6 +73,7 @@ describe('Sprite', () => {
         expect(sprite.clippedHeight).toEqual(sheets.idle.clippedHeight);
       });
     });
+
     describe('right', () => {
       beforeEach(() => {
         sprite = spriteFactory.build('right', imageFactory);
@@ -95,6 +105,40 @@ describe('Sprite', () => {
 
       it('stores the clippedHeight', () => {
         expect(sprite.clippedHeight).toEqual(sheets.right.clippedHeight);
+      });
+    });
+
+    describe('left', () => {
+      beforeEach(() => {
+        sprite = spriteFactory.build('left', imageFactory);
+      });
+
+      it('stores the sheetWidth', () => {
+        expect(sprite.sheetWidth).toEqual(sheets.left.width);
+      });
+
+      it('stores the columns', () => {
+        expect(sprite.columns).toEqual(sheets.left.columns);
+      });
+
+      it('stores the src on the image', () => {
+        expect(sprite.img.src).toContain(sheets.left.src.slice(2, -1));
+      });
+
+      it('stores the posOffsetX', () => {
+        expect(sprite.posOffsetX).toEqual(sheets.left.posOffsetX);
+      });
+
+      it('stores the posOffsetY', () => {
+        expect(sprite.posOffsetY).toEqual(sheets.left.posOffsetY);
+      });
+
+      it('stores the clippedWidth', () => {
+        expect(sprite.clippedWidth).toEqual(sheets.left.clippedWidth);
+      });
+
+      it('stores the clippedHeight', () => {
+        expect(sprite.clippedHeight).toEqual(sheets.left.clippedHeight);
       });
     });
   });

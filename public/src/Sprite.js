@@ -17,6 +17,15 @@ function Sprite(sheet, imageFactory = new ImageFactory()) {
       posOffsetY: 0,
       clippedWidth: 56,
       clippedHeight: 78
+    },
+    left: {
+      width: 517,
+      columns: 8,
+      src: 'public/assets/sprite_running_left.png',
+      posOffsetX: 5,
+      posOffsetY: 0,
+      clippedWidth: 56,
+      clippedHeight: 78
     }
   };
 
