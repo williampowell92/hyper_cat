@@ -1,4 +1,6 @@
 function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
+  const animationNames = ['idle', 'right'];
+
   this.center = { x: 400, y: 700 };
   this.size = { x: 45, y: 72 };
   this.acceleration = { x: 1.5, y: -25 };
@@ -8,7 +10,11 @@ function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationF
   this.friction = 0.9;
   this.gravity = 1.5;
   this.animations = {};
-  this.animations.idle = animationFactory.build('idle');
+
+  animationNames.forEach((animationName) => {
+    this.animations[animationName] = animationFactory.build(animationName);
+  });
+
   this.currentAnimation = this.animations.idle;
 }
 

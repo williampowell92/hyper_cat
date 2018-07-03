@@ -30,6 +30,10 @@ describe('Player', () => {
     it('adds idle animation to animations array', () => {
       expect(player.animations.idle).toEqual(animation);
     });
+
+    it('adds right animation to animations array', () => {
+      expect(player.animations.right).toEqual(animation);
+    });
   });
 
   describe('Draw', () => {
