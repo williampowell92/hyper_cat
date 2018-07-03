@@ -2,7 +2,7 @@ function Mouse() {
   this.center = { x: 1200, y: 360 };
   this.size = { x: 50, y: 50 };
   this.image = new Image();
-  this.image.src = 'https://vignette.wikia.nocookie.net/transformice/images/5/5c/Mouse.png/revision/latest?cb=20130807162505';
+  this.image.src = 'public/assets/imgs/Mouse.png';
 }
 
 Mouse.prototype = {
