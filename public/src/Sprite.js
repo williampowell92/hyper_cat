@@ -22,7 +22,7 @@ function Sprite(sheet, imageFactory = new ImageFactory()) {
       width: 517,
       columns: 8,
       src: 'public/assets/sprite_running_left.png',
-      posOffsetX: 5,
+      posOffsetX: 4,
       posOffsetY: 0,
       clippedWidth: 56,
       clippedHeight: 78
