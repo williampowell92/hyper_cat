@@ -7,7 +7,25 @@ function Sprite(sheet, imageFactory = new ImageFactory()) {
       posOffsetX: 18,
       posOffsetY: 5,
       clippedWidth: 48,
-      clippedHeight: 79
+      clippedHeight: 72
+    },
+    right: {
+      width: 517,
+      columns: 8,
+      src: 'public/assets/sprite_running_right.png',
+      posOffsetX: 5,
+      posOffsetY: 0,
+      clippedWidth: 56,
+      clippedHeight: 78
+    },
+    left: {
+      width: 517,
+      columns: 8,
+      src: 'public/assets/sprite_running_left.png',
+      posOffsetX: 4,
+      posOffsetY: 0,
+      clippedWidth: 56,
+      clippedHeight: 78
     }
   };
 
