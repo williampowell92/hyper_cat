@@ -1,0 +1,15 @@
+. {
+  margin: auto 0;
+  overflow: hidden;
+  background-color: 'black';
+}
+
+body {
+  background-color: black;
+}
+canvas {
+  outline: 1px solid #000;
+  background-image: url("../imgs/BG.png");
+  width: 99.5vw;
+  height: 90vh;
+}
