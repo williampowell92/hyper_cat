@@ -11,40 +11,59 @@ describe('Sound', () => {
     spyOn(document, 'createElement').and.returnValue(mockAudio);
     spyOn(document.body, 'appendChild');
     soundFactory = new SoundFactory();
-    sound = soundFactory.build(src);
   });
 
   describe('initialize', () => {
-    it('creates an audio element', () => {
-      expect(sound.audio).toEqual(mockAudio);
+    describe('with loop on', () => {
+      beforeEach(() => {
+        sound = soundFactory.build(src, true);
+      });
+
+      it('creates an audio element', () => {
+        expect(sound.audio).toEqual(mockAudio);
+      });
+
+      it('adds the src to the element', () => {
+        expect(mockAudio.src).toContain(src);
+      });
+
+      it('adds preload auto to the element', () => {
+        expect(mockAudio.setAttribute).toHaveBeenCalledWith('preload', 'auto');
+      });
+
+      it('adds loop true to the element', () => {
+        expect(mockAudio.setAttribute).toHaveBeenCalledWith('loop', true);
+      });
+
+      it('adds controls none to the element', () => {
+        expect(mockAudio.setAttribute).toHaveBeenCalledWith('controls', 'none');
+      });
+
+      it('calls append child with audio element', () => {
+        expect(document.body.appendChild).toHaveBeenCalledWith(mockAudio);
+      });
+
+      it('has no display', () => {
+        expect(mockAudio.style.display).toEqual('none');
+      });
     });
 
-    it('adds the src to the element', () => {
-      expect(mockAudio.src).toContain(src);
-    });
+    describe('with loop off', () => {
+      beforeEach(() => {
+        sound = soundFactory.build(src, false);
+      });
 
-    it('adds preload auto to the element', () => {
-      expect(mockAudio.setAttribute).toHaveBeenCalledWith('preload', 'auto');
+      it('adds loop false to the element', () => {
+        expect(mockAudio.setAttribute).toHaveBeenCalledWith('loop', false);
+      });
     });
-
-    it('adds loop true to the element', () => {
-      expect(mockAudio.setAttribute).toHaveBeenCalledWith('loop', 'true');
-    });
-
-    it('adds controls none to the element', () => {
-      expect(mockAudio.setAttribute).toHaveBeenCalledWith('controls', 'none');
-    });
-
-    it('calls append child with audio element', () => {
-      expect(document.body.appendChild).toHaveBeenCalledWith(mockAudio);
-    });
-
-    it('has no display', () => {
-      expect(mockAudio.style.display).toEqual('none');
-    })
   });
 
   describe('play', () => {
+    beforeEach(() => {
+      sound = soundFactory.build(src, false);
+    });
+
     it('calls play on audio element', () => {
       sound.play();
       expect(mockAudio.play).toHaveBeenCalled();
