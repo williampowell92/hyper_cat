@@ -8,9 +8,15 @@ html, body {
   background-color: black;
 }
 
+.main, .wrapper, button {
+  background-color: #0e1516;
+}
+
 canvas {
   outline: 1px solid #000;
   background-image: url("../imgs/BG.png");
+  background-repeat: no-repeat;
+  background-size: 99.5vw;
   width: 99.5vw;
   height: 90vh;
 }
