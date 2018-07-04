@@ -15,6 +15,14 @@ function Index(gameFactory = new GameFactory(), platformFactory = new PlatformFa
       platformFactory.build({ x: 1600, y: 200 }, { x: 128, y: 70 }),
       platformFactory.build({ x: 1800, y: 800 }, { x: 128, y: 70 }),
 
+      platformFactory.build({ x: 2000, y: 300 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 2400, y: 400 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 2600, y: 800 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 3100, y: 200 }, { x: 356, y: 70 }),
+      platformFactory.build({ x: 2900, y: 700 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 3300, y: 600 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 3600, y: 500 }, { x: 128, y: 70 }),
+
       
     ]
   );
