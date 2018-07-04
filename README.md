@@ -1,8 +1,8 @@
-[Motivation](#motivation) | [Specification](#specification) | [Approach](#approach) |  [Installation](#installation) | [How to use?](#how-to-use) | [Tests](#tests) | [Further work](#further-work) | [Technologies](#technologies)
+[How to play](#how-to-use) | [Testimonials](#testimonials) | [Motivation](#motivation) | [Class Diagram](#class-diagram) |  [Approach](#approach) | [Tests](#tests) | [Further work](#further-work) | [Technologies](#technologies)
 
 # Hyper Cat
 
-Hyper Cat is a 2D, side-scrolling, platform game. Hyper Cat is hungry and is on the hunt for a mouse to eat! The goal of the game is to jump between platforms to catch a delicious mouse. It has been developed using vanilla Javascript - no game engines or frameworks.
+Hyper Cat is a 2D, side-scrolling, platform game. Hyper Cat is hungry and is on the hunt for a mouse to eat! The goal of the game is to jump between platforms to catch a delicious mouse. It has been developed using vanilla Javascript - no game engines or frameworks. Hyper Cat is a Makers Academy final project developed by a team of 4 people: Siobhan Goggins, Oliver Harris, Roxana Pirvu, and William Powell.
 
 ### How to play
 
@@ -30,40 +30,6 @@ This project has been created for our final project as junior developers at Make
 - Animation
 - User input
 
-<!-- ### Specification
-
-
-
-#### Requirements
-
-
-
-
-
-
-This tech test is based on Terry Hughes' which can be found [here](https://github.com/NotMyself/GildedRose). This was translated into Java by Emily Bache, the translated version can be found [here](https://github.com/emilybache/GildedRose-Refactoring-Kata).
-
-* All items have a SellIn value which denotes the number of days to sell the item.
-* All items have a Quality value which denotes how valuable the item is.
-* At the end of each day SellIn and Quality are reduced by one.
-* Once the sell by date has passed, Quality degrades twice as fast.
-* The Quality of an item is never negative.
-* "Aged Brie" increases in Quality the older it gets, rather than decreasing.
-* The Quality of an item is never more than 50.
-* "Sulfuras", a legendary item, SellIn and Quality values never change.
-* "Backstage passes", like "Aged Brie", increase in Quality as it's SellIn approaches, as follows:
-  * More than 10 days from the show, increases by one per day.
-  * 10 or less days from the show, increases by two per day.
-  * 5 or less days from the show, increases by three per day.
-  * Reduces to zero after the show.
-* "Conjured Items" degrade in Quality twice as fast as normal items.
-
-#### Acceptance Criteria
-
-* Given the legacy code refactor it in such a way that adding the "Conjured Item" is easy.
-* The aim is to practice good design.
-* Anything may be changed apart from the "Item" class.
--->
 ### Class Diagram
 
 ![class diagram](https://i.imgur.com/OhKgutX.png)
@@ -88,8 +54,6 @@ Continuous deployment was set up using Travis and Heroku, so that any change to 
 
 Testing was carried out using Jasmine and Karma with Istanbul for code coverage.
 
-Testing was carried out using JUnit 4.0. Tests can be run from the project home directory as follows:
-
 ### Further work
 
 - Refactor Physics out of Player class
@@ -100,6 +64,7 @@ Testing was carried out using JUnit 4.0. Tests can be run from the project home 
 - Timer and high scores
 - Moving platforms
 - Additional decoration
+- Additional levels
 
 ### Technologies
 
