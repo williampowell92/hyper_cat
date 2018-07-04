@@ -1,15 +1,18 @@
 describe('Index', () => {
+  let platformFactory;
   let gameFactory;
   let soundFactory;
   let mockCanvas;
   let mockDocument;
   let mockContext;
+  let mockPlatform;
   let mockGame;
   let mockSound;
   let gameSize;
   let index;
 
   beforeEach(() => {
+    platformFactory = new PlatformFactory();
     gameFactory = new GameFactory();
     soundFactory = new SoundFactory();
     mockCanvas = {
@@ -19,15 +22,17 @@ describe('Index', () => {
       querySelector() {}
     };
     mockContext = {};
+    mockPlatform = jasmine.createSpyObj('platform', ['draw']);
     mockGame = jasmine.createSpyObj('game', ['update', 'draw']);
     mockSound = jasmine.createSpyObj('sound', ['play']);
+    spyOn(platformFactory, 'build').and.returnValue(mockPlatform);
     spyOn(gameFactory, 'build').and.returnValue(mockGame);
     spyOn(soundFactory, 'build').and.returnValue(mockSound);
     spyOn(mockCanvas, 'getContext').and.returnValue(mockContext);
     spyOn(mockDocument, 'querySelector').and.returnValue(mockCanvas);
     spyOn(window, 'requestAnimationFrame');
     gameSize = { x: mockCanvas.width, y: mockCanvas.height };
-    index = new Index(gameFactory, mockDocument, soundFactory);
+    index = new Index(gameFactory, platformFactory, mockDocument, soundFactory);
   });
 
   describe('initialize', () => {
