@@ -10,7 +10,7 @@ body {
 }
 
 body, .wrapper, button {
-  background-color: black;
+  background-color: #0e1516;
 }
 
 canvas {
@@ -22,9 +22,13 @@ canvas {
   height: 90vh;
 }
 
-h1, h2, h4, button, p, li {
+h1, h2, h3, h4, button, p, li {
   font-family: 'Press Start 2P', cursive;
   color: #eeeeee;
+}
+
+.title, .controls, .credits p, h3, h4, li {
+  color: #83ffa1;
 }
 
 .title {
@@ -45,6 +49,7 @@ padding-bottom: 1rem;
 }
 
 button {
+  font-size: 1.2rem;
   width: 25%;
   padding: 2rem 4rem;
 }
