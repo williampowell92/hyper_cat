@@ -38,9 +38,8 @@ h1, h2, h3, h4, button, p, li {
 }
 
 .title {
-    padding-top: 3rem;
-    font-size: 6vh;
-
+  padding-top: 3rem;
+  font-size: 6vh;
 }
 
 ul {
@@ -52,8 +51,8 @@ li {
 }
 
 .controls, .message {
-padding-top: 1rem;
-padding-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 button {
