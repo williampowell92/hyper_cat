@@ -54,7 +54,7 @@ Continuous deployment was set up using Travis and Heroku, so that any change to 
 
 ![Intro Screen](https://i.imgur.com/if9rUaP.png)
 
-![Demo](https://i.imgur.com/hPUPKNF.gif)
+![Demo](https://i.imgur.com/R7nkLxy.gif)
 
 ![Win Screen](https://i.imgur.com/03fcM7y.png)
 
