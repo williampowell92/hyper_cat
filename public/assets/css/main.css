@@ -2,10 +2,12 @@
   margin: auto 0;
   overflow: hidden;
   background-color: 'black';
+
 }
 
 body {
   background-color: black;
+  color: white;
 }
 canvas {
   outline: 1px solid #000;
