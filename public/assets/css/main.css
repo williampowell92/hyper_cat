@@ -41,15 +41,26 @@ h1, h2, h3, h4, button, p, li {
 
 .title {
   padding-top: 3rem;
-  font-size: 6vh;
+  font-size: 5.5vh;
 }
 
 ul {
   list-style-type: none;
+  font-size: 1.5vh;
 }
 
 li {
   padding-bottom: 0.3rem;
+  font-size: 2vh;
+}
+
+.credits ul {
+  font-size: 2vh;
+  padding-top: 2vh;
+}
+
+.credits li {
+  font-size: 1.7vh;
 }
 
 .controls, .message {
@@ -58,7 +69,9 @@ li {
 }
 
 button {
-  font-size: 3vh;
+  margin-right: 2vh;
+  margin-left: 2vh;
+  font-size: 2.5vh;
   width: 25%;
-  padding: 1.5rem 3.5rem;
+  padding: 2vh 3vh;
 }
