@@ -50,6 +50,16 @@ We followed a TDD approach with a goal of achieving at least 90% code coverage. 
 
 Continuous deployment was set up using Travis and Heroku, so that any change to the master branch was automatically deployed.
 
+### Screenshots
+
+![Intro Screen](https://i.imgur.com/if9rUaP.png)
+
+![Gameplay]()
+
+![Win Screen](https://i.imgur.com/03fcM7y.png)
+
+![Lose Screen]()
+
 ### Tests
 
 Testing was carried out using Jasmine and Karma with Istanbul for code coverage.
