@@ -1,12 +1,20 @@
-. {
-  margin: auto 0;
-  overflow: hidden;
-  background-color: 'black';
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+html, body {
+  margin: 0;
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+body, .wrapper, button {
   background-color: #0e1516;
 }
+
 canvas {
   outline: 1px solid #000;
   background-image: url("../imgs/BG.png");
@@ -14,4 +22,43 @@ canvas {
   background-size: 99.5vw;
   width: 99.5vw;
   height: 90vh;
+}
+
+h1, h2, h3, h4, button, p, li {
+  font-family: 'Press Start 2P', cursive;
+  color: #eeeeee;
+}
+
+.title, .controls, .credits p, h3, h4, li {
+  color: #80ff6f;
+}
+
+#happy_cat, #mouse {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  padding-bottom: 1rem;
+}
+
+.title {
+  padding-top: 3rem;
+  font-size: 6vh;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding-bottom: 0.3rem;
+}
+
+.controls, .message {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+button {
+  font-size: 3vh;
+  width: 25%;
+  padding: 1.5rem 3.5rem;
 }
