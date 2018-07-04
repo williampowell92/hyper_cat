@@ -1,4 +1,8 @@
-function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationFactory) {
+function Player(
+  keyboarder = new Keyboarder(),
+  animationFactory = new AnimationFactory,
+  soundFactory = new SoundFactory
+) {
   const animationNames = ['idle', 'right', 'left'];
   this.center = { x: 800, y: 636 };
   this.size = { x: 45, y: 72 };
@@ -9,6 +13,7 @@ function Player(keyboarder = new Keyboarder(), animationFactory = new AnimationF
   this.friction = 0.9;
   this.gravity = 1.5;
   this.animations = {};
+  this.jumpSound = soundFactory.build('public/assets/sounds/jump.mp3', false);
 
   animationNames.forEach((animationName) => {
     this.animations[animationName] = animationFactory.build(animationName);
@@ -65,6 +70,7 @@ Player.prototype = {
   _jump() {
     if (this.keyboarder.isUpKeyDown() && this.jumping === false) {
       this.velocity.y = this.acceleration.y;
+      this.jumpSound.play();
     }
     this.jumping = true;
   },
