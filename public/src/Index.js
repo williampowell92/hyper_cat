@@ -9,10 +9,13 @@ function Index(gameFactory = new GameFactory(), platformFactory = new PlatformFa
     undefined,
     [
       platformFactory.build({ x: canvas.width / 2, y: canvas.height - 10 },
-        { x: canvas.width, y: 30 }),
-      platformFactory.build({ x: canvas.width / 2, y: 650 }, { x: 200, y: 100 }),
-      platformFactory.build({ x: canvas.width / 4, y: 400 }, { x: 200, y: 30 }),
-      platformFactory.build({ x: canvas.width * 3 / 4, y: 400 }, { x: 200, y: 30 })
+        { x: 400, y: 50 }),
+      platformFactory.build({ x: 1200, y: 600 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 1400, y: 400 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 1600, y: 200 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 1800, y: 800 }, { x: 128, y: 70 }),
+
+      
     ]
   );
 
