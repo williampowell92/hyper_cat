@@ -2,14 +2,28 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="public/assets/css/main.css">
     <title></title>
   </head>
-  <body>
-    You lose!
+  <body class="lose">
+    <div class="wrapper">
+      <h1 class="title">You lose!</h1>
+      <img id="happy_cat" src="public/assets/imgs/happy_cat.png"></img>
 
-  <form method="get" action="/game">
-<button type="submit">Play again</button>
-</form>
+      <form method="get" action="/game">
+        <button type="submit">Play again</button>
+      </form>
+
+      <div class="credits">
+        <ul>
+          <h3>Credits</h3>
+          <li>Siobhan Goggins</li>
+          <li>Oliver Harris</li>
+          <li>Roxana Pirvu</li>
+          <li>William Powell</li>
+        </ul>
+      </div>
+    </div>
 
   </body>
 </html>
