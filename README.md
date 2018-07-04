@@ -50,36 +50,34 @@ This tech test is based on Terry Hughes' which can be found [here](https://githu
 -->
 ### Approach
 
-We set out to build the project using the XP values and agile methodology we have learnt at makers over the past 10 weeks.  We broke up our timeframes into 2 day sprints, listing all our goals which were broken down as small as possible and listed in a kanban style storyboard with user stories and acceptance criteria.
+We set out to build the project using the XP values and agile methodology we have learnt at makers over the past 10 weeks.  We broke up our timeframes into 2 day sprints, listing all our goals which were broken down as small as possible and posted these on a kanban style storyboard with user stories and acceptance criteria.  
+
+Each day would start with a planning meeting or standup and we would split into pairs, which were rotated each day, and work on our backlog of tasks.  Each day ended with the team getting together in a retro to reflect and communicate on our work.
+
+After deciding on our project our first planning meeting we decided on our MVP which was a included a player, a platform and collision. This was built using a TDD approach as was the whole project, with a goal of having at least 95% test coverage.
+
+Our goal was also to follow the single responsibility principle for objects and functions while keeping our code easily readable and changeable.  We used polymorphism so all our bodies within the game have update, draw and resolve collision functions.  This means it would be easy to add new bodies to the game.
 
 
-- agile methodologies - 2 day sprint, daily standup/planning meetings, daily retros, kanban
-- TDD
-- MVC
-- XP values - coding, testing, listening and designing.  Communication, simplicity, feedback, coverage and respect.
 
-![class diagram](https://i.imgur.com/Eb75w0t.png)
+![class diagram](https://i.imgur.com/yGWKT0k.png)
 
-
-The class diagram above was created at the start of the project to give an overarching plan. A suite of feature tests was developed as a first step to ensure that the functionality of the program did not change through the refactoring process. A test driven approach was then followed in the creation of the new item types. Once these were completed, the old functionality was switched out for the new functionality before deleting the old functionality. The new design was then tested against the old feature tests to ensure the program still worked in the desired way.
-
-Once the above had been completed, a new item type "Conjured Item" was created to add the additional functionality.
 
 ##Testimonials
 
-Charlene "I feel like I could play this game forever" July 2018
-Ben Furber "It's the best thing I've ever seen..." July 2018
-Igor "The rectangular nature of those rectangles is fascinating"
-Zoe "Very challenging"
+Charlene Chetcuti "I feel like I could play this game forever"
+Ben Furber "It's the best thing I've ever seen..."
+Igor Ryabchuk "The rectangular nature of those rectangles is fascinating"
+Zoe Kavanagh "Very challenging"
 
-<!--### Installation
+### Installation
 
 This application has been designed to be built with Maven to simplify the build process and include all necessary dependencies. If you do not have Maven installed it is recommended you do so by following the guidelines [here](http://maven.apache.org/). To get started please follow the subsequent steps.
 
 * Clone the repository ```$ git clone https://github.com/williampowell92/gilded_rose```
 * Navigate to the top level of the directory using the command line  ```$ cd <repo name>```
 
-### How to use?
+<!-- ### How to use?
 
 The app does not have a interface so the source code must be changed between runs to alter the output.
 
