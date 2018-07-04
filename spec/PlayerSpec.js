@@ -284,11 +284,12 @@ describe('Player', () => {
     });
 
     describe('_checkYPosition', () => {
-      it('ends the game if the player drops off the screen', () => {
-        spyOn(player, '_loseScreen');
+      it('calls _redirectToLosePage once if the player falls below screen', () => {
+        spyOn(player, '_redirectToLosePage');
         player.center.y = 799;
         player.update(gameSize);
-        expect(player._loseScreen).toHaveBeenCalled();
+        player.update(gameSize);
+        expect(player._redirectToLosePage).toHaveBeenCalledTimes(1);
       });
     });
   });

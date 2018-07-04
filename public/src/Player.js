@@ -14,6 +14,7 @@ function Player(
   this.gravity = 1.5;
   this.animations = {};
   this.jumpSound = soundFactory.build('public/assets/sounds/jump.mp3', false);
+  this.loseCalls = 0;
 
   animationNames.forEach((animationName) => {
     this.animations[animationName] = animationFactory.build(animationName);
@@ -91,11 +92,21 @@ Player.prototype = {
 
   _checkYPosition(gameSize) {
     if (this.center.y > gameSize.y) {
-      this._loseScreen();
+      this._loseClosure();
     }
   },
 
-  _loseScreen() {
+  _loseClosure: (function _loseClosure() {
+    let executed = false;
+    return function closure() {
+      if (!executed) {
+        executed = true;
+        this._redirectToLosePage();
+      }
+    };
+  }()),
+
+  _redirectToLosePage() {
     window.location.replace('/lose');
   },
 
