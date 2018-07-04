@@ -54,15 +54,11 @@ Continuous deployment was set up using Travis and Heroku, so that any change to 
 
 ![Intro Screen](https://i.imgur.com/if9rUaP.png)
 
-![Gameplay]()
+![Demo](https://i.imgur.com/hPUPKNF.gif)
 
 ![Win Screen](https://i.imgur.com/03fcM7y.png)
 
 ![Lose Screen]()
-
-![Demo](https://imgur.com/a/BSgn0XD)
-
-![Demo]()
 
 ### Tests
 
