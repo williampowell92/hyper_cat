@@ -28,11 +28,19 @@ h1, h2, h3, h4, button, p, li {
 }
 
 .title, .controls, .credits p, h3, h4, li {
-  color: #83ffa1;
+  color: #80ff6f;
+}
+
+#happy_cat, #mouse {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  padding-bottom: 1rem;
 }
 
 .title {
     padding-top: 3rem;
+    font-size: 6vh;
+
 }
 
 ul {
@@ -49,7 +57,7 @@ padding-bottom: 1rem;
 }
 
 button {
-  font-size: 1.2rem;
+  font-size: 3vh;
   width: 25%;
-  padding: 2rem 4rem;
+  padding: 1.5rem 3.5rem;
 }
