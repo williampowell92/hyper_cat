@@ -48,22 +48,21 @@ This tech test is based on Terry Hughes' which can be found [here](https://githu
 * The aim is to practice good design.
 * Anything may be changed apart from the "Item" class.
 -->
-### Approach
-
-We set out to build the project using the XP values and agile methodology we have learnt at makers over the past 10 weeks.  We broke up our timeframes into 2 day sprints, listing all our goals which were broken down as small as possible and posted these on a kanban style storyboard with user stories and acceptance criteria.  
-
-Each day would start with a planning meeting or standup and we would split into pairs, which were rotated each day, and work on our backlog of tasks.  Each day ended with the team getting together in a retro to reflect and communicate on our work.
-
-After deciding on our project our first planning meeting we decided on our MVP which was a included a player, a platform and collision. This was built using a TDD approach as was the whole project, with a goal of having at least 95% test coverage.
-
-Our goal was also to follow the single responsibility principle for objects and functions while keeping our code easily readable and changeable.  We used polymorphism so all our bodies within the game have update, draw and resolve collision functions.  This means it would be easy to add new bodies to the game.
-
-
+### Class Diagram
 
 ![class diagram](https://i.imgur.com/yGWKT0k.png)
 
+### Approach
 
-##Testimonials
+We set out to build the project using the XP values and agile methodology we have learnt at makers over the past 10 weeks. We broke up our project into 2 day sprints. At the beginning of each sprint a planning meeting was held. In this meeting our goals for the coming sprint were discussed and decided, these were posted as issues on a kanban style storyboard. Each issue would have a user story and acceptance criteria for the developer.
+
+Each morning began with a brief standup meeting to discuss what each developer had been doing, what they would be doing moving forwards, and if they had any blockers. After the planning meeting the team split into two pairs, which rotated daily, and began working on our backlog of tasks. At the end of each day a retrospective was held to reflect and communicate on our work, and how we could improve.
+
+After deciding on our project, we decided on an MVP. Our MVP was to have a player and a platform rendered on the DOM, with the player colliding with the platform. From our MVP we decided on new features using the agile methodology described.
+
+We followed a TDD approach with a goal of achieving at least 90% code coverage. The project was designed following an object-oriented approach, attempting to stick to the single responsibility principle as far as possible, while keeping our code readable and extendable. We used polymorphism within the game design, for example our bodies all have a draw method which game calls. This made it easy to add new bodies, with different behaviour, into the game.
+
+## Testimonials
 
 Charlene Chetcuti "I feel like I could play this game forever"
 Ben Furber "It's the best thing I've ever seen..."
