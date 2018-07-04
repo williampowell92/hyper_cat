@@ -60,6 +60,10 @@ Continuous deployment was set up using Travis and Heroku, so that any change to 
 
 ![Lose Screen]()
 
+![Demo](https://imgur.com/a/BSgn0XD)
+
+![Demo]()
+
 ### Tests
 
 Testing was carried out using Jasmine and Karma with Istanbul for code coverage.
