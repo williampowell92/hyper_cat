@@ -6,6 +6,7 @@ html, body {
   width: 100%;
   color: white;
   background-color: black;
+  box-sizing: border-box;
 }
 
 .main, .wrapper, button {
@@ -21,6 +22,36 @@ canvas {
   height: 90vh;
 }
 
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
 ul {
   list-style-type: none;
 }
+
+.message {
+  color: #fff;
+  display: inline-block;
+  position: absolute;
+  top: 15%;
+  right: calc(50% - 6vw);
+  text-align: center;
+}
+
+.controls {
+  position: absolute;
+  top: 75%;
+  right: calc(50% - 3vw);
+  text-align: center;
+}
+
+/* .controls {
+  position: absolute;
+  top: 20%;
+  right: calc(50% - 10vw);
+  text-align: center;
+} */
