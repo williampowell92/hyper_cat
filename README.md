@@ -47,16 +47,32 @@ This tech test is based on Terry Hughes' which can be found [here](https://githu
 * Given the legacy code refactor it in such a way that adding the "Conjured Item" is easy.
 * The aim is to practice good design.
 * Anything may be changed apart from the "Item" class.
-
+-->
 ### Approach
 
+We set out to build the project using the XP values and agile methodology we have learnt at makers over the past 10 weeks.  We broke up our timeframes into 2 day sprints, listing all our goals which were broken down as small as possible and listed in a kanban style storyboard with user stories and acceptance criteria.
+
+
+- agile methodologies - 2 day sprint, daily standup/planning meetings, daily retros, kanban
+- TDD
+- MVC
+- XP values - coding, testing, listening and designing.  Communication, simplicity, feedback, coverage and respect.
+
 ![class diagram](https://i.imgur.com/Eb75w0t.png)
+
 
 The class diagram above was created at the start of the project to give an overarching plan. A suite of feature tests was developed as a first step to ensure that the functionality of the program did not change through the refactoring process. A test driven approach was then followed in the creation of the new item types. Once these were completed, the old functionality was switched out for the new functionality before deleting the old functionality. The new design was then tested against the old feature tests to ensure the program still worked in the desired way.
 
 Once the above had been completed, a new item type "Conjured Item" was created to add the additional functionality.
 
-### Installation
+##Testimonials
+
+Charlene "I feel like I could play this game forever" July 2018
+Ben Furber "It's the best thing I've ever seen..." July 2018
+Igor "The rectangular nature of those rectangles is fascinating"
+Zoe "Very challenging"
+
+<!--### Installation
 
 This application has been designed to be built with Maven to simplify the build process and include all necessary dependencies. If you do not have Maven installed it is recommended you do so by following the guidelines [here](http://maven.apache.org/). To get started please follow the subsequent steps.
 
@@ -92,4 +108,4 @@ mvn test
 
 ### Technologies
 
-This application was built using Java, Maven and JUnit 4. -->
+This application was built using Java, Maven and JUnit 4. --->
