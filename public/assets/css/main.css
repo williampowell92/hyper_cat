@@ -1,16 +1,16 @@
 html, body {
   margin: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  color: white;
-  background-color: black;
-  box-sizing: border-box;
 }
 
-.main, .wrapper, button {
-  background-color: #0e1516;
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+body, .wrapper, button {
+  background-color: black;
 }
 
 canvas {
@@ -27,36 +27,24 @@ h1, h2, h4, button, p, li {
   color: #eeeeee;
 }
 
-.wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+.title {
+    padding-top: 3rem;
 }
 
 ul {
   list-style-type: none;
 }
 
-.message {
-  color: #fff;
-  display: inline-block;
-  position: absolute;
-  top: 15%;
-  right: calc(50% - 20vw);
-  text-align: center;
+li {
+  padding-bottom: 0.3rem;
 }
 
-.controls {
-  position: absolute;
-  top: 75%;
-  right: calc(50% - 10vw);
-  text-align: center;
+.controls, .message {
+padding-top: 1rem;
+padding-bottom: 1rem;
 }
 
 button {
-  position: absolute;
-  top: 50%;
-  right: calc(50% - 8vw);
-  padding: 3rem 6rem;
+  width: 25%;
+  padding: 2rem 4rem;
 }
