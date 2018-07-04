@@ -1,8 +1,8 @@
-[How to play](#how-to-use) | [Testimonials](#testimonials) | [Motivation](#motivation) | [Class Diagram](#class-diagram) |  [Approach](#approach) | [Tests](#tests) | [Further work](#further-work) | [Technologies](#technologies)
+[How to play](#how-to-use) | [Testimonials](#testimonials) | [Motivation](#motivation) | [Class Diagram](#class-diagram) |  [Approach](#approach) | [Screenshots](#screenshots) | [Tests](#tests) | [Further work](#further-work) | [Technologies](#technologies)
 
 # Hyper Cat
 
-Hyper Cat is a 2D, side-scrolling, platform game. Hyper Cat is hungry and is on the hunt for a mouse to eat! The goal of the game is to jump between platforms to catch a delicious mouse. It has been developed using vanilla Javascript - no game engines or frameworks. Hyper Cat is a Makers Academy final project developed by a team of 4 people: Siobhan Goggins, Oliver Harris, Roxana Pirvu, and William Powell.
+Hyper Cat is a 2D, side-scrolling, platform game. Hyper Cat is hungry and is on the hunt for a mouse to eat! The goal of the game is to jump between platforms to catch a delicious mouse. It has been developed using vanilla Javascript - no game engines or frameworks. Hyper Cat is a Makers Academy final project developed over two weeks by a team of 4 people: Siobhan Goggins, Oliver Harris, Roxana Pirvu, and William Powell.
 
 ### How to play
 
