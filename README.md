@@ -60,7 +60,11 @@ Each morning began with a brief standup meeting to discuss what each developer h
 
 After deciding on our project, we decided on an MVP. Our MVP was to have a player and a platform rendered on the DOM, with the player colliding with the platform. From our MVP we decided on new features using the agile methodology described.
 
+![MVP](https://i.imgur.com/r3EqrR5.gif)
+
 We followed a TDD approach with a goal of achieving at least 90% code coverage. The project was designed following an object-oriented approach, attempting to stick to the single responsibility principle as far as possible, while keeping our code readable and extendable. We used polymorphism within the game design, for example our bodies all have a draw method which game calls. This made it easy to add new bodies, with different behaviour, into the game.
+
+
 
 ## Testimonials
 
