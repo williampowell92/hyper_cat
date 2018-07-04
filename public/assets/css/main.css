@@ -22,6 +22,11 @@ canvas {
   height: 90vh;
 }
 
+h1, h2, h4, button, p, li {
+  font-family: 'Press Start 2P', cursive;
+  color: #eeeeee;
+}
+
 .wrapper {
   position: relative;
   width: 100%;
@@ -38,20 +43,20 @@ ul {
   display: inline-block;
   position: absolute;
   top: 15%;
-  right: calc(50% - 6vw);
+  right: calc(50% - 20vw);
   text-align: center;
 }
 
 .controls {
   position: absolute;
   top: 75%;
-  right: calc(50% - 3vw);
+  right: calc(50% - 10vw);
   text-align: center;
 }
 
-/* .controls {
+button {
   position: absolute;
-  top: 20%;
-  right: calc(50% - 10vw);
-  text-align: center;
-} */
+  top: 50%;
+  right: calc(50% - 8vw);
+  padding: 3rem 6rem;
+}
