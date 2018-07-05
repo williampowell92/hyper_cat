@@ -76,7 +76,9 @@ function Index(gameFactory = new GameFactory(), platformFactory = new PlatformFa
       platformFactory.build({ x: 4800, y: 200 }, { x: 128, y: 70 }),
       platformFactory.build({ x: 4600, y: 200 }, { x: 128, y: 70 }),
       platformFactory.build({ x: 4100, y: 200 }, { x: 128, y: 70 }),
-
+      platformFactory.build({ x: 3972, y: 200 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 3844, y: 200 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 3600, y: 200 }, { x: 70, y: 70 })
 
     ]
   );
