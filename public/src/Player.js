@@ -97,7 +97,7 @@ Player.prototype = {
 
   _loseClosure: (function _loseClosure() {
     let executed = false;
-    return function closure() {
+    return function redirect() {
       if (!executed) {
         executed = true;
         this._redirectToLosePage();

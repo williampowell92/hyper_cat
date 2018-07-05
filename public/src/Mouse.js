@@ -30,7 +30,7 @@ Mouse.prototype = {
 
   _winClosure: (function _winClosure() {
     let executed = false;
-    return function closure() {
+    return function redirect() {
       if (!executed) {
         executed = true;
         this._redirectToWinPage();
