@@ -14,7 +14,6 @@ function Player(
   this.gravity = 1.5;
   this.animations = {};
   this.jumpSound = soundFactory.build('public/assets/sounds/jump.mp3', false);
-  this.loseCalls = 0;
 
   animationNames.forEach((animationName) => {
     this.animations[animationName] = animationFactory.build(animationName);
