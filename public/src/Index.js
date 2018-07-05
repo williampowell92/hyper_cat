@@ -38,7 +38,39 @@ function Index(gameFactory = new GameFactory(), platformFactory = new PlatformFa
       platformFactory.build({ x: 5436, y: 620 }, { x: 128, y: 70 }),
       platformFactory.build({ x: 5564, y: 665 }, { x: 128, y: 70 }),
 
-      
+      platformFactory.build({ x: 5692, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 5820, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 5948, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6076, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6204, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6332, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6460, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6588, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6716, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6844, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6972, y: 710 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 7100, y: 710 }, { x: 128, y: 70 }),
+
+      platformFactory.build({ x: 7228, y: 550 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 7484, y: 400 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 7228, y: 250 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 7484, y: 100 }, { x: 128, y: 70 }),
+
+      platformFactory.build({ x: 7100, y: 100 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6972, y: 100 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6844, y: 125 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6716, y: 150 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6588, y: 175 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6460, y: 200 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6332, y: 225 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6204, y: 250 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 6076, y: 275 }, { x: 128, y: 70 }),
+      platformFactory.build({ x: 5948, y: 300 }, { x: 128, y: 70 }),
+
+
+      platformFactory.build({ x: 5000, y: 200 }, { x: 128, y: 70 })
+
+
     ]
   );
 
