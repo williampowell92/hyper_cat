@@ -32,10 +32,11 @@ describe('Mouse', () => {
   });
 
   describe('resolveCollision', () => {
-    it('calls alert when colliding with player', () => {
-      spyOn(mouse, '_winScreen');
+    it('calls _redirectToWinPage once if the player hits the mouse below screen', () => {
+      spyOn(mouse, '_redirectToWinPage');
       mouse.resolveCollision();
-      expect(mouse._winScreen).toHaveBeenCalled();
+      mouse.resolveCollision();
+      expect(mouse._redirectToWinPage).toHaveBeenCalledTimes(1);
     });
   });
 });

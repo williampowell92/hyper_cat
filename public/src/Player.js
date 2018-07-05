@@ -91,11 +91,21 @@ Player.prototype = {
 
   _checkYPosition(gameSize) {
     if (this.center.y > gameSize.y) {
-      this._loseScreen();
+      this._loseClosure();
     }
   },
 
-  _loseScreen() {
+  _loseClosure: (function _loseClosure() {
+    let executed = false;
+    return function redirect() {
+      if (!executed) {
+        executed = true;
+        this._redirectToLosePage();
+      }
+    };
+  }()),
+
+  _redirectToLosePage() {
     window.location.replace('/lose');
   },
 

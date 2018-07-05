@@ -21,12 +21,22 @@ Mouse.prototype = {
   },
 
   resolveCollision() {
-    this._winScreen();
+    this._winClosure();
   },
 
-  _winScreen() {
+  _redirectToWinPage() {
     window.location.replace('/win');
-  }
+  },
+
+  _winClosure: (function _winClosure() {
+    let executed = false;
+    return function redirect() {
+      if (!executed) {
+        executed = true;
+        this._redirectToWinPage();
+      }
+    };
+  }()),
 };
 
 function ImageFactory() {
